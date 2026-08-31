@@ -1,0 +1,1118 @@
+/* HomePage */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #29221f;
+    color: white;
+}
+
+
+/* MAIN HERO */
+
+.homepage .hero {
+    width: 100%;
+    min-height: 100vh;
+    padding: 35px 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* LOGIN / SIGN UP */
+
+.homepage .auth-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 45px;
+}
+
+.homepage .auth-buttons button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.homepage .login {
+    background: transparent;
+    border: 1px solid #756963;
+    color: white;
+}
+
+.homepage .signup {
+    background: #f27643;
+    border: 1px solid #f27643;
+    color: white;
+}
+
+
+/* HERO CONTENT */
+
+.homepage .hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+
+    max-width: 1150px;
+    margin: auto;
+}
+
+
+/* LEFT TEXT */
+
+.homepage .hero-text {
+    width: 48%;
+}
+
+.homepage .offer {
+    display: inline-block;
+
+    padding: 12px 25px;
+    margin-bottom: 25px;
+
+    border: 1px solid #71402e;
+    border-radius: 30px;
+
+    background: #36251f;
+    color: #d8754d;
+
+    font-size: 13px;
+}
+
+.homepage .hero-text h1 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(40px, 5vw, 65px);
+    line-height: 1;
+    letter-spacing: -2px;
+
+    color: #f8f5f2;
+
+    margin-bottom: 25px;
+}
+
+.homepage .hero-text h1 span {
+    color: #f27643;
+}
+
+.homepage .hero-text p {
+    max-width: 500px;
+
+    color: #aaa19d;
+
+    font-size: 12px;
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+}
+
+
+/* BUTTONS */
+
+.homepage .actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.homepage .get-started {
+    padding: 15px 25px;
+
+    background: #f27643;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.homepage .watch {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    background: transparent;
+    color: #aaa19d;
+
+    border: none;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+.homepage .play {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #544943;
+    color: white;
+
+    font-size: 9px;
+}
+
+
+/* STATISTICS */
+
+.homepage .stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 45px;
+}
+
+.homepage .stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.homepage .stat strong {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 22px;
+
+    color: #eee9e5;
+}
+
+.homepage .stat small {
+    margin-top: 5px;
+
+    color: #77706b;
+
+    font-size: 8px;
+}
+
+
+/* FOOD */
+
+.homepage .food-section {
+    width: 47%;
+    position: relative;
+}
+
+.homepage .food-image {
+    width: 100%;
+    height: 500px;
+
+    object-fit: cover;
+
+    display: block;
+
+    border-radius: 25px;
+}
+
+
+/* PRICE CARD */
+
+.homepage .price-card {
+    position: absolute;
+
+    top: 20px;
+    right: -15px;
+
+    padding: 13px 18px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #fffaf6;
+    color: #312823;
+
+    border-radius: 12px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.homepage .price-card strong {
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.homepage .price-card span {
+    font-size: 8px;
+    color: #756963;
+}
+
+
+/* CHEF CARD */
+
+.homepage .chef-card {
+    position: absolute;
+
+    bottom: -15px;
+    left: -30px;
+
+    min-width: 280px;
+
+    padding: 13px 18px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: #fffaf6;
+    color: #312823;
+
+    border-radius: 14px;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.homepage .chef-image {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eee1d8;
+
+    font-size: 20px;
+}
+
+.homepage .chef-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.homepage .chef-info strong {
+    font-size: 10px;
+}
+
+.homepage .chef-info span {
+    font-size: 8px;
+    color: #766c67;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .hero {
+        padding: 25px;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-text,
+    .food-section {
+        width: 100%;
+    }
+
+    .food-image {
+        height: 400px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .hero {
+        padding: 20px;
+    }
+
+    .hero-text h1 {
+        font-size: 40px;
+    }
+
+    .actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .stats {
+        gap: 20px;
+    }
+
+    .food-image {
+        height: 350px;
+    }
+
+    .chef-card {
+        left: -5px;
+    }
+}
+
+/* =========================
+   RESET
+========================= */
+/* WELCOME PAGE */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #29221f;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.welcome-page .container {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+}
+
+
+/* =========================
+   LEFT SIDE
+========================= */
+
+.left-side {
+    width: 50%;
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    padding: 60px;
+
+    background:
+        linear-gradient(
+            rgba(35, 25, 20, 0.72),
+            rgba(35, 25, 20, 0.72)
+        ),
+        url("Food recipe.jpeg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    aspect-ratio: 4/5;
+}
+
+
+/* LOGO ON LEFT */
+
+.logo-box {
+    position: absolute;
+
+    top: 40px;
+    left: 50px;
+
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f27643;
+
+    border-radius: 10px;
+
+    font-size: 20px;
+}
+
+
+/* LEFT CONTENT */
+
+.left-content {
+    max-width: 600px;
+    margin-top: 150px;
+}
+
+.left-content h1 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 45px;
+    line-height: 1.1;
+
+    color: white;
+
+    margin-bottom: 25px;
+}
+
+.left-content h1 span {
+    color: #f27643;
+}
+
+.left-content > p {
+    max-width: 570px;
+
+    color: #ddd5d0;
+
+    font-size: 14px;
+    line-height: 1.7;
+
+    margin-bottom: 45px;
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.stats {
+    display: flex;
+    gap: 45px;
+}
+
+.stats div {
+    padding-right: 35px;
+
+    border-right: 1px solid #aaa;
+}
+
+.stats div:last-child {
+    border-right: none;
+}
+
+.stats h3 {
+    color: #f27643;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 25px;
+
+    margin-bottom: 5px;
+}
+
+.stats p {
+    color: white;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   RIGHT SIDE
+========================= */
+
+.welcome-page .right-side {
+    width: 50%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff;
+
+    padding: 50px;
+}
+
+
+/* LOGIN BOX */
+
+.welcome-page .login-box {
+    width: 100%;
+    max-width: 500px;
+
+    text-align: center;
+}
+
+
+/* =========================
+   HOMEPOT LOGO
+========================= */
+
+.welcome-page .homepot-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-bottom: 35px;
+}
+
+.welcome-page .logo-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f27643;
+
+    border-radius: 10px;
+
+    font-size: 18px;
+}
+
+.welcome-page .homepot-logo h2 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 28px;
+
+    color: #29221f;
+}
+
+
+/* =========================
+   HEADING
+========================= */
+
+.welcome-page .login-box > h1 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 32px;
+
+    color: #29221f;
+
+    margin-bottom: 12px;
+}
+
+.welcome-page .subtitle {
+    color: #777;
+
+    font-size: 13px;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
+.welcome-page .login-button {
+    width: 100%;
+
+    display: block;
+
+    padding: 15px;
+
+    background: #e96832;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.welcome-page .login-button:hover {
+    background: #d95725;
+}
+
+
+/* =========================
+   SIGNUP BUTTON
+========================= */
+
+.welcome-page .signup-button {
+    width: 100%;
+
+    display: block;
+
+    padding: 14px;
+
+    background: white;
+
+    color: #e96832;
+
+    border: 1px solid #e96832;
+
+    text-decoration: none;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   DIVIDER
+========================= */
+
+.welcome-page .divider {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin: 30px 0 20px;
+}
+
+.welcome-page .divider span {
+    flex: 1;
+
+    height: 1px;
+
+    background: #ddd;
+}
+
+.welcome-page .divider p {
+    color: #888;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   SOCIAL BUTTONS
+========================= */
+
+.welcome-page .social-buttons {
+    display: flex;
+
+    gap: 12px;
+}
+
+.welcome-page .social-button {
+    flex: 1;
+
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    text-decoration: none;
+
+    color: #333;
+
+    border: 1px solid #ddd;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+}
+
+.welcome-page .google {
+    color: #4285f4;
+
+    font-size: 20px;
+}
+
+.welcome-page .facebook {
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #1877f2;
+
+    color: white;
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   TERMS
+========================= */
+
+.welcome-page .terms {
+    margin-top: 25px;
+
+    color: #888;
+
+    font-size: 9px;
+
+    line-height: 1.6;
+}
+
+.welcome-page .terms a {
+    color: #e96832;
+
+    text-decoration: none;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 800px) {
+
+    .container {
+        flex-direction: column;
+    }
+
+    .left-side,
+    .right-side {
+        width: 100%;
+    }
+
+    .left-side {
+        min-height: 500px;
+        padding: 40px;
+    }
+
+    .left-content {
+        margin-top: 80px;
+    }
+
+    .left-content h1 {
+        font-size: 38px;
+    }
+
+    .right-side {
+        padding: 40px 25px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .left-side {
+        padding: 30px;
+    }
+
+    .left-content h1 {
+        font-size: 32px;
+    }
+
+    .stats {
+        gap: 20px;
+    }
+
+    .stats div {
+        padding-right: 15px;
+    }
+
+    .social-buttons {
+        flex-direction: column;
+    }
+}
+
+/* LOGIN PAGE */
+/* =========================
+   RIGHT SIDE
+========================= */
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+}
+.right-side {
+    width: 50%;
+
+    background-color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 45px;
+}
+
+
+/* LOGIN BOX */
+
+.login-box {
+    width: 100%;
+    max-width: 390px;
+}
+
+.login-box h1 {
+    font-family: Georgia, serif;
+
+    font-size: 27px;
+
+    color: #222;
+
+    margin-bottom: 7px;
+}
+
+.subtitle {
+    font-size: 12px;
+
+    color: #999;
+
+    margin-bottom: 28px;
+}
+
+
+/* LABELS */
+
+form label {
+    display: block;
+
+    font-size: 11px;
+
+    color: #333;
+
+    margin-bottom: 7px;
+}
+
+
+/* INPUTS */
+
+form input {
+    width: 100%;
+
+    height: 42px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 6px;
+
+    padding: 0 12px;
+
+    font-size: 11px;
+
+    outline: none;
+
+    margin-bottom: 16px;
+}
+
+form input:focus {
+    border-color: #df6c39;
+}
+
+
+/* FORGOT PASSWORD */
+
+.forgot-password {
+    display: block;
+
+    text-align: right;
+
+    color: #df6c39;
+
+    font-size: 10px;
+
+    text-decoration: none;
+
+    margin-top: -7px;
+
+    margin-bottom: 14px;
+}
+
+
+/* LOGIN BUTTON */
+
+.login-button {
+    width: 100%;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background-color: #df6c39;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.login-button:hover {
+    background-color: #c85c2d;
+}
+
+
+/* =========================
+   DIVIDER
+========================= */
+
+.divider {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 20px 0;
+}
+
+.divider span {
+    height: 1px;
+
+    background-color: #eee;
+
+    flex: 1;
+}
+
+.divider p {
+    font-size: 10px;
+
+    color: #aaa;
+}
+
+
+/* =========================
+   SOCIAL BUTTONS
+========================= */
+
+.social-button {
+    width: 100%;
+
+    height: 40px;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 6px;
+
+    background-color: white;
+
+    margin-bottom: 10px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    color: #555;
+
+    font-size: 10px;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.social-button:hover {
+    background-color: #f8f8f8;
+}
+
+
+/* GOOGLE */
+
+.google-icon {
+    color: #4285f4;
+
+    font-weight: bold;
+
+    font-size: 13px;
+}
+
+
+/* FACEBOOK */
+
+.facebook-icon {
+    width: 15px;
+    height: 15px;
+
+    background-color: #1877f2;
+
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+
+    font-weight: bold;
+
+    font-size: 11px;
+}
+
+
+/* SIGN UP */
+
+.signup-text {
+    text-align: center;
+
+    font-size: 10px;
+
+    color: #999;
+
+    margin-top: 18px;
+}
+
+.signup-text a {
+    color: #df6c39;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 750px) {
+
+    .login-container {
+        flex-direction: column;
+
+        width: 95%;
+
+        margin: 20px 0;
+    }
+
+    .left-side {
+        width: 100%;
+
+        min-height: 400px;
+    }
+
+    .right-side {
+        width: 100%;
+
+        padding: 40px 25px;
+    }
+
+    .left-content {
+        left: 30px;
+        right: 30px;
+        bottom: 30px;
+    }
+
+    .statistics {
+        gap: 25px;
+    }
+}
