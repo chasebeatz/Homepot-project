@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>HomePot | Homemade food, nearby</title>
+    <link rel="stylesheet" href="style.css"/>
+
+
+  </head>
+
+
+  <body>
+
+    <header class="header">
+      <a class="logo" href="#home"><span>⌂</span>HomePot</a>
+      <input id="search" class="search" type="search" placeholder="Search for foods, chefs, or cuisines..."/>
+      
+      
+      <div class="header-right"><span>⌖ Yaba, Lagos</span><span>🛍️ <b id="cart-count">0</b></span><span class="profile">MA</span></div>
+    </header>
+
+
+
+
+    <main id="home">
+      <section class="hero">
+        <div>
+          <p class="tag light">FRESH, LOCAL & MADE WITH LOVE</p>
+          <h1>What are you craving today?</h1>
+         
+          <p>Yaba, Lagos · 480 home chefs nearby</p>
+          
+          <form id="hero-form" class="hero-form"><input id="hero-search" type="search" placeholder="Search for jollof, suya, pastries..."/><button>Search</button></form>
+        </div>
+      </section>
+
+      <section class="section" id="categories">
+        <div class="title-row"><div><p class="tag">DISCOVER A FLAVOUR</p><h2>Food Categories</h2><p>Browse by cuisine type</p></div><a href="#popular">View all</a></div>
+        <div class="category-list">
+          <button class="category" data-search="soup">🍲<b>Soups & Stews</b><small>48 dishes</small></button>
+          <button class="category" data-search="grill">🔥<b>Grills & BBQ</b><small>32 dishes</small></button>
+          <button class="category" data-search="pastry">🥐<b>Pastries</b><small>25 dishes</small></button>
+          <button class="category" data-search="rice">🍛<b>Rice Dishes</b><small>61 dishes</small></button>
+          <button class="category" data-search="salad">🥗<b>Salads</b><small>18 dishes</small></button>
+          <button class="category" data-search="dessert">🍰<b>Desserts</b><small>29 dishes</small></button>
+        </div>
+      </section>
+
+      <section class="section featured">
+        <div class="title-row"><div><p class="tag">HANDPICKED FOR YOU</p><h2>Featured Chef</h2><p>Meet the person behind your next favourite meal</p></div><a href="#nearby">See all</a></div>
+        
+        <div class="chef-banner"><div><span>Chef of the Month</span><h2>Chef Jennifer Erhire</h2><p>Award-winning West African cuisine · Yaba, Lagos · 4.9 ★</p><button class="orange-button">View Menu</button></div></div>
+      </section>
+
+      <section class="section" id="nearby">
+        <div class="title-row"><div><p class="tag">CLOSE TO YOU</p><h2>Nearby Chefs</h2><p>Ordering within your area</p></div><a href="#popular">See all</a></div>
+        <div class="grid chefs">
+          <div class="card searchable" data-search="chef amaka nigerian soup stew salad"><img src="/img/eguci bowl.jpeg" alt="Nigerian soup dishes" /><span class="open">Open</span><div><h3>Chef Amaka</h3><p>Nigerian · Soups</p><small>★★★★ (312) · 1.2 km · 25 min</small></div></div>
+          <div class="card searchable" data-search="mama titi kitchen yoruba stew soup"><img src="/img/pomo stew.jpeg" alt="Yoruba stew" /><span class="open">Open</span><div><h3>Mama Titi's Kitchen</h3><p>Yoruba · Stews</p><small>★★★★★ (198) · 0.8 km · 35 min</small></div></div>
+          <div class="card searchable" data-search="oga grill house bbq suya grill"><img src="/img/turkey.jpeg" alt="Grilled chicken" /><span class="open">Open</span><div><h3>Oga Grill House</h3><p>BBQ · Suya</p><small>★★ (427) · 2.1 km · 20 min</small></div></div>
+          <div class="card searchable" data-search="aunty peace pastries bakery pastry dessert"><img src="/img/small chops.jpeg" alt="Fresh pastries" /><span class="closed">Closed</span><div><h3>Aunty Peace Pastries</h3><p>Bakery · Pastries</p><small>★★★★ (67) · 3.6 km · 40 min</small></div></div>
+        </div>
+      </section>
+
+
+
+
+
+      <section class="section" id="popular">
+        <div class="title-row"><div><p class="tag">THIS WEEK'S FAVOURITES</p><h2>Popular Right Now</h2><p>Trending dishes this week</p></div><a href="#popular">See all</a></div>
+        <div class="grid foods">
+          <div class="food-card searchable" data-search="jollof rice chicken rice"><div class="image-wrap"><img src="/img/jollof and chicken.jpeg" alt="Jollof rice and chicken" /><span>Trending</span><button class="add" data-food="Jollof Rice & Chicken">+</button></div><div><h3>Jollof Rice & Chicken</h3><p>Chef Amaka</p><b>₦2,800</b></div></div>
+          <div class="food-card searchable" data-search="egusi soup pounded yam soup"><div class="image-wrap"><img src="/img/eguci bowl.jpeg" alt="Egusi soup and pounded yam" /><button class="add" data-food="Egusi Soup & Pounded Yam">+</button></div><div><h3>Egusi Soup & Pounded Yam</h3><p>Mama Titi</p><b>₦3,200</b></div></div>
+          <div class="food-card searchable" data-search="suya platter grill bbq"><div class="image-wrap"><img src="/img/suya.jpeg" alt="Grilled suya platter" /><button class="add" data-food="Suya Platter">+</button></div><div><h3>Suya Platter (500g)</h3><p>Oga Grill House</p><b>₦4,200</b></div></div>
+          <div class="food-card searchable" data-search="puff puff pastry dessert"><div class="image-wrap"><img src="/img/puff puff.jpeg" alt="Puff puff pastries" /><button class="add" data-food="Artisan Puff-Puff">+</button></div><div><h3>Artisan Puff-Puff</h3><p>Aunty Peace Pastries</p><b>₦1,200</b></div></div>
+        </div>
+        <p id="no-results" class="no-results" hidden>No food or chef was found. Try another search.</p>
+      </section>
+
+
+
+
+      <section class="why section">
+        <div class="why-copy"><p class="tag">WHY HOMEPOT</p><h2>Real food from real people, delivered with care.</h2>
+            
+            <p>Every chef is verified, every kitchen inspected, and every dish made fresh when you order. We connect you with talented home cooks in your neighbourhood.</p></div>
+        <div class="benefits"><div><span>✓</span><h3>Verified Home Cooks</h3>
+            <p>Every chef passes health checks and quality reviews.</p></div>
+            <div><span>✦</span><h3>Safe Kitchens</h3><p>Registered kitchens meet hygiene standards.</p></div>
+            <div><span>♥</span><h3>Support Local</h3><p>Your order supports independent creators.</p></div><div><span>⚡</span><h3>Fast Delivery</h3>
+                <p>Hot meals from nearby kitchens in minutes.</p></div>
+            
+            </div>
+        <div class="stats"><div><b>500+</b><span>Local kitchens</span></div>
+        <div><b>15<small> min</small></b><span>Average preparation time</span></div>
+        <div><b>4.9/5</b><span>Average rating</span></div>
+    
+    
+    </div>
+      
+    </section>
+
+
+
+
+
+      <section class="section reviews">
+        <div class="center"><p class="tag">OUR COMMUNITY</p><h2>What Our Customers Say</h2><p>Thousands of happy foodies trust HomePot for their daily meals.</p></div>
+        <div class="review-list"><div><b>★★★★★</b><p>“The homemade lasagna from Chef Maria tasted just like my grandmother used to make. Absolutely incredible quality!”</p>
+            <strong>Sarah M.</strong><small>Regular Customer</small></div>
+            <div><b>★★★★</b><p>“Finally a platform that supports local home cooks. The food is always fresh, hot, and made with so much love.”</p>
+                <strong>James L.</strong><small>Food Enthusiast</small></div><div><b>★★★</b><p>“HomePot made it easy for me to start my own kitchen and share the food I love with my community.”</p><strong>Priya K.</strong>
+                    <small>Home Chef</small></div>
+            
+            
+            </div>
+      </section>
+
+
+
+
+      <section class="section steps-section">
+        <div class="center"><p class="tag">SIMPLE AND SECURE</p><h2>How Ordering Works</h2>
+            
+        <p>From discovering your next favourite meal to having it delivered, HomePot makes ordering homemade food simple.</p></div>
+       
+        <div class="steps"><div><b>01</b><span>⌕</span><h3>Discover</h3><p>Find homemade food near you.</p></div>
+        <div><b>02</b><span>☷</span><h3>Choose Your Meal</h3><p>Browse menus and ratings.</p></div>
+        <div><b>03</b><span>🛍️</span><h3>Review Your Order</h3><p>Add meals to your cart.</p></div>
+        <div><b>04</b><span>▣</span><h3>Pay Securely</h3><p>Choose a payment method.</p></div>
+        <div><b>05</b><span>⌖</span><h3>Track Your Order</h3><p>Follow your meal delivery.</p></div>
+        <div><b>06</b><span>☆</span><h3>Enjoy & Review</h3><p>Share your experience.</p></div>
+    
+    
+    
+    </div>
+      </section>
+
+
+
+
+
+      <section class="newsletter"><p class="tag">STAY IN THE LOOP</p><h2>Get fresh deals delivered to your inbox</h2>
+        <p>Subscribe for weekly chef spotlights, exclusive discounts, and new kitchen announcements.</p>
+        <form id="newsletter-form"><input id="email" type="email" placeholder="Enter your email address..." required /><button>Subscribe</button></form>
+        <small id="newsletter-message">Join 8,400+ food lovers already subscribed.</small>
+    
+    
+    
+    </section>
+    </main>
+
+
+
+
+
+
+
+    <footer><div><a class="logo" href="#home"><span>⌂</span>HomePot</a>
+        <p>Connecting people with talented home cooks. Real food, real people, real flavour.</p></div>
+        <div><h3>Company</h3><a href="#home">About Us</a>
+            <a href="#home">Careers</a>
+            <a href="#home">Blog</a></div>
+            <div><h3>Support</h3><a href="#home">Help Center</a><a href="#home">Safety</a><a href="#home">Privacy Policy</a></div>
+            <div><h3>Partners</h3><a href="#home">Become a Chef</a><a href="#home">Restaurant Partners</a></div>
+            <small>© 2026 HomePot. All rights reserved.</small>
+        
+        </footer>
+    <p id="toast" class="toast"></p>
+    <script src="script.js"></script>
+  </body>
+</html>
