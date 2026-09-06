@@ -1,0 +1,294 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #ffffff;
+    color: #302722;
+}
+
+.review-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 55px 30px;
+}
+
+.review-container {
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.review-container > h1 {
+    font-size: 31px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.intro {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #8b817c;
+    margin-bottom: 30px;
+}
+
+.review-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    align-items: start;
+}
+
+/* LEFT CARDS */
+
+.reviews-left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.review-card {
+    border: 1px solid #eee5df;
+    background: #fcfaf8;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.chef-card {
+    min-height: 245px;
+}
+
+.rider-card {
+    min-height: 105px;
+}
+
+.person-info {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.person-image {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd4ce;
+}
+
+.person-info h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.person-info p {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #847b76;
+}
+
+/* STARS */
+
+.stars {
+    display: flex;
+    gap: 13px;
+    margin-top: 16px;
+    margin-bottom: 17px;
+}
+
+.stars span {
+    font-size: 23px;
+    color: #e7dfda;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.stars span:hover {
+    transform: scale(1.1);
+}
+
+.stars span.active {
+    color: #d96b38;
+}
+
+/* CHEF TAGS */
+
+.chef-card h3 {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tags button {
+    border: 1px solid #e8ded8;
+    background: #ffffff;
+    color: #625953;
+    border-radius: 20px;
+    padding: 7px 11px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.tags button:hover,
+.tags button.selected {
+    background: #d96b38;
+    border-color: #d96b38;
+    color: white;
+}
+
+/* RIDER */
+
+.rider-stars {
+    margin-top: 13px;
+    margin-bottom: 0;
+}
+
+.rider-stars span {
+    color: #d96b38;
+    cursor: default;
+}
+
+.rider-stars span:hover {
+    transform: none;
+}
+
+/* RIGHT SIDE */
+
+.review-right {
+    padding-left: 2px;
+}
+
+.review-right > h2 {
+    font-size: 17px;
+    margin-bottom: 11px;
+}
+
+textarea {
+    width: 100%;
+    height: 126px;
+    resize: none;
+    border: 1px solid #e8dfda;
+    border-radius: 13px;
+    padding: 15px;
+    outline: none;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #4d4540;
+}
+
+textarea::placeholder {
+    color: #a69c96;
+}
+
+textarea:focus {
+    border-color: #d96b38;
+}
+
+/* REVIEW NOTE */
+
+.review-note {
+    background: #fff0e7;
+    border-radius: 12px;
+    padding: 14px;
+    margin-top: 12px;
+    margin-bottom: 17px;
+}
+
+.review-note strong {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #d96b38;
+    margin-bottom: 5px;
+}
+
+.review-note p {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #766b65;
+}
+
+/* SUBMIT */
+
+.submit-btn {
+    width: 100%;
+    height: 41px;
+    border: none;
+    border-radius: 8px;
+    background: #d96b38;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.submit-btn:hover {
+    background: #c65c2d;
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+.message {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    margin-top: 10px;
+    color: #d96b38;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+
+    .review-page {
+        padding: 35px 18px;
+    }
+
+    .review-container > h1 {
+        font-size: 26px;
+    }
+
+    .review-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .review-right {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .review-page {
+        padding: 25px 14px;
+    }
+
+    .review-container > h1 {
+        font-size: 24px;
+    }
+
+    .review-card {
+        padding: 16px;
+    }
+
+    .stars {
+        gap: 9px;
+    }
+}

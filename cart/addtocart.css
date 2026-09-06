@@ -1,0 +1,541 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #ffffff;
+    color: #2f2926;
+    font-family: "DM Sans", sans-serif;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    height: 76px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 48px;
+    border-bottom: 1px solid #eeeeee;
+    background: #ffffff;
+}
+
+
+/* Logo */
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 190px;
+}
+
+.logo-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: #d96b3f;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.logo-section h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+
+/* Search */
+
+.search-box {
+    width: 370px;
+    height: 44px;
+    border: 1px solid #ded8d3;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    margin-left: 0;
+}
+
+.search-icon {
+    font-size: 24px;
+    color: #8d8782;
+    margin-right: 9px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+}
+
+.search-box input::placeholder {
+    color: #99928d;
+}
+
+
+/* Header Right */
+
+.header-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #625b57;
+}
+
+.location span:first-child {
+    color: #a79e98;
+    font-size: 18px;
+}
+
+.arrow {
+    font-size: 16px;
+}
+
+
+/* Cart */
+
+.cart-icon {
+    position: relative;
+    font-size: 22px;
+}
+
+.cart-number {
+    position: absolute;
+    top: -8px;
+    right: -9px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #d96b3f;
+    color: white;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Profile */
+
+.profile {
+    width: 31px;
+    height: 31px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #9c552c, #e19a55, #3e7a48);
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 42px 40px;
+}
+
+
+/* =========================
+   ADDED TO CART
+========================= */
+
+.cart-notification {
+    width: 100%;
+    min-height: 82px;
+    background: #302a27;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    color: white;
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.12);
+}
+
+.notification-left {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.check-icon {
+    width: 30px;
+    height: 30px;
+    background: #df7043;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.notification-left h3 {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.notification-left p {
+    font-size: 11px;
+    color: #cfc8c3;
+}
+
+.notification-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.view-cart {
+    border: none;
+    background: transparent;
+    color: #e27a4b;
+    font-weight: 700;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.close-btn {
+    border: none;
+    background: transparent;
+    color: #8e8580;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+/* =========================
+   SHOPPING AREA
+========================= */
+
+.shopping-area {
+    display: flex;
+    align-items: flex-start;
+    gap: 35px;
+    margin-top: 32px;
+}
+
+
+/* =========================
+   RECOMMENDATIONS
+========================= */
+
+.recommendations {
+    flex: 1;
+}
+
+.recommendations h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 21px;
+    margin-bottom: 18px;
+}
+
+
+/* Food Cards */
+
+.food-cards {
+    display: flex;
+    gap: 13px;
+}
+
+.food-card {
+    width: 145px;
+    min-height: 365px;
+    background: white;
+    border: 1px solid #e9e5e1;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+}
+
+.food-image {
+    width: 100%;
+    height: 160px;
+    background: #f1efec;
+    overflow: hidden;
+}
+
+.food-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* Add button */
+
+.add-btn {
+    position: absolute;
+    right: 9px;
+    top: 126px;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 6px;
+    background: #d96b3f;
+    color: white;
+    font-size: 20px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+
+/* Food information */
+
+.food-info {
+    padding: 15px 10px 10px;
+}
+
+.food-info h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 5px;
+}
+
+.food-info p {
+    font-size: 10px;
+    color: #8b837d;
+    margin-bottom: 7px;
+}
+
+.food-info strong {
+    font-size: 13px;
+    color: #dc7043;
+}
+
+
+/* =========================
+   CART BOX
+========================= */
+
+.cart-box {
+    width: 450px;
+    background: #fcf9f6;
+    border: 1px solid #ebe3dd;
+    border-radius: 12px;
+    padding: 18px;
+    height:450px;
+}
+
+
+/* Cart Heading */
+
+.cart-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.cart-heading h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 17px;
+}
+
+.cart-heading span {
+    background: #dc7043;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+
+/* Cart Items */
+
+.cart-item {
+    min-height: 65px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    border-bottom: 1px solid #e8e0da;
+    padding: 9px 0;
+}
+
+.cart-item.selected {
+    background: #fff0e7;
+    border-radius: 9px;
+    padding: 9px;
+    margin-bottom: 3px;
+    border-bottom: none;
+}
+
+.small-food-image {
+    width: 43px;
+    height: 43px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.small-food-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-details h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 11px;
+    line-height: 24px;
+}
+
+.cart-item-details p {
+    font-size: 9px;
+    color: #918982;
+    margin-top: 3px;
+}
+
+.cart-item > strong {
+    font-size: 11px;
+    color: #d96b3f;
+    white-space: nowrap;
+}
+
+
+/* Subtotal */
+
+.subtotal {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 0;
+    font-size: 11px;
+    color: #827a75;
+}
+
+.subtotal strong {
+    color: #302a27;
+    font-size: 12px;
+}
+
+
+/* Buttons */
+
+.go-to-cart,
+.keep-browsing {
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.go-to-cart {
+    border: none;
+    background: #d96b3f;
+    color: white;
+    margin-bottom: 8px;
+    margin-top:20px;
+}
+
+.keep-browsing {
+    background: transparent;
+    color: #d96b3f;
+    border: 1.5px solid #d96b3f;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 850px) {
+
+    .header {
+        padding: 0 20px;
+    }
+
+    .search-box {
+        width: 280px;
+    }
+
+    .container {
+        padding: 30px 20px;
+    }
+
+    .shopping-area {
+        flex-direction: column;
+    }
+
+    .cart-box {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .header {
+        height: auto;
+        padding: 15px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .logo-section {
+        width: auto;
+    }
+
+    .search-box {
+        order: 3;
+        width: 100%;
+    }
+
+    .location {
+        display: none;
+    }
+
+    .food-cards {
+        flex-wrap: wrap;
+    }
+
+    .food-card {
+        width: 140px;
+    }
+
+    .cart-notification {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .notification-right {
+        flex-direction: column;
+        gap: 5px;
+    }
+}

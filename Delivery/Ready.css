@@ -1,0 +1,379 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #ffffff;
+    color: #332b27;
+}
+
+
+/* =========================
+   TOP BAR
+========================= */
+
+.top-bar {
+    height: 65px;
+    background: #302722;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 8%;
+}
+
+.order-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.icon {
+    width: 25px;
+    height: 25px;
+
+    background: #e06f3c;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 13px;
+}
+
+.help {
+    color: #e57a43;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   PROGRESS SECTION
+========================= */
+
+.progress-section {
+    padding: 32px 8% 20px;
+}
+
+.progress {
+    width: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.step {
+    min-width: 70px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+}
+
+.circle {
+    width: 27px;
+    height: 27px;
+
+    border-radius: 50%;
+
+    background: #eee9e3;
+    border: 2px solid #eee9e3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+
+    transition: 0.4s ease;
+}
+
+
+/* COMPLETED STAGE */
+
+.step.completed .circle {
+    background: #dc7040;
+    border-color: #dc7040;
+}
+
+.step.completed span {
+    color: #dc7040;
+}
+
+
+/* CURRENT DELIVERING STAGE */
+
+.step.delivering .circle {
+    background: #e8c65a;
+    border-color: #e8c65a;
+}
+
+.step.delivering span {
+    color: #77716c;
+}
+
+
+/* STEP TEXT */
+
+.step span {
+    margin-top: 8px;
+
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+
+    color: #aaa29c;
+}
+
+
+/* PROGRESS LINES */
+
+.line {
+    height: 3px;
+    flex: 1;
+
+    max-width: 160px;
+
+    margin-top: 12px;
+
+    background: #eee9e3;
+
+    transition: background 0.5s ease;
+}
+
+.completed-line {
+    background: #dc7040;
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.content {
+    width: 84%;
+    max-width: 1050px;
+
+    margin: 10px auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 35px;
+
+    align-items: start;
+}
+
+
+/* =========================
+   READY CARD
+========================= */
+
+.ready-card {
+    border: 1px solid #eee8e3;
+    border-radius: 20px;
+
+    padding: 38px 35px 30px;
+
+    text-align: center;
+
+    min-height: 470px;
+
+    background: #ffffff;
+}
+
+.celebration {
+    font-size: 43px;
+
+    margin-bottom: 15px;
+}
+
+.ready-card h1 {
+    font-size: 29px;
+    line-height: 1.25;
+
+    margin-bottom: 22px;
+
+    color: #312925;
+}
+
+.description {
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+    line-height: 1.8;
+
+    color: #77706b;
+
+    max-width: 300px;
+    margin: 0 auto 22px;
+}
+
+
+/* =========================
+   OTP BOX
+========================= */
+
+.otp-box {
+    width: 80%;
+    margin: 0 auto;
+
+    padding: 18px 10px 20px;
+
+    border: 2px dashed #df936d;
+    border-radius: 15px;
+
+    background: #fff3eb;
+}
+
+.otp-box p {
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+    letter-spacing: 1px;
+
+    color: #8a817b;
+
+    margin-bottom: 10px;
+}
+
+.otp {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+.otp span {
+    font-size: 39px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    color: #d96839;
+}
+
+.expiry {
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+    line-height: 1.6;
+
+    color: #77706b;
+
+    margin-top: 13px;
+}
+
+
+/* =========================
+   WHAT HAPPENS NEXT
+========================= */
+
+.next-card {
+    background: #fbf7f3;
+
+    border: 1px solid #eee5df;
+    border-radius: 18px;
+
+    padding: 25px;
+
+    min-height: 180px;
+}
+
+.next-card h2 {
+    font-size: 18px;
+
+    margin-bottom: 20px;
+}
+
+.instruction {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 13px;
+
+    margin-bottom: 16px;
+}
+
+.number {
+    min-width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    background: #db7040;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.instruction p {
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+    line-height: 1.5;
+
+    color: #625b56;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 750px) {
+
+    .top-bar {
+        padding: 0 20px;
+    }
+
+    .progress-section {
+        padding: 25px 15px;
+    }
+
+    .progress {
+        overflow-x: auto;
+        justify-content: flex-start;
+        min-width: 600px;
+    }
+
+    .content {
+        width: 90%;
+
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .ready-card {
+        padding: 30px 20px;
+    }
+
+    .next-card {
+        margin-bottom: 30px;
+    }
+
+    .line {
+        min-width: 50px;
+    }
+}

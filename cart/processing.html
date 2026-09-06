@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing Payment</title>
+    <link rel="stylesheet" href="processing.css">
+</head>
+<body>
+
+    <main class="payment-page">
+
+        <!-- Rolling spinner -->
+        <div class="spinner"></div>
+
+        <h1>Processing Payment</h1>
+
+        <p class="message">
+            Please don't close this page. We're securely verifying your
+            payment of <strong>₦9,800.</strong>
+        </p>
+
+        <div class="steps">
+
+            <div class="step active">
+                <span class="circle"></span>
+                <span>Contacting your bank...</span>
+            </div>
+
+            <div class="step">
+                <span class="circle"></span>
+                <span>Verifying transaction details...</span>
+            </div>
+
+            <div class="step">
+                <span class="circle"></span>
+                <span>Confirming with Chef Amaka...</span>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="processing.js"></script>
+</body>
+</html>

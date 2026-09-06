@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Confirmed</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="confirmed.css">
+</head>
+
+<body>
+
+    <!-- TOP PROGRESS BAR -->
+    <header class="top-header">
+
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="header-content">
+
+            <div class="page-title">
+                <span>PAYMENT</span>
+                <strong>•</strong>
+                <b>Order Confirmed</b>
+            </div>
+
+            <div class="progress">
+
+                <button class="arrow-btn" id="previousBtn">
+                    ←
+                </button>
+
+                <span class="page-number">29 / 35</span>
+
+                <button class="arrow-btn" id="nextBtn">
+                    →
+                </button>
+
+            </div>
+
+            <div class="steps">
+
+                <div class="step">
+                    Account Access
+                </div>
+
+                <div class="step">
+                    Browsing &amp; Ordering
+                </div>
+
+                <div class="step active">
+                    Payment
+                </div>
+
+                <div class="step">
+                    Order Fulfillment
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="confirmation-page">
+
+        <section class="confirmation-content">
+
+            <!-- SUCCESS ICON -->
+            <div class="success-icon">
+                <span>✓</span>
+            </div>
+
+            <!-- TITLE -->
+            <h1>Order Confirmed!</h1>
+
+            <!-- DESCRIPTION -->
+            <p class="message">
+                Your payment was successful. Chef Amaka has been notified and is
+                preparing your order with love.
+            </p>
+
+
+            <!-- ORDER INFORMATION CARD -->
+            <div class="order-card">
+
+                <div class="order-number-label">
+                    ORDER NUMBER
+                </div>
+
+                <div class="order-number">
+                    HP-20241025
+                </div>
+
+
+                <div class="order-details">
+
+                    <div class="detail-row">
+                        <span>Estimated delivery</span>
+                        <strong>25 – 35 minutes</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Delivery address</span>
+                        <strong>12 Abekouta St, Yaba</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Payment method</span>
+                        <strong>Visa •••• 4532</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Amount paid</span>
+                        <strong>₦9,800</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+            <div class="buttons">
+
+                <a href="Chefcooking.html">
+                     <button class="track-btn" id="trackOrderBtn">
+                    Track My Order
+                </button>
+                </a>
+
+                <a href="../index.html">
+                    <button class="home-btn" id="homeBtn">
+                    Back to Home
+                    </button>
+                    </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="confirmed.js"></script>
+
+</body>
+</html>

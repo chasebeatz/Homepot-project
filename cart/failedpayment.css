@@ -1,0 +1,225 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffffff;
+    color: #292929;
+}
+
+.payment-page {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
+}
+
+.payment-container {
+    width: 100%;
+    max-width: 335px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+/* Failed Icon */
+
+.failed-icon {
+    width: 70px;
+    height: 70px;
+
+    background-color: #ffebee;
+    border-radius: 18px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 22px;
+}
+
+.failed-icon span {
+    color: #e34d42;
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 1;
+}
+
+/* Heading */
+
+.payment-container h1 {
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 27px;
+    font-weight: 700;
+
+    margin-bottom: 12px;
+
+    color: #292929;
+}
+
+/* Description */
+
+.description {
+    font-size: 12px;
+    line-height: 1.7;
+
+    color: #777777;
+
+    margin-bottom: 20px;
+}
+
+.description strong {
+    color: #555555;
+    font-weight: 700;
+}
+
+/* Reasons Box */
+
+.reasons-box {
+    width: 100%;
+
+    background-color: #fff8f8;
+
+    border: 1px solid #f3cccc;
+
+    border-radius: 11px;
+
+    padding: 15px 18px;
+
+    text-align: left;
+
+    margin-bottom: 25px;
+}
+
+.reasons-box h2 {
+    color: #b84a48;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    margin-bottom: 9px;
+}
+
+.reasons-box p {
+    color: #b84a48;
+
+    font-size: 10px;
+    line-height: 1.9;
+}
+
+/* Buttons */
+
+.retry-btn,
+.different-card-btn {
+    width: 252px;
+    height: 38px;
+
+    border-radius: 9px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+/* Retry */
+
+.retry-btn {
+    border: none;
+
+    background-color: #dc6b38;
+    color: white;
+
+    margin-bottom: 8px;
+}
+
+.retry-btn:hover {
+    background-color: #c75d2e;
+}
+
+.retry-btn:active {
+    transform: scale(0.98);
+}
+
+/* Different Card */
+
+.different-card-btn {
+    background-color: white;
+
+    border: 2px solid #dc8b68;
+
+    color: #d47750;
+}
+
+.different-card-btn:hover {
+    background-color: #fff5f0;
+}
+
+.different-card-btn:active {
+    transform: scale(0.98);
+}
+
+/* Wallet */
+
+.wallet-text {
+    margin-top: 10px;
+
+    font-size: 11px;
+
+    color: #888888;
+}
+
+.wallet-text span {
+    color: #d47750;
+    font-weight: 700;
+}
+
+/* Tablet */
+
+@media (min-width: 600px) {
+
+    .payment-container {
+        max-width: 335px;
+    }
+
+    .payment-container h1 {
+        font-size: 29px;
+    }
+
+}
+
+/* Mobile */
+
+@media (max-width: 400px) {
+
+    .payment-page {
+        padding: 30px 16px;
+    }
+
+    .payment-container {
+        max-width: 100%;
+    }
+
+    .reasons-box {
+        padding: 14px 15px;
+    }
+
+    .retry-btn,
+    .different-card-btn {
+        width: 100%;
+    }
+
+}

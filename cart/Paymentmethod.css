@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    color: #555;
+    min-height: 100vh;
+}
+
+.payment-page {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 55px 25px;
+    text-align: center;
+}
+
+h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 32px;
+    color: #555;
+    margin-bottom: 12px;
+}
+
+.total {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 40px;
+}
+
+.total strong {
+    color: #d96b3d;
+}
+
+.payment-methods {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+.payment-card {
+    width: 290px;
+    height: 280px;
+    border: 1.5px solid #ddd;
+    border-radius: 14px;
+    padding: 70px 20px 20px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.payment-card:hover {
+    border-color: #e8753c;
+}
+
+.payment-card.selected {
+    border: 2px solid #e8753c;
+    background: #fffafa;
+}
+
+.payment-icon {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.payment-card h2 {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.payment-card p {
+    font-size: 11px;
+    color: #aaa;
+}
+
+.check {
+    display: none;
+    position: absolute;
+    bottom: 65px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #e8753c;
+    color: white;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.payment-card.selected .check {
+    display: block;
+}
+
+#continuePayment {
+    margin-top: 35px;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 8px;
+    background: #e8753c;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#continuePayment:hover {
+    background: #d96432;
+}
+
+/* Mobile */
+
+@media (max-width: 750px) {
+
+    .payment-methods {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .payment-card {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+}

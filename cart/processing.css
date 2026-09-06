@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    color: #292522;
+}
+
+.payment-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* The rolling circle */
+.spinner {
+    width: 84px;
+    height: 84px;
+    border: 6px solid #f1e4dd;
+    border-top: 6px solid #d96b3b;
+    border-right: 6px solid #d96b3b;
+    border-radius: 50%;
+    margin-bottom: 30px;
+
+    /* Makes it roll continuously */
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+h1 {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.message {
+    max-width: 450px;
+    text-align: center;
+    color: #77716d;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+
+.message strong {
+    color: #292522;
+}
+
+.steps {
+    width: 100%;
+    max-width: 360px;
+    background: #fdf7f3;
+    border-radius: 15px;
+    padding: 20px 24px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #8a827d;
+    font-size: 13px;
+    margin-bottom: 17px;
+}
+
+.step:last-child {
+    margin-bottom: 0;
+}
+
+.circle {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #ebe6e1;
+}
+
+.step.active {
+    color: #4f4945;
+}
+
+.step.active .circle {
+    background: #d96b3b;
+    position: relative;
+}
+
+.step.active .circle::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background: white;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* Responsive design */
+@media (max-width: 600px) {
+
+    .payment-page {
+        padding: 30px 15px;
+    }
+
+    .spinner {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 25px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .message {
+        font-size: 13px;
+    }
+
+    .steps {
+        max-width: 320px;
+        padding: 18px;
+    }
+}

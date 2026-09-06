@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Fulfillment</title>
+    <link rel="stylesheet" href="Chefcooking.css">
+</head>
+
+<body>
+
+    <header class="top-header">
+        <div class="brand">
+            <span class="menu-icon">☰</span>
+            <span>HomePot Food Delivery App</span>
+        </div>
+
+        <div class="header-right">
+            <span>◯</span>
+            <button>Share</button>
+        </div>
+    </header>
+
+
+    
+
+    <section class="order-bar">
+
+        <div class="order-icon">♟</div>
+
+        <div>
+            Order <strong>#HP-20241025</strong>
+        </div>
+
+        <a href="#" id="helpBtn">Need Help?</a>
+
+    </section>
+
+
+    <!-- ORDER PROGRESS -->
+
+    <section class="progress-section">
+
+        <div class="progress-step" id="confirmedStep">
+            <div class="step-circle"></div>
+            <span>Confirmed</span>
+        </div>
+
+        <div class="progress-line" id="line1"></div>
+
+
+        <div class="progress-step" id="preparingStep">
+            <div class="step-circle"></div>
+            <span>Preparing</span>
+        </div>
+
+        <div class="progress-line" id="line2"></div>
+
+
+        <div class="progress-step" id="readyStep">
+            <div class="step-circle"></div>
+            <span>Ready</span>
+        </div>
+
+        <div class="progress-line" id="line3"></div>
+
+
+        <div class="progress-step" id="deliveringStep">
+            <div class="step-circle"></div>
+            <span>Delivering</span>
+        </div>
+
+        <div class="progress-line" id="line4"></div>
+
+
+        <div class="progress-step" id="deliveredStep">
+            <div class="step-circle"></div>
+            <span>Delivered</span>
+        </div>
+
+    </section>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="content">
+
+        <div class="left-column">
+
+            <section class="cooking-card">
+
+                <div class="chef-emoji">👨‍🍳</div>
+
+                <h1 id="statusTitle">
+                    Your Order is<br>
+                    Confirmed!
+                </h1>
+
+                <p id="statusMessage">
+                    Your order has been confirmed.
+                    Chef Amaka will start preparing
+                    your meal shortly.
+                </p>
+
+                <div class="time-box">
+
+                    <strong id="timeText">~20 min</strong>
+
+                    <span id="timeLabel">
+                        Estimated prep time
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <section class="items-card">
+
+                <h2>Your Items</h2>
+
+                <div class="item">
+                    <span>Banga Soup & Starch × 1</span>
+                    <strong>₦3,500</strong>
+                </div>
+
+                <div class="item">
+                    <span>Jollof Rice & Grilled Chicken × 2</span>
+                    <strong>₦5,600</strong>
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <div class="right-column">
+
+            <section class="chef-card">
+
+                <h2>Chef Amaka Osei</h2>
+
+                <div class="chef-info">
+
+                    <div class="chef-photo">
+                        👩🏽‍🍳
+                    </div>
+
+                    <div class="rating">
+
+                        <div class="stars">
+                            ★★★★★
+                            <small>(512)</small>
+                        </div>
+
+                        <p>Yaba, Lagos</p>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="call-button"
+                    id="callChefBtn">
+
+                    ☎ Call Chef
+
+                </button>
+
+            </section>
+
+
+            <section class="delivery-card">
+
+                <h2>Delivery Details</h2>
+
+                <p>
+                    📍 12 Abeokuta Street, Yaba, Lagos
+                </p>
+
+                <p>
+                    ◷ Estimated arrival: 2:15 – 2:25 PM
+                </p>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <script src="Chefcooking.js"></script>
+
+</body>
+</html>

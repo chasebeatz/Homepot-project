@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate Your Experience</title>
+    <link rel="stylesheet" href="Experience.css">
+</head>
+
+<body>
+
+    <main class="review-page">
+
+        <section class="review-container">
+
+            <h1>Rate Your Experience</h1>
+
+            <p class="intro">
+                Your feedback helps our chefs and riders grow. It only takes a moment.
+            </p>
+
+            <div class="review-layout">
+
+                <!-- LEFT SIDE -->
+                <div class="reviews-left">
+
+                    <!-- CHEF REVIEW -->
+                    <div class="review-card chef-card">
+
+                        <div class="person-info">
+                            <img
+                                src="https://images.unsplash.com/photo-1547592180-85f173990554?w=100"
+                                alt="Chef Amaka's Food"
+                                class="person-image"
+                            >
+
+                            <div>
+                                <h2>Chef Amaka's Food</h2>
+                                <p>Banga Soup &amp; Starch + Jollof Rice</p>
+                            </div>
+                        </div>
+
+                        <div class="stars chef-stars" id="chefStars">
+                            <span data-rating="1">★</span>
+                            <span data-rating="2">★</span>
+                            <span data-rating="3">★</span>
+                            <span data-rating="4">★</span>
+                            <span data-rating="5">★</span>
+                        </div>
+
+                        <h3>What did you love?</h3>
+
+                        <div class="tags">
+                            <button>Authentic taste</button>
+                            <button>Generous portions</button>
+                            <button>Well-packaged</button>
+                            <button>Arrived hot</button>
+                            <button>Great value</button>
+                        </div>
+
+                    </div>
+
+
+                    <!-- RIDER REVIEW -->
+                    <div class="review-card rider-card">
+
+                        <div class="person-info">
+                            <img
+                                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100"
+                                alt="Emeka Eze"
+                                class="person-image"
+                            >
+
+                            <div>
+                                <h2>Emeka Eze · Rider</h2>
+                                <p>Delivered in 23 min</p>
+                            </div>
+                        </div>
+
+                        <div class="stars rider-stars">
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT SIDE -->
+                <div class="review-right">
+
+                    <h2>Additional Comments</h2>
+
+                    <textarea
+                        id="comment"
+                        placeholder="Tell Chef Amaka what you loved, or suggest improvements... (optional)"
+                    ></textarea>
+
+                    <div class="review-note">
+                        <strong>Your review means a lot!</strong>
+
+                        <p>
+                            Home chefs rely on honest reviews to grow their
+                            business and reach more customers.
+                        </p>
+                    </div>
+
+                    <a href="Thankyou.html">
+                        <button id="submitReview" class="submit-btn">
+                            Submit Review
+                        </button>
+                    </a>
+
+                    <p id="message" class="message"></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="Experience.js"></script>
+
+</body>
+</html>

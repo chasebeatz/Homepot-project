@@ -1,0 +1,437 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: white;
+    color: #29221f;
+}
+
+
+/* HEADER */
+
+.top-header {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    border-bottom: 1px solid #eeeeee;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.menu-icon {
+    font-size: 17px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-right button {
+    border: none;
+    background: #6354dc;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 4px;
+}
+
+
+
+
+/* ORDER BAR */
+
+.order-bar {
+    height: 52px;
+    background: #302823;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+
+    position: relative;
+}
+
+.order-icon {
+    width: 23px;
+    height: 23px;
+    border-radius: 6px;
+
+    background: #df7549;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-bar a {
+    position: absolute;
+    right: 8%;
+
+    color: #df7549;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/* PROGRESS */
+
+.progress-section {
+    width: 84%;
+    margin: 32px auto 25px;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.progress-step {
+    min-width: 62px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.step-circle {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+
+    background: #eeeae7;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-size: 11px;
+}
+
+.progress-step span {
+    margin-top: 7px;
+
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    color: #99918d;
+}
+
+
+/* ACTIVE STATUS */
+
+.progress-step.completed .step-circle,
+.progress-step.current-step .step-circle {
+    background: #df7549;
+}
+
+.progress-step.completed span,
+.progress-step.current-step span {
+    color: #df7549;
+}
+
+
+.progress-line {
+    height: 3px;
+    width: 15%;
+
+    background: #eeeae7;
+    margin-top: 12px;
+}
+
+.progress-line.completed-line {
+    background: #df7549;
+}
+
+
+/* MAIN */
+
+.content {
+    width: 76%;
+    max-width: 900px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 25px;
+}
+
+.left-column,
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+
+/* COOKING CARD */
+
+.cooking-card {
+    background: #fff0e8;
+    border-radius: 16px;
+
+    min-height: 365px;
+
+    padding: 38px 30px 30px;
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chef-emoji {
+    font-size: 55px;
+    margin-bottom: 8px;
+}
+
+.cooking-card h1 {
+    font-size: 23px;
+    line-height: 1.35;
+    margin-bottom: 12px;
+}
+
+.cooking-card p {
+    max-width: 300px;
+
+    color: #8b817b;
+
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    line-height: 1.7;
+
+    margin-bottom: 17px;
+}
+
+.time-box {
+    background: white;
+    border-radius: 10px;
+
+    padding: 13px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-box strong {
+    color: #df7549;
+    font-size: 25px;
+}
+
+.time-box span {
+    margin-top: 5px;
+
+    font-family: Arial, sans-serif;
+    color: #88807b;
+    font-size: 9px;
+}
+
+
+/* ITEMS */
+
+.items-card {
+    border: 1px solid #e9e5e2;
+    border-radius: 15px;
+
+    padding: 20px 17px;
+}
+
+.items-card h2,
+.chef-card h2,
+.delivery-card h2 {
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+
+    padding: 8px 0;
+}
+
+.item strong {
+    font-size:12px;
+}
+
+
+/* CHEF */
+
+.chef-card {
+    border: 1px solid #e9e5e2;
+    background: #fffdfb;
+
+    border-radius: 15px;
+
+    padding: 20px 17px 16px;
+}
+
+.chef-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 15px;
+}
+
+.chef-photo {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+    background: #f3ebe6;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 27px;
+}
+
+.rating {
+    font-family: Arial, sans-serif;
+}
+
+.stars {
+    color: #d66f49;
+    font-size: 12px;
+}
+
+.stars small {
+    color: #777;
+    font-size:10px;
+}
+
+.rating p {
+    margin-top: 5px;
+    color: #777;
+    font-size: 12px;
+}
+
+
+/* CALL BUTTON */
+
+.call-button {
+    width: 100%;
+    height: 34px;
+
+    border: 1px solid #e5ded9;
+    background: white;
+
+    border-radius: 8px;
+
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+
+    color: #49423e;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.call-button:hover {
+    background: #f8eee9;
+    border-color: #df7549;
+}
+
+.call-button:active {
+    transform: scale(0.98);
+}
+
+
+/* DELIVERY */
+
+.delivery-card {
+    border: 1px solid #e9e5e2;
+    border-radius: 15px;
+
+    padding: 20px 17px;
+
+    font-family: Arial, sans-serif;
+}
+
+.delivery-card h2 {
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.delivery-card p {
+    color: #625b57;
+    font-size: 12px;
+    margin: 10px 0;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .navigation {
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 0 10px;
+    }
+
+    .content {
+        width: 88%;
+        grid-template-columns: 1fr;
+    }
+
+    .progress-section {
+        width: 92%;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .brand span:last-child {
+        font-size: 10px;
+    }
+
+    .progress-section {
+        width: 96%;
+    }
+
+    .progress-line {
+        width: 8%;
+    }
+
+    .content {
+        width: 90%;
+    }
+
+    .cooking-card {
+        min-height: 350px;
+        padding: 30px 18px;
+    }
+
+    .cooking-card h1 {
+        font-size: 21px;
+    }
+
+}

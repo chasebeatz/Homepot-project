@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePot - Your Cart</title>
+
+    <link rel="stylesheet" href="Yourcart.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-bowl-food"></i>
+            </div>
+            <span>HomePot</span>
+        </div>
+
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text"
+                   placeholder="Search for foods, chefs, or cuisines...">
+        </div>
+
+        <div class="header-right">
+
+            <div class="location">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Yaba, Lagos</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>2</span>
+            </div>
+
+            <div class="profile">
+                <img src="profile.jpg" alt="Profile">
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+
+        <h1>Your Cart</h1>
+
+        <div class="cart-layout">
+
+            <!-- LEFT SIDE -->
+            <section class="cart-section">
+
+                <div class="cart-card">
+
+                    <!-- ITEM 1 -->
+                    <div class="cart-item">
+
+                        <img src="banga-soup.jpg"
+                             alt="Banga Soup and Starch"
+                             class="food-image">
+
+                        <div class="item-details">
+
+                            <h2>Banga Soup &amp; Starch</h2>
+                            <p>Chef Amaka</p>
+
+                            <div class="quantity">
+
+                                <button class="minus">−</button>
+
+                                <span>1</span>
+
+                                <button class="plus">+</button>
+
+                            </div>
+
+                        </div>
+
+                        <button class="remove">
+                            ×
+                        </button>
+
+                        <div class="price">
+                            ₦3,500
+                        </div>
+
+                    </div>
+
+
+                    <!-- ITEM 2 -->
+                    <div class="cart-item">
+
+                        <img src="jollof-rice.jpg"
+                             alt="Jollof Rice and Grilled Chicken"
+                             class="food-image">
+
+                        <div class="item-details">
+
+                            <h2>Jollof Rice &amp; Grilled Chicken</h2>
+                            <p>Chef Amaka</p>
+
+                            <div class="quantity">
+
+                                <button class="minus">−</button>
+
+                                <span>2</span>
+
+                                <button class="plus">+</button>
+
+                            </div>
+
+                        </div>
+
+                        <button class="remove">
+                            ×
+                        </button>
+
+                        <div class="price">
+                            ₦5,600
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROMO CODE -->
+                <div class="promo">
+
+                    <input type="text"
+                           placeholder="Promo code">
+
+                    <button>
+                        Apply
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- RIGHT SIDE -->
+            <aside class="summary-card">
+
+                <h2>Order Summary</h2>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>₦9,100</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Delivery Fee</span>
+                    <span>₦500</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Service Fee</span>
+                    <span>₦200</span>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="total-row">
+                    <strong>Total</strong>
+                    <strong>₦9,800</strong>
+                </div>
+
+                <div class="delivery-message">
+                    <i class="fa-solid fa-check"></i>
+                    Free delivery on orders above ₦8,000!
+                </div>
+
+                <a href="Review.html">
+                    <button class="review-button">
+                    Review Order
+                    <span>→</span>
+                </button>
+                </a>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Payment Failed</title>
+
+    <link rel="stylesheet" href="failedpayment.css">
+</head>
+
+<body>
+
+    <main class="payment-page">
+
+        <section class="payment-container">
+
+            <!-- Failed Icon -->
+            <div class="failed-icon">
+                <span>×</span>
+            </div>
+
+            <!-- Heading -->
+            <h1>Payment Failed</h1>
+
+            <!-- Description -->
+            <p class="description">
+                We couldn't process your payment of
+                <strong>₦9,800</strong>. Your card was<br>
+                declined by your bank.
+            </p>
+
+            <!-- Possible Reasons -->
+            <div class="reasons-box">
+
+                <h2>Possible reasons</h2>
+
+                <p>· Insufficient account balance</p>
+                <p>· Daily card limit exceeded</p>
+                <p>· Incorrect card details entered</p>
+                <p>· Bank blocked the transaction</p>
+                <p>· Card not enabled for online payments</p>
+
+            </div>
+
+            <!-- Retry Button -->
+            <a href="Cardpayment.html">
+                <button class="retry-btn" id="retryPayment">
+                    Retry Payment
+                </button>
+            </a>
+
+            <!-- Different Card Button -->
+            <button class="different-card-btn" id="differentCard">
+                Use a Different Card
+            </button>
+
+            <!-- Wallet Option -->
+            <p class="wallet-text">
+                Or pay with
+                <span>HomePot Wallet</span>
+            </p>
+
+        </section>
+
+    </main>
+
+    <script src="failedpayment.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,594 @@
+/* =========================
+   GENERAL RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: #2c231f;
+    color: #ffffff;
+}
+
+
+/* =========================
+   TOP HEADER
+========================= */
+
+.top-header {
+    width: 100%;
+    height: 65px;
+
+    background: #171210;
+    border-bottom: 1px solid #4b3930;
+
+    display: flex;
+    align-items: center;
+}
+
+.menu-icon {
+    width: 62px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+
+    border-right: 1px solid #342722;
+}
+
+.menu-icon span {
+    display: block;
+
+    width: 18px;
+    height: 2px;
+
+    background: #a99a93;
+}
+
+
+/* =========================
+   HEADER CONTENT
+========================= */
+
+.header-content {
+    flex: 1;
+
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 25px;
+
+    gap: 25px;
+}
+
+.page-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    white-space: nowrap;
+}
+
+.page-title span {
+    color: #d87543;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+.page-title strong {
+    color: #76655d;
+    font-size: 10px;
+}
+
+.page-title b {
+    color: #eee7e3;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-left: 5px;
+}
+
+.arrow-btn {
+    width: 27px;
+    height: 27px;
+
+    border: 1px solid #633a28;
+    border-radius: 50%;
+
+    background: #281812;
+
+    color: #a75b37;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.arrow-btn:hover {
+    background: #dd7540;
+    color: #ffffff;
+}
+
+.page-number {
+    color: #94847c;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   STEPS
+========================= */
+
+.steps {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+}
+
+.step {
+    padding: 7px 14px;
+
+    border: 1px solid #322621;
+    border-radius: 20px;
+
+    background: #1d1714;
+
+    color: #70645e;
+
+    font-size: 8px;
+    white-space: nowrap;
+}
+
+.step.active {
+    color: #ffffff;
+
+    border-color: #b95f35;
+
+    background: #352019;
+
+    box-shadow: 0 0 12px rgba(205, 103, 57, 0.15);
+}
+
+
+/* =========================
+   MAIN PAGE
+========================= */
+
+.confirmation-page {
+    min-height: calc(100vh - 65px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 70px 20px;
+}
+
+.confirmation-content {
+    width: 100%;
+    max-width: 500px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+
+/* =========================
+   SUCCESS ICON
+========================= */
+
+.success-icon {
+    width: 78px;
+    height: 78px;
+
+    border-radius: 20px;
+
+    background: linear-gradient(
+        145deg,
+        #f1844b,
+        #d76535
+    );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,0.04),
+        0 10px 35px rgba(222, 103, 55, 0.28);
+}
+
+.success-icon span {
+    font-size: 43px;
+    font-weight: 400;
+
+    line-height: 1;
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+h1 {
+    font-family: "Playfair Display", serif;
+
+    font-size: 32px;
+    line-height: 1.2;
+
+    margin-bottom: 15px;
+
+    color: #ffffff;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+    max-width: 440px;
+
+    color: #a99d96;
+
+    font-size: 13px;
+    line-height: 1.7;
+
+    margin-bottom: 27px;
+}
+
+
+/* =========================
+   ORDER CARD
+========================= */
+
+.order-card {
+    width: 100%;
+
+    padding: 22px 25px;
+
+    border-radius: 17px;
+
+    background: #403732;
+
+    border: 1px solid rgba(255, 255, 255, 0.035);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.13);
+
+    text-align: center;
+}
+
+
+/* ORDER NUMBER */
+
+.order-number-label {
+    color: #968983;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 7px;
+}
+
+.order-number {
+    font-family: "Playfair Display", serif;
+
+    font-size: 27px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 20px;
+
+    color: #ffffff;
+}
+
+
+/* =========================
+   DETAILS
+========================= */
+
+.order-details {
+    display: flex;
+    flex-direction: column;
+
+    gap: 9px;
+}
+
+.detail-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    text-align: left;
+}
+
+.detail-row span {
+    color: #9b8f89;
+
+    font-size: 10px;
+}
+
+.detail-row strong {
+    color: #eee9e6;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    text-align: right;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+.buttons button {
+    height: 39px;
+
+    padding: 0 25px;
+
+    border-radius: 8px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+
+/* TRACK BUTTON */
+
+.track-btn {
+    border: 1px solid #df7040;
+
+    background: #dc6c3b;
+
+    color: #ffffff;
+
+    box-shadow: 0 7px 20px rgba(220, 108, 59, 0.16);
+}
+
+.track-btn:hover {
+    background: #ed7d48;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 10px 25px rgba(220, 108, 59, 0.28);
+}
+
+
+/* HOME BUTTON */
+
+.home-btn {
+    border: 1px solid #786c65;
+
+    background: transparent;
+
+    color: #d3cbc7;
+}
+
+.home-btn:hover {
+    background: #443933;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 950px) {
+
+    .header-content {
+        padding: 0 15px;
+        gap: 15px;
+    }
+
+    .steps {
+        gap: 4px;
+    }
+
+    .step {
+        padding: 7px 9px;
+        font-size: 7px;
+    }
+}
+
+
+@media (max-width: 720px) {
+
+    .top-header {
+        height: 58px;
+    }
+
+    .menu-icon {
+        width: 45px;
+    }
+
+    .header-content {
+        padding: 0 10px;
+        gap: 10px;
+    }
+
+    .page-title {
+        display: none;
+    }
+
+    .progress {
+        margin-left: 0;
+    }
+
+    .steps {
+        overflow: hidden;
+    }
+
+    .step {
+        padding: 6px 8px;
+    }
+
+    .step:nth-child(1),
+    .step:nth-child(2) {
+        display: none;
+    }
+
+    .confirmation-page {
+        min-height: calc(100vh - 58px);
+        padding: 50px 18px;
+    }
+
+    .confirmation-content {
+        max-width: 480px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .confirmation-page {
+        padding: 40px 16px;
+    }
+
+    .success-icon {
+        width: 70px;
+        height: 70px;
+
+        border-radius: 18px;
+
+        margin-bottom: 22px;
+    }
+
+    .success-icon span {
+        font-size: 38px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    .message {
+        font-size: 12px;
+
+        max-width: 350px;
+
+        margin-bottom: 24px;
+    }
+
+    .order-card {
+        padding: 20px 17px;
+    }
+
+    .order-number {
+        font-size: 23px;
+    }
+
+    .detail-row span,
+    .detail-row strong {
+        font-size: 9px;
+    }
+
+    .buttons {
+        width: 100%;
+    }
+
+    .buttons button {
+        flex: 1;
+
+        padding: 0 10px;
+
+        font-size: 10px;
+    }
+}
+
+
+@media (max-width: 350px) {
+
+    .step {
+        display: none;
+    }
+
+    .buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .buttons button {
+        width: 100%;
+    }
+
+    .order-number {
+        font-size: 21px;
+    }
+}

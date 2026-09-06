@@ -1,0 +1,278 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: #ffffff;
+    color: #25201e;
+    font-size: 12px;
+}
+
+
+/* =========================
+   MAIN AREA
+========================= */
+
+.main-content {
+    min-height: calc(100vh - 92px);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding-top: 100px;
+}
+
+.delivery-container {
+    width: 100%;
+    max-width: 350px;
+
+    text-align: center;
+}
+
+
+/* Celebration */
+
+.celebration {
+    font-size: 60px;
+    line-height: 1;
+
+    margin-bottom: 28px;
+
+    animation: celebrate 1.5s ease-in-out infinite;
+}
+
+@keyframes celebrate {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* Main heading */
+
+h1 {
+    font-family: "Playfair Display", serif;
+
+    font-size: 30px;
+    line-height: 38px;
+
+    margin-bottom: 16px;
+
+    color: #29231f;
+}
+
+
+/* Description */
+
+.description {
+    font-size: 12px;
+    line-height: 20px;
+
+    color: #817872;
+
+    max-width: 330px;
+
+    margin: 0 auto 25px;
+}
+
+.description strong {
+    color: #39322e;
+}
+
+
+/* =========================
+   ORDER CARD
+========================= */
+
+.order-card {
+    width: 100%;
+
+    background: #fbf8f5;
+
+    border-radius: 15px;
+
+    padding: 13px 22px;
+
+    margin-bottom: 25px;
+
+    text-align: left;
+}
+
+.info-row {
+    min-height: 29px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #eee7e2;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row span {
+    color: #817a75;
+    font-size: 12px;
+}
+
+.info-row strong {
+    color: #48413d;
+    font-size: 12px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.buttons button {
+    height: 40px;
+
+    border-radius: 8px;
+
+    padding: 0 20px;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.rate-btn {
+    background: #d96b38;
+
+    border: 1px solid #d96b38;
+
+    color: #ffffff;
+}
+
+.rate-btn:hover {
+    background: #c45d2e;
+}
+
+.wrong-btn {
+    background: #ffffff;
+
+    border: 1px solid #d96b38;
+
+    color: #d96b38;
+}
+
+.wrong-btn:hover {
+    background: #fff5f0;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 800px) {
+
+    .top-header {
+        padding: 0 12px;
+    }
+
+    .order-navigation {
+        padding: 0 8px;
+    }
+
+    .breadcrumb span {
+        font-size: 8px;
+    }
+
+    .breadcrumb strong {
+        font-size: 10px;
+    }
+
+    .progress-navigation {
+        gap: 5px;
+    }
+
+    .nav-item {
+        min-width: 55px;
+    }
+
+    .nav-item small {
+        font-size: 8px;
+    }
+
+    .main-content {
+        padding-top: 100px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    .logo-area span {
+        display: none;
+    }
+
+    .breadcrumb span {
+        display: none;
+    }
+
+    .progress-navigation {
+        gap: 3px;
+    }
+
+    .nav-item {
+        min-width: 45px;
+        padding: 0 5px;
+    }
+
+    .nav-item span {
+        width: 20px;
+        height: 20px;
+    }
+
+    .page-number {
+        font-size: 9px;
+    }
+
+    .delivery-container {
+        max-width: 340px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .buttons {
+        gap: 8px;
+    }
+
+    .buttons button {
+        padding: 0 14px;
+    }
+}

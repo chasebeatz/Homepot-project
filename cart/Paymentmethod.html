@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Payment Method</title>
+    <link rel="stylesheet" href="paymentmethod.css">
+</head>
+
+<body>
+
+    <div class="payment-page">
+
+        <h1>Choose Payment Method</h1>
+        <p class="total">Order total: <strong>₦9,800</strong></p>
+
+        <div class="payment-methods">
+
+            <!-- Debit / Credit Card -->
+            <div class="payment-card selected" data-payment="card">
+                <div class="payment-icon">💳</div>
+                <h2>Debit / Credit Card</h2>
+                <p>Visa, Mastercard, Verve</p>
+                <span class="check">✓</span>
+            </div>
+
+            <!-- Bank Transfer -->
+            <div class="payment-card" data-payment="bank">
+                <div class="payment-icon">🏦</div>
+                <h2>Bank Transfer</h2>
+                <p>USSD or online transfer</p>
+                <span class="check">✓</span>
+            </div>
+
+            <!-- Wallet -->
+            <div class="payment-card" data-payment="wallet">
+                <div class="payment-icon">👛</div>
+                <h2>HomePot Wallet</h2>
+                <p>Balance: ₦402,000.00</p>
+                <span class="check">✓</span>
+            </div>
+
+        </div>
+
+        <button id="continuePayment">
+            Continue to Payment →
+        </button>
+
+    </div>
+
+    <script src="paymentmethod.js"></script>
+
+</body>
+</html>

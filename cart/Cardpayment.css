@@ -1,0 +1,621 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #ffffff;
+    color: #332b29;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    height: 72px;
+    border-bottom: 1px solid #eeeeee;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 7%;
+
+    gap: 55px;
+
+    background: #ffffff;
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    min-width: 125px;
+}
+
+.logo-icon {
+    width: 28px;
+    height: 28px;
+
+    background: #d96b3f;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-size: 11px;
+}
+
+.logo span {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+/* SEARCH */
+
+.search-box {
+    width: 330px;
+    height: 42px;
+
+    border: 1px solid #e5ded9;
+    border-radius: 9px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 12px;
+
+    background: #fff;
+}
+
+.search-icon {
+    font-size: 23px;
+    color: #999;
+
+    margin-right: 8px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+
+    width: 100%;
+
+    font-family: inherit;
+    font-size: 12px;
+
+    color: #555;
+}
+
+.search-box input::placeholder {
+    color: #aaa;
+}
+
+
+/* HEADER RIGHT */
+
+.header-right {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+}
+
+.location {
+    font-size: 12px;
+    color: #666;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cart {
+    font-size: 19px;
+}
+
+.profile img {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.payment-container {
+    width: 100%;
+}
+
+.payment-content {
+    max-width: 1060px;
+
+    margin: 60px auto;
+
+    padding: 0 30px;
+}
+
+.payment-content h1 {
+    font-size: 25px;
+    font-weight: 700;
+
+    margin-bottom: 7px;
+}
+
+.subtitle {
+    color: #8b8582;
+    font-size: 12px;
+
+    margin-bottom: 28px;
+}
+
+.subtitle strong {
+    color: #332b29;
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+.payment-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 35px;
+
+    align-items: start;
+}
+
+
+/* =========================
+   CREDIT CARD
+========================= */
+
+.credit-card {
+    width: 100%;
+    max-width: 390px;
+    height: 173px;
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    background:
+        radial-gradient(
+            circle at 80% 25%,
+            rgba(181, 105, 66, 0.45),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(126, 73, 48, 0.45),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            #29201d,
+            #4a332c
+        );
+
+    color: white;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+
+    margin-bottom: 20px;
+}
+
+.card-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.chip {
+    width: 32px;
+    height: 23px;
+
+    background: #68605b;
+
+    border-radius: 4px;
+}
+
+.visa {
+    font-size: 16px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    color: #e9e3df;
+}
+
+.card-number-preview {
+    margin-top: 27px;
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    color: #e7e2df;
+}
+
+.card-bottom {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 12px;
+}
+
+.card-bottom div {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.card-bottom small {
+    font-size: 8px;
+
+    color: #bdb5b1;
+
+    margin-bottom: 3px;
+}
+
+.card-bottom strong {
+    font-size: 10px;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    display: block;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    color: #625b58;
+
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    width: 100%;
+
+    height: 38px;
+
+    border: 1px solid #e5dfdb;
+
+    border-radius: 8px;
+
+    padding: 0 12px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    color: #333;
+
+    transition: 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #d96b3f;
+
+    box-shadow: 0 0 0 2px rgba(217, 107, 63, 0.08);
+}
+
+.form-group input::placeholder {
+    color: #aaa;
+}
+
+
+/* TWO INPUTS */
+
+.small-inputs {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+}
+
+
+/* =========================
+   ORDER SUMMARY
+========================= */
+
+.order-summary {
+    border: 1px solid #eee4df;
+
+    background: #fffaf7;
+
+    border-radius: 16px;
+
+    padding: 21px;
+
+    min-height: 173px;
+}
+
+.order-summary h2 {
+    font-size: 15px;
+
+    margin-bottom: 19px;
+}
+
+.summary-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+
+    font-size: 10px;
+
+    color: #776f6b;
+}
+
+.summary-row span:last-child {
+    color: #615955;
+}
+
+.line {
+    border-top: 1px solid #e8dfda;
+
+    margin: 10px 0;
+}
+
+.total-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.total-row strong:first-child {
+    font-size: 12px;
+}
+
+.total-row strong:last-child {
+    font-size: 17px;
+
+    color: #d96b3f;
+}
+
+
+/* =========================
+   SECURITY
+========================= */
+
+.security-message {
+    margin-top: 14px;
+
+    height: 35px;
+
+    border-radius: 8px;
+
+    background: #eaf7ed;
+
+    color: #61966a;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 13px;
+
+    font-size: 10px;
+
+    gap: 7px;
+}
+
+
+/* =========================
+   PAY BUTTON
+========================= */
+
+.pay-button {
+    width: 100%;
+
+    height: 41px;
+
+    margin-top: 16px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #d96b3f;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.pay-button:hover {
+    background: #c85e34;
+}
+
+.pay-button:active {
+    transform: scale(0.99);
+}
+
+
+/* TERMS */
+
+.terms {
+    text-align: center;
+
+    margin-top: 10px;
+
+    font-size: 9px;
+
+    color: #777;
+}
+
+.terms span {
+    color: #d96b3f;
+
+    font-weight: 600;
+}
+
+
+/* ERROR */
+
+.error-message {
+    color: #d9534f;
+
+    font-size: 10px;
+
+    margin-top: 5px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 850px) {
+
+    .header {
+        padding: 0 25px;
+
+        gap: 20px;
+    }
+
+    .search-box {
+        width: 260px;
+    }
+
+    .payment-content {
+        margin-top: 40px;
+    }
+
+    .payment-grid {
+        grid-template-columns: 1fr;
+
+        max-width: 600px;
+    }
+
+    .summary-section {
+        width: 100%;
+    }
+
+    .credit-card {
+        max-width: 390px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .header {
+        height: auto;
+
+        padding: 15px;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+    }
+
+    .logo {
+        width: 100%;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .header-right {
+        margin-left: 0;
+
+        width: 100%;
+
+        justify-content: space-between;
+    }
+
+    .payment-content {
+        padding: 0 18px;
+
+        margin: 35px auto;
+    }
+
+    .payment-content h1 {
+        font-size: 22px;
+    }
+
+    .payment-grid {
+        gap: 25px;
+    }
+
+    .credit-card {
+        height: 165px;
+
+        padding: 18px;
+    }
+
+    .card-number-preview {
+        margin-top: 25px;
+
+        font-size: 12px;
+    }
+}
+
+
+@media (max-width: 380px) {
+
+    .small-inputs {
+        grid-template-columns: 1fr;
+    }
+
+    .credit-card {
+        height: 155px;
+    }
+
+    .card-number-preview {
+        letter-spacing: 2px;
+    }
+}

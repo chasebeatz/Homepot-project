@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Tracking</title>
+
+    <link rel="stylesheet" href="Delivery.css">
+</head>
+
+<body>
+
+    <div class="page">
+
+       
+
+        <!-- ORDER HEADER -->
+        <div class="order-header">
+
+            <div class="delivery-icon">
+                🛵
+            </div>
+
+            <div class="order-number">
+                Order <strong>#HP-20241025</strong>
+            </div>
+
+            <div class="help">
+                Need Help?
+            </div>
+
+        </div>
+
+
+        <!-- MAIN AREA -->
+        <main class="main-area">
+
+            <!-- MAP -->
+            <section class="map-area">
+
+                <div class="arrival-box">
+                    <small>Arriving in</small>
+                    <strong>~12 min</strong>
+                </div>
+
+
+                <div class="map-grid"></div>
+
+
+                <div class="vertical-road"></div>
+                <div class="horizontal-road road-one"></div>
+                <div class="horizontal-road road-two"></div>
+
+
+                <div class="delivery-route"></div>
+
+
+                <div class="rider">
+                    🛵
+                </div>
+
+
+                <div class="your-location">
+                    🏠 Your Location
+                </div>
+
+            </section>
+
+
+            <!-- RIGHT SIDE -->
+            <section class="right-panel">
+
+                <!-- PROGRESS -->
+                <div class="progress-container">
+
+                    <div class="progress-step" id="step0">
+                        <div class="status-circle"></div>
+                        <span>Confirmed</span>
+                    </div>
+
+                    <div class="progress-line" id="line0"></div>
+
+
+                    <div class="progress-step" id="step1">
+                        <div class="status-circle"></div>
+                        <span>Preparing</span>
+                    </div>
+
+                    <div class="progress-line" id="line1"></div>
+
+
+                    <div class="progress-step" id="step2">
+                        <div class="status-circle"></div>
+                        <span>Ready</span>
+                    </div>
+
+                    <div class="progress-line" id="line2"></div>
+
+
+                    <div class="progress-step" id="step3">
+                        <div class="status-circle"></div>
+                        <span>Delivering</span>
+                    </div>
+
+                    <div class="progress-line" id="line3"></div>
+
+
+                    <div class="progress-step" id="step4">
+                        <div class="status-circle"></div>
+                        <span>Delivered</span>
+                    </div>
+
+                </div>
+
+
+                <!-- RIDER MESSAGE -->
+                <div class="rider-message">
+
+                    <h2 id="delivery-title">
+                        Rider On The Way!
+                    </h2>
+
+                    <p id="delivery-message">
+                        Emeka is 2.3 km away - ~12 min
+                    </p>
+
+                </div>
+
+
+                <!-- RIDER INFORMATION -->
+                <div class="rider-card">
+
+                    <div class="rider-image">
+                        <img
+                            src="https://randomuser.me/api/portraits/men/32.jpg"
+                            alt="Rider"
+                        >
+                    </div>
+
+                    <div class="rider-details">
+
+                        <strong>Emeka Eze</strong>
+
+                        <p>⭐ 4.7 Honda Dispatch</p>
+
+                        <small>LND 7743 YL</small>
+
+                    </div>
+
+                    <button class="contact-button">
+                        ☎
+                    </button>
+
+                    <button class="contact-button">
+                        💬
+                    </button>
+
+                </div>
+
+
+                <!-- DELIVERY INFO -->
+                <div class="delivery-info">
+
+                    <h3>Delivery Info</h3>
+
+                    <p>📍 12 Abekuota St, Yaba, Lagos</p>
+
+                    <p>OTP: <strong>7429</strong></p>
+
+                    <p>2 items · ₦9,800 paid</p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="Delivery.js"></script>
+
+</body>
+</html>
