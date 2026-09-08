@@ -1,20 +1,47 @@
+let cart = Number(sessionStorage.getItem("homepot-cart")) || 0;
+let cartNumbers = document.querySelectorAll("#cart-count, .cart-count");
 let searchInput = document.querySelector("#search");
+let pageSearch = document.querySelectorAll(".page-search");
 let heroForm = document.querySelector("#hero-form");
 let heroSearch = document.querySelector("#hero-search");
 let cards = document.querySelectorAll(".searchable");
 let noResults = document.querySelector("#no-results");
 let categoryButtons = document.querySelectorAll(".category");
-let addButtons = document.querySelectorAll(".add");
-let cartCount = document.querySelector("#cart-count");
+let addButtons = document.querySelectorAll(".add, .add-product");
+let plusButton = document.querySelector("#plus");
+let minusButton = document.querySelector("#minus");
+let quantity = document.querySelector("#quantity");
 let newsletterForm = document.querySelector("#newsletter-form");
 let email = document.querySelector("#email");
 let newsletterMessage = document.querySelector("#newsletter-message");
+let resultsSearch = document.querySelector("#results-search");
+let resultsText = document.querySelector("#results-text");
 let toast = document.querySelector("#toast");
-
-let cart = 0;
 let timer;
 
-function filterFood(word) {
+function updateCart() {
+  cartNumbers.forEach(function (number) {
+    number.textContent = cart;
+  });
+
+  sessionStorage.setItem("homepot-cart", cart);
+}
+
+function showToast(message) {
+  if (!toast) return;
+
+  clearTimeout(timer);
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  timer = setTimeout(function () {
+    toast.classList.remove("show");
+  }, 2000);
+}
+
+function filterCards(word) {
+  if (cards.length === 0) return;
+
   let searchWord = word.toLowerCase().trim();
   let results = 0;
 
@@ -27,48 +54,84 @@ function filterFood(word) {
     }
   });
 
-  noResults.hidden = results !== 0;
+  if (noResults) {
+    noResults.hidden = results !== 0;
+  }
 }
 
-function showMessage(message) {
-  clearTimeout(timer);
-  toast.textContent = message;
-  toast.classList.add("show");
-
-  timer = setTimeout(function () {
-    toast.classList.remove("show");
-  }, 2000);
+function goToResults(word) {
+  window.location.href = "results.html?search=" + encodeURIComponent(word);
 }
 
-searchInput.addEventListener("input", function () {
-  filterFood(searchInput.value);
+function addToCart(button) {
+  cart++;
+  updateCart();
+  showToast((button.dataset.food || "Item") + " added to your cart.");
+}
+
+updateCart();
+
+if (searchInput) {
+  searchInput.addEventListener("input", function () {
+    filterCards(searchInput.value);
+  });
+
+  searchInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      goToResults(searchInput.value);
+    }
+  });
+}
+
+pageSearch.forEach(function (input) {
+  input.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      goToResults(input.value);
+    }
+  });
 });
 
-heroForm.addEventListener("submit", function (event) {
-  event.preventDefault();
-  searchInput.value = heroSearch.value;
-  filterFood(heroSearch.value);
-  document.querySelector("#nearby").scrollIntoView({ behavior: "smooth" });
-});
+if (heroForm) {
+  heroForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    goToResults(heroSearch.value);
+  });
+}
 
 categoryButtons.forEach(function (button) {
   button.addEventListener("click", function () {
-    searchInput.value = button.dataset.search;
-    filterFood(button.dataset.search);
-    document.querySelector("#popular").scrollIntoView({ behavior: "smooth" });
+    window.location.href = "browse.html?category=" + button.dataset.search;
   });
 });
 
 addButtons.forEach(function (button) {
   button.addEventListener("click", function () {
-    cart++;
-    cartCount.textContent = cart;
-    showMessage(button.dataset.food + " added to your cart.");
+    addToCart(button);
   });
 });
 
-newsletterForm.addEventListener("submit", function (event) {
-  event.preventDefault();
-  newsletterMessage.textContent = "Thank you for subscribing to HomePot!";
-  email.value = "";
-});
+if (plusButton && minusButton && quantity) {
+  plusButton.addEventListener("click", function () {
+    quantity.textContent = Number(quantity.textContent) + 1;
+  });
+
+  minusButton.addEventListener("click", function () {
+    if (Number(quantity.textContent) > 1) {
+      quantity.textContent = Number(quantity.textContent) - 1;
+    }
+  });
+}
+
+if (newsletterForm) {
+  newsletterForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    newsletterMessage.textContent = "Thank you for subscribing to HomePot!";
+    email.value = "";
+  });
+}
+
+if (resultsSearch && resultsText) {
+  let search = new URLSearchParams(window.location.search).get("search") || "food";
+  resultsSearch.value = search;
+  resultsText.textContent = "Showing results for “" + search + "”";
+}
