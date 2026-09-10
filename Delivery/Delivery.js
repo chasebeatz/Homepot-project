@@ -76,7 +76,7 @@ function moveToNextStage() {
         When currentStage reaches 4,
         Delivered becomes orange.
     */
-    if (currentStage === 1) {
+    if (currentStage === 4) {
 
         const delivered = steps[4];
 

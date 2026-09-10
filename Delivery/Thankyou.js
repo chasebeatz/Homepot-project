@@ -7,9 +7,9 @@ const backHome = document.getElementById("backHome");
 */
 
 orderAgain.addEventListener("click", function () {
-    window.location.href = "chef-menu.html";
+    window.location.href = "../chef.html";
 });
 
 backHome.addEventListener("click", function () {
-    window.location.href = "home.html";
+    window.location.href = "../index.html";
 });
