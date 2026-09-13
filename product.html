@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Banga Soup & Starch | HomePot</title>
         <link rel="stylesheet" href="style.css">
     </head>
-
 <body>
 
-  <header class="header">
-    <a class="logo" href="index.html"><span>⌂</span>HomePot</a>
+  <header class="header"><a class="logo" href="index.html"> <span>⌂</span>HomePot</a>
     <input class="search page-search" type="search" placeholder="Search for foods, chefs, or cuisines...">
     <div class="header-right"><span>⌖ Yaba, Lagos</span><span>🛍️ <b class="cart-count">0</b></span><span class="profile">AO</span>
-    
     </div>
 
 </header>
@@ -24,57 +21,47 @@
     <a href="featured.html">Featured Chefs</a>
     <a href="browse.html">Browse Menu</a>
 </nav>
-
   <main class="product-page">
-    <div class="product-image"><img src="/img/eguci bowl.jpeg" alt="Banga soup and starch">
+    <div class="product-image">
+        <img id="product-image" src="/image/White soup and fufu.jpeg" alt="Banga soup and starch">
         <div>
-            <button>‹</button>
-            <button>›</button>
-     </div>
-
+            <button>‹</button><button>›</button></div>
         </div>
-
         <section>
-            <p class="crumb">Home / Soups / Made to Order</p>
-            <h1>Banga Soup & Starch</h1>
-            <p class="rating">★★★★★ 4.9 (89) · Chef Amaka · 25 min</p>
-            <h2>₦3,500</h2>
-            <p>Rich, traditional palm fruit soup made from fresh banga seeds, slow-cooked with assorted meat (goat, cow tail, and stockfish). Served with freshly prepared starch. Every bowl is made to order — never pre-cooked.</p>
+            <p id="product-breadcrumb" class="crumb">Home / Soups / Made to Order</p>
+            <h1 id="product-title">Banga Soup & Starch</h1>
+            <p id="product-rating" class="rating">★★★★★ 4.9 (89) · Chef Amaka · 25 min</p>
+            <h2 id="product-price">₦3,500</h2>
+            <p id="product-description">Rich, traditional palm fruit soup made from fresh banga seeds, slow-cooked with assorted meat (goat, cow tail, and stockfish). Served with freshly prepared starch. Every bowl is made to order — never pre-cooked.</p>
             <h3>What's included</h3>
-            <ul>
+            <ul id="product-includes">
                 <li>Large bowl of Banga Soup (400ml)</li>
                 <li>Fresh starch wrap</li>
                 <li>Assorted meat (3 pieces)</li>
                 <li>Extra stock on request</li>
             </ul>
-
             <div class="quantity"><span>Quantity</span>
                 <button id="minus">−</button>
                 <b id="quantity">1</b>
                 <button id="plus">+</button>
             </div>
             <div class="product-actions">
-                <a href="cart/addtocart.html">
-                    <button class="orange-button add-product" data-food="Banga Soup & Starch">Add to Cart · ₦3,500</button>
-                </a>
-                <a href="customize.html">Customize</a>
+                <button id="product-add-button" class="orange-button add-product" data-food="Banga Soup & Starch">Add to Cart · ₦3,500</button>
+                <a id="customize-link" href="customize.html">Customize</a>
             </div>
         </section>
-    
-    
-    
     </main>
-
     <footer class="small-footer">© 2026 HomePot · <a href="index.html">Back to Home</a></footer>
-    <script src="script.js"></script>
-
-
-
+  
+  
+  
+  
+  
+  <script src="script.js"></script>
 
 
 
 </body>
-
 
 
 
