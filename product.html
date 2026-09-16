@@ -3,66 +3,102 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Banga Soup & Starch | HomePot</title>
+        <title>Meal Details | HomePot</title>
         <link rel="stylesheet" href="style.css">
     </head>
 <body>
-
-  <header class="header"><a class="logo" href="index.html"> <span>⌂</span>HomePot</a>
-    <input class="search page-search" type="search" placeholder="Search for foods, chefs, or cuisines...">
-    <div class="header-right"><span>⌖ Yaba, Lagos</span><span>🛍️ <b class="cart-count">0</b></span><span class="profile">AO</span>
+  <header class="header"><a class="logo" href="index.html"><span>⌂</span>HomePot</a><input class="search page-search" type="search" placeholder="Search for foods, chefs, or cuisines..."><div class="header-right"><span>⌖ Yaba, Lagos</span><span>🛒 <b class="cart-count">0</b></span><span class="profile">AO</span></div><button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open navigation menu">☰</button></header>
+  <nav class="page-nav"><a href="index.html">Home</a><a href="categories.html">Categories</a><a href="nearby.html">Nearby Chefs</a><a href="popular.html">Popular Food</a><a href="featured.html">Featured Chefs</a><a href="browse.html">Browse Menu</a></nav>
+  <main class="product-page"><div class="product-image">
+    <img id="product-image" src="image/Fried stew.jpeg" alt="Banga soup and starch">
+    <div><button>‹</button><button>›</button>
     </div>
-
-</header>
-  <nav class="page-nav"><a href="index.html">Home</a>
-    <a href="categories.html">Categories</a>
-    <a href="nearby.html">Nearby Chefs</a>
-    <a href="popular.html">Popular Food</a>
-    <a href="featured.html">Featured Chefs</a>
-    <a href="browse.html">Browse Menu</a>
-</nav>
-  <main class="product-page">
-    <div class="product-image">
-        <img id="product-image" src="/image/White soup and fufu.jpeg" alt="Banga soup and starch">
-        <div>
-            <button>‹</button><button>›</button></div>
-        </div>
-        <section>
-            <p id="product-breadcrumb" class="crumb">Home / Soups / Made to Order</p>
-            <h1 id="product-title">Banga Soup & Starch</h1>
-            <p id="product-rating" class="rating">★★★★★ 4.9 (89) · Chef Amaka · 25 min</p>
-            <h2 id="product-price">₦3,500</h2>
-            <p id="product-description">Rich, traditional palm fruit soup made from fresh banga seeds, slow-cooked with assorted meat (goat, cow tail, and stockfish). Served with freshly prepared starch. Every bowl is made to order — never pre-cooked.</p>
-            <h3>What's included</h3>
-            <ul id="product-includes">
-                <li>Large bowl of Banga Soup (400ml)</li>
-                <li>Fresh starch wrap</li>
-                <li>Assorted meat (3 pieces)</li>
-                <li>Extra stock on request</li>
-            </ul>
-            <div class="quantity"><span>Quantity</span>
-                <button id="minus">−</button>
-                <b id="quantity">1</b>
-                <button id="plus">+</button>
-            </div>
-            <div class="product-actions">
-                <button id="product-add-button" class="orange-button add-product" data-food="Banga Soup & Starch">Add to Cart · ₦3,500</button>
-                <a id="customize-link" href="customize.html">Customize</a>
-            </div>
-        </section>
+</div>
+<section>
+    <p id="product-breadcrumb" class="crumb">Home / Soups / Made to Order</p>
+    <h1 id="product-title">Banga Soup & Starch</h1>
+    <p id="product-rating" class="rating">★★★★★ 4.9 (89) · Chef Amaka · 25 min</p>
+    <h2 id="product-price">₦3,500</h2>
+    <p id="product-description">Rich, traditional palm fruit soup made from fresh banga seeds, slow-cooked with assorted meat (goat, cow tail, and stockfish). Served with freshly prepared starch. Every bowl is made to order — never pre-cooked.</p>
+    <h3>What's included</h3>
+    <ul id="product-includes">
+        <li>Large bowl of Banga Soup (400ml)</li>
+        <li>Fresh starch wrap</li>
+        <li>Assorted meat (3 pieces)</li>
+        <li>Extra stock on request</li></ul>
+        <div class="quantity"><span>Quantity</span><button id="minus">−</button><b id="quantity">1</b><button id="plus">+</button></div><div class="product-actions"><button id="product-add-button" class="orange-button add-product" data-food="Banga Soup & Starch">Add to Cart · ₦3,500</button><a id="customize-link" href="customize.html">Customize</a></div>
+    </section>
     </main>
-    <footer class="small-footer">© 2026 HomePot · <a href="index.html">Back to Home</a></footer>
+        
+        <footer class="small-footer">© 2026 HomePot · <a href="index.html">Back to Home</a></footer>
   
-  
-  
-  
-  
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
+  <script>
+    (function () {
+      let item = new URLSearchParams(window.location.search).get("item");
+      if (!item) return;
 
+      let foods = [
+        { match: "egusi", name: "Egusi Soup & Pounded Yam", price: "₦3,200", category: "Soups", image: "image/Egusi and Pounded yam.jpeg", description: "Rich melon seed soup with assorted meat and a soft pounded yam wrap." },
+        { match: "jollof", name: "Jollof Rice & Grilled Chicken", price: "₦2,800", category: "Rice Dishes", image: "image/Jollof rice and grilled chicken.jpeg", description: "Smoky party jollof rice with grilled chicken and sweet fried plantain." },
+        { match: "onugbu", name: "Ofe Onugbu & Fufu", price: "₦3,600", category: "Soups", image: "image/Ofe Onugbo soup.jpeg", description: "Traditional bitter leaf soup cooked with beef, stockfish and local spices." },
+        { match: "white soup", name: "White Soup & Fufu", price: "₦4,200", category: "Soups", image: "image/White soup and fufu.jpeg", description: "Light fish soup with fresh spices and a warm fufu wrap." },
+        { match: "afang", name: "Afang Soup & Semolina", price: "₦3,500", category: "Soups", image: "image/afang.jpg", description: "Afang vegetable soup with assorted meat and a semolina wrap." },
+        { match: "suya", name: "Suya Platter (500g)", price: "₦4,200", category: "Grills & BBQ", image: "image/Suya.jpeg", description: "Smoky beef suya with onions, tomatoes and pepper sauce." },
+        { match: "puff", name: "Artisan Puff-Puff", price: "₦1,200", category: "Pastries", image: "img/puff puff.jpeg", description: "Warm, fluffy puff-puff made fresh every morning." }
+      ];
 
+      let extraFoods = [
+        { match: "fried rice", price: "₦3,000", image: "image/Fried rice.jpeg" },
+        { match: "creamy", price: "₦3,600", image: "image/creamy pasta.jpg" },
+        { match: "chips", price: "₦2,900", image: "image/chips.jpg" },
+        { match: "yam porridge", price: "₦1,800", image: "image/Yam porridge.jpeg" },
+        { match: "efo", price: "₦2,700", image: "image/efo.jpg" },
+        { match: "ofada", price: "₦3,400", image: "image/ofada.jpg" },
+        { match: "beans", price: "₦2,000", image: "image/beans n plantain.jpg" },
+        { match: "gizzard", price: "₦2,700", image: "image/gizzard.jpg" },
+        { match: "tilapia", price: "₦5,500", image: "image/Grilled tilapia and plantain.jpeg" },
+        { match: "wings", price: "₦2,400", image: "image/wings.jpg" },
+        { match: "pie", price: "₦1,500", image: "image/pie.jpg" },
+        { match: "chin chin", price: "₦1,800", image: "image/chin chin.jpg" },
+        { match: "cupcake", price: "₦4,000", image: "image/cupcake.jpg" }
+      ];
 
+      let food = foods.find(function (entry) {
+        return item.toLowerCase().includes(entry.match);
+      });
+
+      if (!food) {
+        let extraFood = extraFoods.find(function (entry) {
+          return item.toLowerCase().includes(entry.match);
+        });
+
+        if (extraFood) {
+          food = {
+            name: item,
+            price: extraFood.price,
+            category: "Chef's Menu",
+            image: extraFood.image,
+            description: "A freshly prepared " + item + " made to order by a trusted HomePot chef."
+          };
+        }
+      }
+
+      if (!food) {
+        food = { name: item, price: "₦3,500", category: "Chef's Menu", image: "image/Stew.jpeg", description: "A freshly prepared " + item + " made to order by a trusted HomePot chef." };
+      }
+
+      document.querySelector("#product-image").src = food.image;
+      document.querySelector("#product-image").alt = food.name;
+      document.querySelector("#product-title").textContent = food.name;
+      document.title = food.name + " | HomePot";
+      document.querySelector("#product-price").textContent = food.price;
+      document.querySelector("#product-description").textContent = food.description;
+      document.querySelector("#product-breadcrumb").textContent = "Home / " + food.category + " / Made to Order";
+      document.querySelector("#product-add-button").dataset.food = food.name;
+      document.querySelector("#product-add-button").textContent = "Add to Cart · " + food.price;
+      document.querySelector("#customize-link").href = "customize.html?item=" + encodeURIComponent(food.name);
+    })();
+  </script>
 </body>
-
-
-
 </html>

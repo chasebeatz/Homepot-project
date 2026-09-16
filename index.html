@@ -10,7 +10,8 @@
     <header class="header">
       <a class="logo" href="index.html"><span>⌂</span>HomePot</a>
       <input id="search" class="search" type="search" placeholder="Search for foods, chefs, or cuisines..." />
-      <div class="header-right"><span>⌖ Yaba, Lagos</span><span>🛍️ <b id="cart-count">0</b></span><span class="profile">AO</span></div>
+      <div class="header-right"><span>⌖ Yaba, Lagos</span><span>🛒 <b id="cart-count">0</b></span><span class="profile">AO</span></div>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open navigation menu">☰</button>
     </header>
     <nav class="page-nav" aria-label="HomePot pages">
       <a class="active" href="index.html">Home</a>
@@ -32,13 +33,7 @@
       </section>
 
       <section class="section" id="categories">
-        <div class="title-row"><div>
-            <p class="tag">DISCOVER A FLAVOUR</p>
-            <h2>Food Categories</h2>
-            <p>Browse by cuisine type</p>
-        </div>
-        <a href="categories.html">View all</a>
-    </div>
+        <div class="title-row"><div><p class="tag">DISCOVER A FLAVOUR</p><h2>Food Categories</h2><p>Browse by cuisine type</p></div><a href="categories.html">View all</a></div>
         <div class="category-list">
           <button class="category" data-search="soup">🍲<b>Soups & Stews</b><small>48 dishes</small></button>
           <button class="category" data-search="grill">🔥<b>Grills & BBQ</b><small>32 dishes</small></button>
@@ -51,26 +46,26 @@
 
       <section class="section featured">
         <div class="title-row"><div><p class="tag">HANDPICKED FOR YOU</p><h2>Featured Chef</h2><p>Meet the person behind your next favourite meal</p></div><a href="featured.html">See all</a></div>
-        <article class="chef-banner"><div><span>Chef of the Month</span><h2>Chef Jennifer Erhire</h2><p>Award-winning West African cuisine · Yaba, Lagos · 4.9 ★</p><a class="orange-button link-button" href="browse.html">View Menu</a></div></article>
+        <article class="chef-banner"><div><span>Chef of the Month</span><h2>Chef Amaka</h2><p>Award-winning West African cuisine · Yaba, Lagos · 4.9 ★</p><a class="orange-button link-button" href="browse.html">View Menu</a></div></article>
       </section>
 
       <section class="section" id="nearby">
         <div class="title-row"><div><p class="tag">CLOSE TO YOU</p><h2>Nearby Chefs</h2><p>Ordering within your area</p></div><a href="nearby.html">See all</a></div>
         <div class="grid chefs">
-          <article class="card searchable" data-search="chef amaka nigerian soup stew salad"><img src="/img/eguci bowl.jpeg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=80';" alt="Nigerian soup dishes" /><span class="open">Open</span><div><h3>Chef Amaka</h3><p>Nigerian · Soups</p><small>★★★★★ (312) · 1.2 km · 25 min</small></div></article>
-          <article class="card searchable" data-search="mama titi kitchen yoruba stew soup"><img src="/img/pomo stew.jpeg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?auto=format&fit=crop&w=700&q=80';" alt="Yoruba stew" /><span class="open">Open</span><div><h3>Mama Titi's Kitchen</h3><p>Yoruba · Stews</p><small>★★★★★ (198) · 0.8 km · 35 min</small></div></article>
-          <article class="card searchable" data-search="oga grill house bbq suya grill"><img src="/img/turkey.jpeg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=700&q=80';" alt="Grilled chicken" /><span class="open">Open</span><div><h3>Oga Grill House</h3><p>BBQ · Suya</p><small>★★★★★ (427) · 2.1 km · 20 min</small></div></article>
-          <article class="card searchable" data-search="aunty peace pastries bakery pastry dessert"><img src="/img/small chops.jpeg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519915028121-7d3463d20b13?auto=format&fit=crop&w=700&q=80';" alt="Fresh pastries" /><span class="closed">Closed</span><div><h3>Aunty Peace Pastries</h3><p>Bakery · Pastries</p><small>★★★★★ (67) · 3.6 km · 40 min</small></div></article>
+          <a class="card searchable" href="amaka-menu.html" data-search="chef amaka nigerian soup stew salad" aria-label="View Chef Amaka's menu"><img src="img/jollof rice and chicken with salad.jpeg" alt="Chef Amaka meal" /><span class="open">Open</span><div><h3>Chef Amaka</h3><p>Nigerian · Soups</p><small>★★★★★ (312) · 1.2 km · 25 min</small></div></a>
+          <a class="card searchable" href="mama-titi-menu.html" data-search="mama titi kitchen yoruba stew soup" aria-label="View Mama Titi's menu"><img src="img/pomo stew.jpeg" alt="Yoruba stew" /><span class="open">Open</span><div><h3>Mama Titi's Kitchen</h3><p>Yoruba · Stews</p><small>★★★★★ (198) · 0.8 km · 35 min</small></div></a>
+          <a class="card searchable" href="oga-grill-menu.html" data-search="oga grill house bbq suya grill" aria-label="View Oga Grill House's menu"><img src="img/turkey.jpeg" alt="Grilled chicken" /><span class="open">Open</span><div><h3>Oga Grill House</h3><p>BBQ · Suya</p><small>★★★★★ (427) · 2.1 km · 20 min</small></div></a>
+          <a class="card searchable" href="aunty-peace-menu.html" data-search="aunty peace pastries bakery pastry dessert" aria-label="View Aunty Peace Pastries' menu"><img src="image/Pastries.jpeg" alt="Fresh pastries" /><span class="closed">Closed</span><div><h3>Aunty Peace Pastries</h3><p>Bakery · Pastries</p><small>★★★★★ (67) · 3.6 km · 40 min</small></div></a>
         </div>
       </section>
 
       <section class="section" id="popular">
         <div class="title-row"><div><p class="tag">THIS WEEK'S FAVOURITES</p><h2>Popular Right Now</h2><p>Trending dishes this week</p></div><a href="popular.html">See all</a></div>
         <div class="grid foods">
-          <article class="food-card searchable" data-search="jollof rice chicken rice"><div class="image-wrap"><img src="/img/jollof and chicken.jpeg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80';" alt="Jollof rice and chicken" /><span>Trending</span><button class="add" data-food="Jollof Rice & Chicken">+</button></div><div><h3>Jollof Rice &amp; Chicken</h3><p>Chef Amaka</p><b>₦2,800</b></div></article>
-          <article class="food-card searchable" data-search="egusi soup pounded yam soup"><div class="image-wrap"><img src="/img/eguci bowl.jpeg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?auto=format&fit=crop&w=700&q=80';" alt="Egusi soup and pounded yam" /><button class="add" data-food="Egusi Soup & Pounded Yam">+</button></div><div><h3>Egusi Soup &amp; Pounded Yam</h3><p>Mama Titi</p><b>₦3,200</b></div></article>
-          <article class="food-card searchable" data-search="suya platter grill bbq"><div class="image-wrap"><img src="/img/suya.jpeg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=700&q=80';" alt="Grilled suya platter" /><button class="add" data-food="Suya Platter">+</button></div><div><h3>Suya Platter (500g)</h3><p>Oga Grill House</p><b>₦4,200</b></div></article>
-          <article class="food-card searchable" data-search="puff puff pastry dessert"><div class="image-wrap"><img src="/img/puff puff.jpeg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=700&q=80';" alt="Puff puff pastries" /><button class="add" data-food="Artisan Puff-Puff">+</button></div><div><h3>Artisan Puff-Puff</h3><p>Aunty Peace Pastries</p><b>₦1,200</b></div></article>
+          <article class="food-card searchable" data-search="jollof rice chicken rice"><div class="image-wrap"><img src="image/Jollof rice and chicken.jpeg" alt="Jollof rice and chicken" /><span>Trending</span><button class="add" data-food="Jollof Rice & Chicken">+</button></div><div><h3>Jollof Rice & Chicken</h3><p>Chef Amaka</p><b>₦2,800</b></div></article>
+          <article class="food-card searchable" data-search="egusi soup pounded yam soup"><div class="image-wrap"><img src="image/Egusi and Pounded yam.jpeg" alt="Egusi soup and pounded yam" /><button class="add" data-food="Egusi Soup & Pounded Yam">+</button></div><div><h3>Egusi Soup & Pounded Yam</h3><p>Mama Titi</p><b>₦3,200</b></div></article>
+          <article class="food-card searchable" data-search="suya platter grill bbq"><div class="image-wrap"><img src="image/Suya.jpeg" alt="Grilled suya platter" /><button class="add" data-food="Suya Platter">+</button></div><div><h3>Suya Platter (500g)</h3><p>Oga Grill House</p><b>₦4,200</b></div></article>
+          <article class="food-card searchable" data-search="puff puff pastry dessert"><div class="image-wrap"><img src="img/puff puff.jpeg" alt="Puff puff pastries" /><button class="add" data-food="Artisan Puff-Puff">+</button></div><div><h3>Artisan Puff-Puff</h3><p>Aunty Peace Pastries</p><b>₦1,200</b></div></article>
         </div>
         <p id="no-results" class="no-results" hidden>No food or chef was found. Try another search.</p>
       </section>
@@ -78,7 +73,11 @@
       <section class="why section">
         <div class="why-copy"><p class="tag">WHY HOMEPOT</p><h2>Real food from real people, delivered with care.</h2><p>Every chef is verified, every kitchen inspected, and every dish made fresh when you order. We connect you with talented home cooks in your neighbourhood.</p></div>
         <div class="benefits"><article><span>✓</span><h3>Verified Home Cooks</h3><p>Every chef passes health checks and quality reviews.</p></article><article><span>✦</span><h3>Safe Kitchens</h3><p>Registered kitchens meet hygiene standards.</p></article><article><span>♥</span><h3>Support Local</h3><p>Your order supports independent creators.</p></article><article><span>⚡</span><h3>Fast Delivery</h3><p>Hot meals from nearby kitchens in minutes.</p></article></div>
-        <div class="stats"><div><b>500+</b><span>Local kitchens</span></div><div><b>15<small> min</small></b><span>Average preparation time</span></div><div><b>4.9/5</b><span>Average rating</span></div></div>
+        <section class="stats" aria-label="HomePot by the numbers">
+          <article><span class="stat-icon">⌂</span><div><b>500+</b><small>Local kitchens</small><p>Fresh food made near you</p></div></article>
+          <article><span class="stat-icon">⏱</span><div><b>45<em> min</em></b><small>Average preparation</small><p>Made fresh after you order</p></div></article>
+          <article><span class="stat-icon">★</span><div><b>4.9<span>/5</span></b><small>Average rating</small><p>Loved by local foodies</p></div></article>
+        </section>
       </section>
 
       <section class="community-stories">
@@ -104,9 +103,9 @@
             <a href="cart/Yourcart.html"><div class="step-number">03</div><div class="step-icon">✓</div><h3>Review your order</h3><p>Add meals to your cart and review your choices.</p></a>
             <a href="cart/Paymentmethod.html"><div class="step-number">04</div><div class="step-icon">▣</div><h3>Pay securely</h3><p>Choose your preferred payment method with confidence.</p></a>
             <a href="cart/Chefcooking.html"><div class="step-number">05</div><div class="step-icon">⌖</div><h3>Track it live</h3><p>Follow your food from the kitchen to your door.</p></a>
-            <a href="Delivery/Experience.html"><div class="step-number">06</div><div class="step-icon">✦</div><h3>Enjoy &amp; review</h3><p>Receive, taste, and review your new favourite dish.</p></a>
+            <a href="Delivery/Experience.html"><div class="step-number">06</div><div class="step-icon">✦</div><h3>Enjoy & review</h3><p>Receive, taste, and review your new favourite dish.</p></a>
           </div>
-          <p class="journey-note"><span>●</span> Average order ready in 25 minutes · Freshness guaranteed</p>
+          
         </div>
       </section>
 

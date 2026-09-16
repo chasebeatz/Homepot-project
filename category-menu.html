@@ -1,19 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Category Menu | HomePot</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header class="header"><a class="logo" href="index.html"><span>⌂</span>HomePot</a><input class="search page-search" type="search" placeholder="Search for foods, chefs, or cuisines..." /><div class="header-right"><span>⌖ Yaba, Lagos</span><span>🛍️ <b class="cart-count">0</b></span><span class="profile">AO</span></div></header>
-    <nav class="page-nav"><a href="index.html">Home</a><a class="active" href="categories.html">Categories</a><a href="nearby.html">Nearby Chefs</a><a href="popular.html">Popular Food</a><a href="featured.html">Featured Chefs</a><a href="browse.html">Browse Menu</a></nav>
-    <main class="category-menu-page">
-      <section class="category-menu-hero"><a href="categories.html">← All food categories</a><span id="category-emoji">🍲</span><p class="tag light">HOMEPOT CATEGORY</p><h1 id="category-title">Soups & Stews</h1><p id="category-description">Warm, rich, and made with care by local chefs near you.</p></section>
-      <section class="category-menu-content"><div class="category-menu-heading"><div><p class="tag">PICK YOUR FAVOURITE</p><h2 id="category-subtitle">Popular soups near you</h2></div><a href="nearby.html">Explore nearby chefs →</a></div><div id="category-dishes" class="category-dishes"></div></section>
-    </main>
-    <footer class="small-footer">© 2026 HomePot · <a href="categories.html">Back to Categories</a></footer>
-    <script src="script.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category Menu | HomePot</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <a class="logo" href="index.html"><span>⌂</span>HomePot</a>
+    <input class="search page-search" type="search" placeholder="Search for foods, chefs, or cuisines...">
+    <div class="header-right"><span>⌖ Yaba, Lagos</span><span>🛒 <b class="cart-count">0</b></span><span class="profile">AO</span></div>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open navigation menu">☰</button>
+  </header>
+
+  <nav class="page-nav" aria-label="HomePot pages">
+    <a href="index.html">Home</a>
+    <a class="active" href="categories.html">Categories</a>
+    <a href="nearby.html">Nearby Chefs</a>
+    <a href="popular.html">Popular Food</a>
+    <a href="featured.html">Featured Chefs</a>
+    <a href="browse.html">Browse Menu</a>
+  </nav>
+
+  <main class="category-menu-page">
+    <section class="category-menu-hero">
+      <a href="categories.html">← All categories</a>
+      <span id="category-emoji">🍲</span>
+      <p class="tag light">HOMEPOT MENUS</p>
+      <h1 id="category-title">Soups & Stews</h1>
+      <p id="category-description">Warm, rich and full of flavour — every bowl is cooked fresh by a local chef.</p>
+    </section>
+
+    <section class="category-menu-content">
+      <div class="category-menu-heading">
+        <div>
+          <p id="category-subtitle" class="subtitle">Comforting bowls made close to home</p>
+          <h2>Choose your meal</h2>
+        </div>
+        <a href="browse.html">Browse all meals →</a>
+      </div>
+      <div id="category-dishes" class="category-dishes"></div>
+    </section>
+  </main>
+
+  <footer class="small-footer">© 2026 HomePot · <a href="index.html">Back to Home</a></footer>
+  <script src="script.js"></script>
+</body>
 </html>

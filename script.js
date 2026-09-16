@@ -1,9 +1,14 @@
 let cart = 0;
+let cartItems = [];
 
 try {
-  cart = Number(sessionStorage.getItem("homepot-cart")) || 0;
+  let savedCartItems = JSON.parse(sessionStorage.getItem("homepot-cart-items"));
+
+  if (Array.isArray(savedCartItems)) {
+    cartItems = savedCartItems;
+  }
 } catch (error) {
-  cart = 0;
+  cartItems = [];
 }
 let cartNumbers = document.querySelectorAll("#cart-count, .cart-count");
 let searchInput = document.querySelector("#search");
@@ -41,9 +46,12 @@ let categoryPageEmoji = document.querySelector("#category-emoji");
 let categoryPageDescription = document.querySelector("#category-description");
 let categoryPageSubtitle = document.querySelector("#category-subtitle");
 let categoryPageDishes = document.querySelector("#category-dishes");
+let menuToggle = document.querySelector(".menu-toggle");
+let pageNav = document.querySelector(".page-nav");
+let cartItemsBox = document.querySelector("#cart-items");
 
 let products = {
-  banga: { name: "Banga Soup & Starch", price: "₦3,500", category: "Soups", image: "image/White soup and fufu.jpeg", description: "Rich, traditional palm fruit soup made from fresh banga seeds, slow-cooked with assorted meat. Served with freshly prepared starch.", includes: ["Large bowl of Banga Soup (400ml)", "Fresh starch wrap", "Assorted meat (3 pieces)", "Extra stock on request"] },
+  banga: { name: "Banga Soup & Starch", price: "₦3,500", category: "Soups", image: "image/Fried stew.jpeg", description: "Rich, traditional palm fruit soup made from fresh banga seeds, slow-cooked with assorted meat. Served with freshly prepared starch.", includes: ["Large bowl of Banga Soup (400ml)", "Fresh starch wrap", "Assorted meat (3 pieces)", "Extra stock on request"] },
   suya: { name: "Suya Platter (500g)", price: "₦4,200", category: "Grills & BBQ", image: "image/Suya.jpeg", description: "Tender beef suya coated in our smoky peanut spice blend, grilled fresh and served hot with onions and tomatoes.", includes: ["500g beef suya", "Fresh onions and tomatoes", "Pepper sauce", "Extra spice on request"] },
   jollof: { name: "Jollof Rice & Grilled Chicken", price: "₦2,800", category: "Rice Dishes", image: "image/Jollof rice and grilled chicken.jpeg", description: "Smoky party-style jollof rice, served with juicy grilled chicken and a side of sweet fried plantain.", includes: ["Jollof rice", "Grilled chicken piece", "Fried plantain", "Fresh coleslaw"] },
   egusi: { name: "Egusi Soup & Pounded Yam", price: "₦3,200", category: "Soups", image: "image/Egusi and Pounded yam.jpeg", description: "A rich melon seed soup cooked with leafy vegetables and assorted meat, paired with soft pounded yam.", includes: ["Large Egusi Soup", "Pounded yam wrap", "Assorted meat", "Extra pepper on request"] },
@@ -54,8 +62,25 @@ let products = {
   spaghetti: { name: "Jollof Spaghetti Special", price: "₦2,200", category: "English Meals", image: "image/Stirfry spaghetti.jpeg", description: "Spiced jollof spaghetti cooked with vegetables and tender chicken strips for a comforting, filling meal.", includes: ["Jollof spaghetti", "Chicken strips", "Fresh vegetables", "Pepper sauce"] },
   turkey: { name: "Spicy Grilled Turkey", price: "₦3,800", category: "Grills & BBQ", image: "img/turkey.jpeg", description: "Well-seasoned turkey grilled over open heat and brushed with Oga Grill's smoky house sauce.", includes: ["Grilled turkey portion", "House pepper sauce", "Fresh onions", "Choice of plantain or fries"] },
   chops: { name: "Small Chops Platter", price: "₦6,500", category: "Pastries & Small Chops", image: "image/Small chops.jpeg", description: "A generous sharing platter with puff-puff, samosa, spring rolls and other freshly made party favourites.", includes: ["Puff-puff", "Samosa", "Spring rolls", "Pepper dip"] },
-  default: { name: "Chef's Special", price: "₦3,500", category: "Made to Order", image: "image/Homepot - Jollof rice.jpeg", description: "A freshly prepared homemade dish from one of our trusted local chefs.", includes: ["Freshly made meal", "Chef's selected sides", "Made to order"] }
+  default: { name: "Chef's Special", price: "₦3,500", category: "Made to Order", image: "image/Stew.jpeg", description: "A freshly prepared homemade dish from one of our trusted local chefs.", includes: ["Freshly made meal", "Chef's selected sides", "Made to order"] }
 };
+
+let extraProducts = [
+  { match: "fried rice", price: "₦3,000", image: "image/Fried rice.jpeg" },
+  { match: "creamy", price: "₦3,600", image: "image/creamy pasta.jpg" },
+  { match: "chips", price: "₦2,900", image: "image/chips.jpg" },
+  { match: "yam porridge", price: "₦1,800", image: "image/Yam porridge.jpeg" },
+  { match: "efo", price: "₦2,700", image: "image/efo.jpg" },
+  { match: "ofada", price: "₦3,400", image: "image/ofada.jpg" },
+  { match: "beans", price: "₦2,000", image: "image/beans n plantain.jpg" },
+  { match: "gizzard", price: "₦2,700", image: "image/gizzard.jpg" },
+  { match: "tilapia", price: "₦5,500", image: "image/Grilled tilapia and plantain.jpeg" },
+  { match: "wings", price: "₦2,400", image: "image/wings.jpg" },
+  { match: "pie", price: "₦1,500", image: "image/pie.jpg" },
+  { match: "chin chin", price: "₦1,800", image: "image/chin chin.jpg" },
+  { match: "cupcake", price: "₦4,000", image: "image/cupcake.jpg" },
+  { match: "pepper soup", price: "₦3,800", image: "image/peppersoup.jpeg" }
+];
 
 let categoryMenus = {
   soup: { emoji: "🍲", title: "Soups & Stews", subtitle: "Comforting bowls made close to home", description: "Warm, rich and full of flavour — every bowl is cooked fresh by a local chef.", dishes: [["Banga Soup & Starch", "Rich palm fruit soup with assorted meat.", "₦3,500"], ["Egusi Soup & Pounded Yam", "Melon seed soup with tender meat.", "₦3,200"], ["Ofe Onugbu & Fufu", "Bitter leaf soup with soft fufu.", "₦3,600"], ["White Soup & Fufu", "Light fish soup with traditional spices.", "₦4,200"]] },
@@ -72,12 +97,17 @@ let categoryMenus = {
 };
 
 function updateCart() {
+  cart = cartItems.reduce(function (total, item) {
+    return total + item.quantity;
+  }, 0);
+
   cartNumbers.forEach(function (number) {
     number.textContent = cart;
   });
 
   try {
     sessionStorage.setItem("homepot-cart", cart);
+    sessionStorage.setItem("homepot-cart-items", JSON.stringify(cartItems));
   } catch (error) {
     // The product pages still work when browser storage is unavailable.
   }
@@ -109,6 +139,21 @@ function getProduct(item) {
   if (name.includes("turkey")) return products.turkey;
   if (name.includes("chops")) return products.chops;
   if (name.includes("banga")) return products.banga;
+
+  let extraProduct = extraProducts.find(function (product) {
+    return name.includes(product.match);
+  });
+
+  if (extraProduct) {
+    return {
+      name: item,
+      price: extraProduct.price,
+      category: "Chef's Menu",
+      image: extraProduct.image,
+      description: "A freshly prepared " + item + " from a trusted HomePot chef.",
+      includes: products.default.includes
+    };
+  }
 
   return {
     name: item,
@@ -173,16 +218,11 @@ function loadCategoryMenu() {
     let title = document.createElement("h3");
     let description = document.createElement("p");
     let price = document.createElement("b");
-    let images = [
-      "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80",
-      "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?auto=format&fit=crop&w=600&q=80"
-    ];
+    let product = getProduct(dish[0]);
 
     link.className = "category-dish";
     link.href = "product.html?item=" + encodeURIComponent(dish[0]);
-    image.src = images[index];
+    image.src = product.image;
     image.alt = dish[0];
     title.textContent = dish[0];
     description.textContent = dish[1];
@@ -218,15 +258,144 @@ function goToResults(word) {
 }
 
 function addToCart(button) {
-  cart++;
+  let foodName = button.dataset.food || "Item";
+  let product = getProduct(foodName);
+  let savedItem = cartItems.find(function (item) {
+    return item.name === product.name;
+  });
+
+  if (savedItem) {
+    savedItem.quantity++;
+  } else {
+    cartItems.push({
+      name: product.name,
+      price: product.price,
+      quantity: 1
+    });
+  }
+
   updateCart();
-  showToast((button.dataset.food || "Item") + " added to your cart.");
+  showToast(product.name + " added to your cart.");
+}
+
+function loadCartPage() {
+  if (!cartItemsBox) return;
+
+  cartItemsBox.innerHTML = "";
+
+  if (cartItems.length === 0) {
+    let emptyMessage = document.createElement("p");
+    emptyMessage.className = "empty-cart";
+    emptyMessage.textContent = "Your cart is empty. Choose a meal and add it to your cart.";
+    cartItemsBox.appendChild(emptyMessage);
+    return;
+  }
+
+  cartItems.forEach(function (item, index) {
+    let cartItem = document.createElement("article");
+    let itemInfo = document.createElement("div");
+    let itemName = document.createElement("h2");
+    let itemPrice = document.createElement("p");
+    let itemQuantity = document.createElement("span");
+    let removeButton = document.createElement("button");
+
+    cartItem.className = "cart-item";
+    itemName.textContent = item.name;
+    itemPrice.textContent = item.price + " each";
+    itemQuantity.textContent = "Quantity: " + item.quantity;
+    removeButton.className = "remove-cart-item";
+    removeButton.dataset.index = index;
+    removeButton.textContent = "Remove";
+
+    itemInfo.append(itemName, itemPrice, itemQuantity);
+    cartItem.append(itemInfo, removeButton);
+    cartItemsBox.appendChild(cartItem);
+  });
+}
+
+function removeCartItem(index) {
+  cartItems.splice(index, 1);
+  updateCart();
+  loadCartPage();
+}
+
+function openCart() {
+  let path = window.location.pathname.toLowerCase();
+
+  if (path.includes("/cart/")) {
+    window.location.href = "Yourcart.html";
+  } else if (path.includes("/delivery/")) {
+    window.location.href = "../cart/Yourcart.html";
+  } else {
+    window.location.href = "cart/Yourcart.html";
+  }
+}
+
+function closeMobileMenu() {
+  if (!menuToggle || !pageNav) return;
+
+  pageNav.classList.remove("open");
+  menuToggle.textContent = "☰";
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", "Open navigation menu");
+}
+
+function toggleMobileMenu() {
+  if (!menuToggle || !pageNav) return;
+
+  if (pageNav.classList.contains("open")) {
+    closeMobileMenu();
+  } else {
+    pageNav.classList.add("open");
+    menuToggle.textContent = "×";
+    menuToggle.setAttribute("aria-expanded", "true");
+    menuToggle.setAttribute("aria-label", "Close navigation menu");
+  }
 }
 
 updateCart();
 loadProduct();
 loadCustomizeItem();
 loadCategoryMenu();
+loadCartPage();
+
+cartNumbers.forEach(function (number) {
+  let cartButton = number.parentElement;
+
+  cartButton.classList.add("cart-link");
+  cartButton.setAttribute("role", "button");
+  cartButton.setAttribute("tabindex", "0");
+  cartButton.setAttribute("aria-label", "View cart");
+  cartButton.addEventListener("click", openCart);
+  cartButton.addEventListener("keydown", function (event) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openCart();
+    }
+  });
+});
+
+if (cartItemsBox) {
+  cartItemsBox.addEventListener("click", function (event) {
+    if (event.target.classList.contains("remove-cart-item")) {
+      removeCartItem(Number(event.target.dataset.index));
+    }
+  });
+}
+
+if (menuToggle && pageNav) {
+  menuToggle.addEventListener("click", toggleMobileMenu);
+
+  pageNav.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", closeMobileMenu);
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeMobileMenu();
+    }
+  });
+}
 
 productLinks.forEach(function (link) {
   link.addEventListener("click", function (event) {
