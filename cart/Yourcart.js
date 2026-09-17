@@ -354,7 +354,7 @@ function displayCart() {
 
                 <img
                     class="cart-item-image"
-                    src="${item.image}"
+                    src="../${item.image}"
                     alt="${item.name}"
                 >
 
