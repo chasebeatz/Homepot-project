@@ -74,13 +74,15 @@ a { color: inherit; }
 .hide { display: none; }
 .no-results { text-align: center; color: var(--muted); }
 
-.why { display: grid; grid-template-columns: 1fr 1fr; column-gap: 65px; }
+.why { display: grid; grid-template-columns: 1fr; }
+.why-title { margin: 0; color: var(--orange); font-size: 12px; font-weight: 700; letter-spacing: 3px; text-align: center; }
 .why-copy h2 { font-size: clamp(38px, 4.2vw, 55px); line-height: 1.08; }
 .why-copy > p:last-child { color: var(--muted); line-height: 1.8; font-size: 15px; }
-.benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; padding-top: 35px; }
-.benefits span { color: var(--orange); font-size: 24px; }
-.benefits h3 { margin: 10px 0 6px; font-size: 16px; }
-.benefits p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.benefits { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px 42px; padding-top: 24px; }
+.benefits article { display: grid; grid-template-columns: 22px 1fr; column-gap: 12px; align-items: start; }
+.benefits span { color: var(--orange); font-size: 28px; line-height: .7; }
+.benefits h3 { margin: 0 0 4px; font-size: 18px; }
+.benefits p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
 .stats { grid-column: 1 / -1; margin-top: 48px; padding: 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; border-radius: 20px; background: linear-gradient(120deg, #2c2423, #4a2e26); }
 .stats article { min-height: 115px; padding: 18px; display: flex; align-items: center; gap: 13px; border: 1px solid rgba(255,255,255,.13); border-radius: 14px; background: rgba(255,255,255,.08); color: white; }
 .stats article:hover { background: rgba(255,255,255,.14); }
