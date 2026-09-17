@@ -260,24 +260,35 @@ function goToResults(word) {
 function addToCart(button) {
   let foodName = button.dataset.food || "Item";
   let product = getProduct(foodName);
-  let savedItem = cartItems.find(function (item) {
+
+  let cart = JSON.parse(localStorage.getItem("homepotCart")) || [];
+
+  let selectedQuantity = 1;
+
+  if (quantity) {
+    selectedQuantity = Number(quantity.textContent) || 1;
+  }
+
+  let item = cart.find(function (item) {
     return item.name === product.name;
   });
 
-  if (savedItem) {
-    savedItem.quantity++;
+  if (item) {
+    item.quantity += selectedQuantity;
   } else {
-    cartItems.push({
+    cart.push({
+      id: product.name.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
       name: product.name,
-      price: product.price,
-      quantity: 1
+      price: Number(String(product.price).replace(/[₦,]/g, "")),
+      image: product.image,
+      quantity: selectedQuantity
     });
   }
 
-  updateCart();
+  localStorage.setItem("homepotCart", JSON.stringify(cart));
+
   showToast(product.name + " added to your cart.");
 }
-
 function loadCartPage() {
   if (!cartItemsBox) return;
 
@@ -447,14 +458,29 @@ addButtons.forEach(function (button) {
   });
 });
 
-if (plusButton && minusButton && quantity) {
+if (plusButton && minusButton && quantity && productPrice && productAddButton) {
+  let unitPrice = Number(
+    String(productPrice.textContent).replace(/[₦,]/g, "")
+  );
+
+  function updateProductTotal() {
+    let qty = Number(quantity.textContent);
+    let total = unitPrice * qty;
+    let formattedTotal = "₦" + total.toLocaleString("en-NG");
+
+    productPrice.textContent = formattedTotal;
+    productAddButton.textContent = "Add to Cart · " + formattedTotal;
+  }
+
   plusButton.addEventListener("click", function () {
     quantity.textContent = Number(quantity.textContent) + 1;
+    updateProductTotal();
   });
 
   minusButton.addEventListener("click", function () {
     if (Number(quantity.textContent) > 1) {
       quantity.textContent = Number(quantity.textContent) - 1;
+      updateProductTotal();
     }
   });
 }
