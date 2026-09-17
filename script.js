@@ -472,3 +472,9 @@ if (resultsSearch && resultsText) {
   resultsSearch.value = search;
   resultsText.textContent = "Showing results for “" + search + "”";
 }
+ const addButton = document.querySelector("#product-add-button");
+ if (addButton) {
+   addButton.addEventListener("click", function () {
+    window.location.href = "cart/Yourcart.html";
+   });
+ }

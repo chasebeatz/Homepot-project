@@ -1,50 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>HomePot - Your Cart</title>
 
+    <!-- Your CSS file -->
     <link rel="stylesheet" href="Yourcart.css">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
+
 
 <body>
 
-    <!-- HEADER -->
+
+    <!-- ==================================================
+         HEADER
+    =================================================== -->
+
     <header class="header">
 
+        <!-- LOGO -->
+
         <div class="logo">
-            <div class="logo-icon">
-                <i class="fa-solid fa-bowl-food"></i>
-            </div>
-            <span>HomePot</span>
+
+            <span class="logo-icon">●</span>
+
+            <span>
+                HomePot
+            </span>
+
         </div>
 
+
+        <!-- SEARCH -->
+
         <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text"
-                   placeholder="Search for foods, chefs, or cuisines...">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+            <input
+                type="text"
+                placeholder="Search for foods, chefs, or cuisines..."
+            >
+
         </div>
+
+
+        <!-- RIGHT SIDE OF HEADER -->
 
         <div class="header-right">
 
+
+            <!-- LOCATION -->
+
             <div class="location">
-                <i class="fa-solid fa-location-dot"></i>
-                <span>Yaba, Lagos</span>
-                <i class="fa-solid fa-chevron-down"></i>
+
+                <span>
+                    📍
+                </span>
+
+                <span>
+                    Yaba, Lagos
+                </span>
+
+                <span>
+                    ▾
+                </span>
+
             </div>
 
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span>2</span>
+
+            <!-- CART -->
+
+            <div class="header-cart">
+
+                <span>
+                    🛒
+                </span>
+
+                <span
+                    id="cart-count"
+                    class="cart-count"
+                >
+                    0
+                </span>
+
             </div>
+
+
+            <!-- PROFILE -->
 
             <div class="profile">
-                <img src="profile.jpg" alt="Profile">
+
+                <span>
+                    👤
+                </span>
+
             </div>
 
         </div>
@@ -52,149 +111,223 @@
     </header>
 
 
-    <!-- MAIN CONTENT -->
-    <main class="container">
 
-        <h1>Your Cart</h1>
+    <!-- ==================================================
+         MAIN CART AREA
+    =================================================== -->
 
-        <div class="cart-layout">
-
-            <!-- LEFT SIDE -->
-            <section class="cart-section">
-
-                <div class="cart-card">
-
-                    <!-- ITEM 1 -->
-                    <div class="cart-item">
-
-                        <img src="banga-soup.jpg"
-                             alt="Banga Soup and Starch"
-                             class="food-image">
-
-                        <div class="item-details">
-
-                            <h2>Banga Soup &amp; Starch</h2>
-                            <p>Chef Amaka</p>
-
-                            <div class="quantity">
-
-                                <button class="minus">−</button>
-
-                                <span>1</span>
-
-                                <button class="plus">+</button>
-
-                            </div>
-
-                        </div>
-
-                        <button class="remove">
-                            ×
-                        </button>
-
-                        <div class="price">
-                            ₦3,500
-                        </div>
-
-                    </div>
+    <main class="cart-page">
 
 
-                    <!-- ITEM 2 -->
-                    <div class="cart-item">
+        <!-- PAGE TITLE -->
 
-                        <img src="jollof-rice.jpg"
-                             alt="Jollof Rice and Grilled Chicken"
-                             class="food-image">
+        <h1 class="cart-title">
+            Your Cart
+        </h1>
 
-                        <div class="item-details">
 
-                            <h2>Jollof Rice &amp; Grilled Chicken</h2>
-                            <p>Chef Amaka</p>
 
-                            <div class="quantity">
+        <!-- ==================================================
+             TWO COLUMNS
+        =================================================== -->
 
-                                <button class="minus">−</button>
+        <div class="cart-container">
 
-                                <span>2</span>
 
-                                <button class="plus">+</button>
+            <!-- ==================================================
+                 LEFT SIDE
+            =================================================== -->
 
-                            </div>
+            <section class="cart-left">
 
-                        </div>
 
-                        <button class="remove">
-                            ×
-                        </button>
+                <!-- ==========================================
+                     DYNAMIC CART PRODUCTS
+                =========================================== -->
 
-                        <div class="price">
-                            ₦5,600
-                        </div>
+                <div
+                    id="cart-items"
+                    class="cart-items"
+                >
 
-                    </div>
+                    <!--
+
+                        IMPORTANT:
+
+                        DO NOT PUT BANGA,
+                        JOLLOF,
+                        EGUSI,
+                        OR ANY FIXED FOOD HERE.
+
+                        JavaScript will automatically
+                        put the customer's selected foods
+                        inside this area.
+
+                    -->
 
                 </div>
 
+                <div id="cart-items"></div>
 
-                <!-- PROMO CODE -->
-                <div class="promo">
 
-                    <input type="text"
-                           placeholder="Promo code">
+                <!-- ==========================================
+                     PROMO CODE
+                =========================================== -->
 
-                    <button>
+                <div class="promo-section">
+
+
+                    <input
+                        type="text"
+                        id="promo-code"
+                        class="promo-input"
+                        placeholder="Promo code"
+                    >
+
+
+                    <button
+                        type="button"
+                        id="apply-promo"
+                        class="promo-button"
+                    >
                         Apply
                     </button>
 
+
                 </div>
+
 
             </section>
 
 
-            <!-- RIGHT SIDE -->
-            <aside class="summary-card">
 
-                <h2>Order Summary</h2>
+            <!-- ==================================================
+                 RIGHT SIDE - ORDER SUMMARY
+            =================================================== -->
+
+            <aside class="order-summary">
+
+
+                <h2>
+                    Order Summary
+                </h2>
+
+
+
+                <!-- SUBTOTAL -->
 
                 <div class="summary-row">
-                    <span>Subtotal</span>
-                    <span>₦9,100</span>
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <span id="subtotal">
+                        ₦0
+                    </span>
+
                 </div>
+
+
+
+                <!-- DELIVERY FEE -->
 
                 <div class="summary-row">
-                    <span>Delivery Fee</span>
-                    <span>₦500</span>
+
+                    <span>
+                        Delivery Fee
+                    </span>
+
+                    <span id="delivery-fee">
+                        ₦0
+                    </span>
+
                 </div>
+
+
+
+                <!-- SERVICE FEE -->
 
                 <div class="summary-row">
-                    <span>Service Fee</span>
-                    <span>₦200</span>
+
+                    <span>
+                        Service Fee
+                    </span>
+
+                    <span id="service-fee">
+                        ₦0
+                    </span>
+
                 </div>
 
-                <div class="divider"></div>
 
-                <div class="total-row">
-                    <strong>Total</strong>
-                    <strong>₦9,800</strong>
+
+                <!-- LINE -->
+
+                <div class="summary-line">
                 </div>
 
-                <div class="delivery-message">
-                    <i class="fa-solid fa-check"></i>
-                    Free delivery on orders above ₦8,000!
+
+
+                <!-- TOTAL -->
+
+                <div class="summary-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span id="total">
+                        ₦0
+                    </span>
+
                 </div>
 
-                <a href="Review.html">
-                    <button class="review-button">
+
+
+                <!-- FREE DELIVERY MESSAGE -->
+
+                <div
+                    id="free-delivery"
+                    class="free-delivery"
+                >
+
+                    ✓ Free delivery on orders above ₦10,000
+
+                </div>
+
+
+
+                <!-- REVIEW ORDER -->
+
+                <button
+                    type="button"
+                    id="review-order"
+                    class="review-order-button"
+                >
+
                     Review Order
                     <span>→</span>
+
                 </button>
-                </a>
+
 
             </aside>
 
+
         </div>
+
 
     </main>
 
+
+
+    <!-- ==================================================
+         JAVASCRIPT
+    =================================================== -->
+
+    <script src="Yourcart.js"></script>
+
 </body>
+
 </html>

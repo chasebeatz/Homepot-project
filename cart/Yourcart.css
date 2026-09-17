@@ -1,405 +1,536 @@
+/* =========================================================
+   HOMEPOT CART PAGE - STYLE.CSS
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
 body {
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: Arial, Helvetica, sans-serif;
     background: #ffffff;
-    color: #292929;
+    color: #26344d;
 }
 
 
-/* =========================
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 .header {
     width: 100%;
-    height: 72px;
-    border-bottom: 1px solid #eeeeee;
+    height: 78px;
 
     display: flex;
     align-items: center;
 
-    padding: 0 7%;
-    gap: 45px;
+    padding: 0 8%;
+
+    border-bottom: 1px solid #eeeeee;
 
     background: #ffffff;
+
+    gap: 45px;
 }
 
 
-/* LOGO */
+/* =========================================================
+   LOGO
+========================================================= */
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 9px;
 
-    white-space: nowrap;
+    gap: 8px;
+
+    min-width: 145px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    color: #26344d;
 }
 
+
 .logo-icon {
-    width: 25px;
-    height: 25px;
-
-    background: #e36b3b;
-    color: white;
-
-    border-radius: 7px;
+    width: 23px;
+    height: 23px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    font-size: 13px;
+    border-radius: 6px;
+
+    background: #d96f61;
+
+    color: white;
+
+    font-size: 10px;
 }
 
-.logo span {
-    font-size: 22px;
-    font-weight: bold;
-}
 
-
-/* SEARCH */
+/* =========================================================
+   SEARCH BOX
+========================================================= */
 
 .search-box {
+    width: 355px;
     height: 40px;
-    width: 360px;
-
-    border: 1px solid #e6e0dc;
-    border-radius: 8px;
 
     display: flex;
     align-items: center;
 
-    padding: 0 13px;
-    background: #fffdfa;
+    gap: 10px;
+
+    padding: 0 14px;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 8px;
+
+    background: #ffffff;
 }
 
-.search-box i {
-    font-size: 13px;
-    margin-right: 10px;
+
+.search-icon {
+    font-size: 14px;
+
+    color: #777;
 }
+
 
 .search-box input {
     width: 100%;
+
     border: none;
+
     outline: none;
 
-    font-family: Arial, sans-serif;
-    font-size: 12px;
+    background: transparent;
 
     color: #333;
+
+    font-size: 12px;
 }
+
 
 .search-box input::placeholder {
-    color: #999;
+    color: #777;
 }
 
 
-/* HEADER RIGHT */
+/* =========================================================
+   HEADER RIGHT
+========================================================= */
 
 .header-right {
     margin-left: auto;
 
     display: flex;
     align-items: center;
-    gap: 25px;
+
+    gap: 22px;
 }
+
+
+/* =========================================================
+   LOCATION
+========================================================= */
 
 .location {
     display: flex;
     align-items: center;
-    gap: 6px;
 
-    font-family: Arial, sans-serif;
+    gap: 5px;
+
+    color: #4f5968;
+
     font-size: 12px;
-}
 
-.location i:first-child {
-    color: #999;
-}
-
-.location i:last-child {
-    font-size: 8px;
-    color: #777;
+    white-space: nowrap;
 }
 
 
-/* CART */
+/* =========================================================
+   HEADER CART
+========================================================= */
 
-.cart-icon {
+.header-cart {
     position: relative;
-    font-size: 18px;
-}
-
-.cart-icon span {
-    position: absolute;
-
-    top: -9px;
-    right: -10px;
-
-    width: 17px;
-    height: 17px;
-
-    background: #e36b3b;
-    color: white;
-
-    border-radius: 50%;
-
-    font-family: Arial, sans-serif;
-    font-size: 10px;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    cursor: pointer;
+
+    font-size: 18px;
 }
 
 
-/* PROFILE */
+.cart-count {
+    position: absolute;
 
-.profile {
-    width: 29px;
-    height: 29px;
+    top: -5px;
+    right: -7px;
+
+    min-width: 16px;
+    height: 16px;
+
+    padding: 0 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     border-radius: 50%;
-    overflow: hidden;
+
+    background: #d96f61;
+
+    color: white;
+
+    font-size: 9px;
 }
 
-.profile img {
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: #687080;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   MAIN CART PAGE
+========================================================= */
+
+.cart-page {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+
+    max-width: 1120px;
+
+    margin: 0 auto;
+
+    padding: 48px 20px 80px;
 }
 
 
-/* =========================
-   MAIN
-========================= */
+/* =========================================================
+   YOUR CART TITLE
+========================================================= */
 
-.container {
-    width: 86%;
-    max-width: 90%;
-
-    margin: 35px auto;
-}
-
-.container > h1 {
-    font-size: 28px;
+.cart-title {
     margin-bottom: 28px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 31px;
+
+    font-weight: bold;
+
+    color: #26344d;
 }
 
 
-/* =========================
-   CART LAYOUT
-========================= */
+/* =========================================================
+   CART CONTAINER
+========================================================= */
 
-.cart-layout {
+.cart-container {
     display: grid;
 
-    grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+    grid-template-columns: 1.3fr 1fr;
 
-    gap: 28px;
+    gap: 65px;
 
     align-items: start;
 }
 
 
-/* =========================
-   CART ITEMS
-========================= */
+/* =========================================================
+   LEFT CART BOX
+========================================================= */
 
-.cart-section {
-    width: 88%;
-    height:100%;
-}
+.cart-left {
+    width: 100%;
 
-.cart-card {
-    border: 1px solid #eee9e5;
+    border: 1px solid #eeeeee;
+
     border-radius: 14px;
 
     overflow: hidden;
 
-    background: white;
+    background: #ffffff;
 }
+
+
+/* =========================================================
+   CART ITEMS AREA
+========================================================= */
+
+.cart-items {
+    width: 100%;
+}
+
+
+/* =========================================================
+   INDIVIDUAL CART ITEM
+========================================================= */
 
 .cart-item {
+    position: relative;
+
     min-height: 105px;
 
-    padding: 14px 18px;
-
-    display: grid;
-
-    grid-template-columns: 62px 1fr auto auto;
-
-    column-gap: 14px;
-
+    display: flex;
     align-items: center;
 
-    position: relative;
+    padding: 17px 20px;
+
+    border-bottom: 1px solid #eeeeee;
+
+    gap: 17px;
 }
 
-.cart-item + .cart-item {
-    border-top: 1px solid #eee9e5;
-}
 
+/* =========================================================
+   PRODUCT IMAGE
+========================================================= */
 
-/* FOOD IMAGE */
+.cart-item-image {
+    width: 78px;
+    height: 78px;
 
-.food-image {
-    width: 62px;
-    height: 62px;
-
-    border-radius: 12px;
+    flex-shrink: 0;
 
     object-fit: cover;
+
+    border-radius: 8px;
+
+    background: #f1f1f1;
 }
 
 
-/* ITEM DETAILS */
+/* =========================================================
+   PRODUCT INFORMATION
+========================================================= */
 
-.item-details {
+.cart-item-info {
+    flex: 1;
+
     min-width: 0;
 }
 
-.item-details h2 {
-    font-size: 15px;
-    font-weight: bold;
 
+.cart-item-name {
     margin-bottom: 5px;
 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    padding-right: 25px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    color: #26344d;
 }
 
-.item-details p {
-    font-family: Arial, sans-serif;
+
+.cart-item-chef {
+    margin-bottom: 9px;
+
+    color: #777777;
+
     font-size: 11px;
-
-    color: #777;
-
-    margin-bottom: 8px;
 }
 
 
-/* QUANTITY */
+/* =========================================================
+   PRODUCT PRICE
+========================================================= */
 
-.quantity {
+.cart-item-price {
+    position: absolute;
+
+    right: 22px;
+
+    bottom: 22px;
+
+    color: #d96f61;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   QUANTITY
+========================================================= */
+
+.cart-quantity {
     display: flex;
+
     align-items: center;
-    gap: 10px;
+
+    gap: 9px;
 }
 
-.quantity button {
-    width: 26px;
-    height: 26px;
 
-    border-radius: 6px;
-
-    font-size: 17px;
-
-    cursor: pointer;
+.cart-quantity button {
+    width: 27px;
+    height: 27px;
 
     display: flex;
     align-items: center;
     justify-content: center;
-}
 
-.minus {
-    background: white;
-    color: #df6b3a;
+    border: 1px solid #dddddd;
 
-    border: 1px solid #e5a589;
-}
+    border-radius: 6px;
 
-.plus {
-    background: #df6b3a;
-    color: white;
+    background: #ffffff;
 
-    border: 1px solid #df6b3a;
-}
+    color: #26344d;
 
-.quantity span {
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-
-    min-width: 10px;
-    text-align: center;
-}
-
-
-/* REMOVE */
-
-.remove {
-    border: none;
-    background: transparent;
-
-    color: #d4d0cd;
-
-    font-size: 19px;
-
-    align-self: start;
-
-    margin-top: 2px;
+    font-size: 17px;
 
     cursor: pointer;
 }
 
 
-/* PRICE */
+.cart-quantity button:last-child {
+    border: none;
 
-.price {
-    color: #df6b3a;
+    background: #d96f61;
 
-    font-size: 14px;
-    font-weight: bold;
-
-    white-space: nowrap;
-
-    align-self: end;
-    margin-bottom: 7px;
+    color: white;
 }
 
 
-/* =========================
-   PROMO
-========================= */
+.cart-quantity span {
+    min-width: 15px;
 
-.promo {
-    margin-top: 14px;
+    text-align: center;
+
+    color: #555555;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   REMOVE BUTTON
+========================================================= */
+
+.remove-item {
+    position: absolute;
+
+    top: 15px;
+    right: 20px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #b7b7b7;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+
+.remove-item:hover {
+    color: #d96f61;
+}
+
+
+/* =========================================================
+   PROMO CODE
+========================================================= */
+
+.promo-section {
+    width: 100%;
 
     display: flex;
-    gap: 9px;
+
+    align-items: center;
+
+    gap: 0;
+
+    padding: 14px;
 }
 
-.promo input {
+
+.promo-input {
     flex: 1;
 
-    height: 40px;
-
-    border: 1px solid #e8e2de;
-    border-radius: 7px;
+    height: 39px;
 
     padding: 0 12px;
 
+    border: 1px solid #eeeeee;
+
+    border-radius: 7px 0 0 7px;
+
     outline: none;
 
-    font-family: Arial, sans-serif;
     font-size: 12px;
+
+    color: #444;
 }
 
-.promo button {
-    width: 62px;
-    height: 40px;
+
+.promo-input::placeholder {
+    color: #888;
+}
+
+
+.promo-button {
+    width: 70px;
+
+    height: 39px;
 
     border: none;
-    border-radius: 8px;
 
-    background: #df6b3a;
+    border-radius: 0 7px 7px 0;
+
+    background: #d96f61;
+
     color: white;
+
+    font-size: 12px;
 
     font-weight: bold;
 
@@ -407,285 +538,301 @@ body {
 }
 
 
-/* =========================
-   ORDER SUMMARY
-========================= */
+.promo-button:hover {
+    background: #c96153;
+}
 
-.summary-card {
-    border: 1px solid #eee7e2;
+
+/* =========================================================
+   ORDER SUMMARY
+========================================================= */
+
+.order-summary {
+    width: 100%;
+
+    padding: 25px 25px 22px;
+
+    border: 1px solid #eeeeee;
+
     border-radius: 14px;
 
-    padding: 24px 20px 19px;
-
-    background: #fffdfa;
-
-    min-height: 290px;
-}
-
-.summary-card h2 {
-    font-size: 17px;
-    margin-bottom: 20px;
+    background: #ffffff;
 }
 
 
-/* SUMMARY ROWS */
-
-.summary-row {
-    display: flex;
-    justify-content: space-between;
-
-    margin-bottom: 12px;
-
-    font-family: Arial, sans-serif;
-    font-size: 11px;
-
-    color: #777;
-}
-
-.summary-row span:last-child {
-    color: #333;
-    font-weight: 500;
-}
-
-
-/* DIVIDER */
-
-.divider {
-    height: 1px;
-    background: #eadfd9;
-
-    margin: 15px 0;
-}
-
-
-/* TOTAL */
-
-.total-row {
-    display: flex;
-    justify-content: space-between;
-
-    align-items: center;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 13px;
-}
-
-.total-row strong:last-child {
-    color: #df6b3a;
+.order-summary h2 {
+    margin-bottom: 23px;
 
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 18px;
+
+    font-size: 17px;
+
+    color: #26344d;
 }
 
 
-/* DELIVERY MESSAGE */
+/* =========================================================
+   SUMMARY ROW
+========================================================= */
 
-.delivery-message {
-    margin-top: 18px;
-
-    min-height: 35px;
-
-    padding: 9px 11px;
-
-    border-radius: 8px;
-
-    background: #edf8ed;
-
-    color: #57945b;
-
-    font-family: Arial, sans-serif;
-    font-size: 10px;
+.summary-row {
+    width: 100%;
 
     display: flex;
+
     align-items: center;
 
-    gap: 7px;
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+
+    color: #777777;
+
+    font-size: 11px;
 }
 
-.delivery-message i {
+
+.summary-row span:last-child {
+    color: #555555;
+}
+
+
+/* =========================================================
+   SUMMARY LINE
+========================================================= */
+
+.summary-line {
+    width: 100%;
+
+    height: 1px;
+
+    margin: 19px 0;
+
+    background: #eeeeee;
+}
+
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+.summary-total {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+
+    color: #26344d;
+
+    font-size: 14px;
+}
+
+
+.summary-total span:last-child {
+    color: #d96f61;
+
+    font-size: 17px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   FREE DELIVERY MESSAGE
+========================================================= */
+
+.free-delivery {
+    width: 100%;
+
+    padding: 11px 12px;
+
+    margin-bottom: 17px;
+
+    border-radius: 6px;
+
+    background: #eef7f5;
+
+    color: #6c8984;
+
     font-size: 9px;
 }
 
 
-/* REVIEW BUTTON */
+/* =========================================================
+   REVIEW ORDER BUTTON
+========================================================= */
 
-.review-button {
+.review-order-button {
     width: 100%;
-    height: 38px;
 
-    margin-top: 15px;
+    height: 42px;
 
     border: none;
-    border-radius: 8px;
 
-    background: #df6b3a;
+    border-radius: 7px;
+
+    background: #d96f61;
+
     color: white;
 
-    font-family: Arial, sans-serif;
     font-size: 12px;
+
     font-weight: bold;
 
     cursor: pointer;
 }
 
-.review-button span {
-    margin-left: 4px;
+
+.review-order-button span {
+    margin-left: 5px;
+
     font-size: 15px;
 }
 
 
-/* =========================
-   TABLET
-========================= */
+.review-order-button:hover {
+    background: #c96153;
+}
+
+
+/* =========================================================
+   EMPTY CART
+========================================================= */
+
+.empty-cart {
+    width: 100%;
+
+    padding: 55px 20px;
+
+    text-align: center;
+
+    color: #777777;
+}
+
+
+.empty-cart h2 {
+    margin-bottom: 8px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 20px;
+
+    color: #26344d;
+}
+
+
+.empty-cart p {
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 900px) {
 
     .header {
         padding: 0 4%;
+
         gap: 20px;
     }
+
 
     .search-box {
-        width: 300px;
+        width: 280px;
     }
 
-    .container {
-        width: 92%;
+
+    .cart-container {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
     }
 
-    .cart-layout {
-        grid-template-columns: 1fr 330px;
-        gap: 20px;
-    }
-
-    .header-right {
-        gap: 14px;
-    }
-
-    .location span {
-        display: none;
-    }
 }
 
 
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 700px) {
+@media (max-width: 650px) {
 
     .header {
         height: auto;
-        min-height: 70px;
 
-        padding: 12px 5%;
+        padding: 18px;
 
         flex-wrap: wrap;
 
-        gap: 12px;
+        gap: 15px;
     }
+
 
     .logo {
-        order: 1;
+        min-width: auto;
     }
 
-    .header-right {
-        order: 2;
-        margin-left: auto;
-    }
 
     .search-box {
         order: 3;
 
         width: 100%;
-        height: 40px;
     }
 
-
-    .container {
-        width: 90%;
-        margin: 28px auto;
-    }
-
-    .container > h1 {
-        font-size: 25px;
-        margin-bottom: 20px;
-    }
-
-
-    .cart-layout {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-
-    .summary-card {
-        width: 100%;
-    }
-
-}
-
-
-/* =========================
-   SMALL MOBILE
-========================= */
-
-@media (max-width: 450px) {
 
     .header-right {
         gap: 12px;
     }
 
+
     .location {
         display: none;
     }
 
-    .logo span {
-        font-size: 19px;
+
+    .cart-page {
+        padding: 30px 15px 60px;
     }
+
+
+    .cart-title {
+        font-size: 27px;
+    }
+
 
     .cart-item {
-        grid-template-columns: 55px 1fr auto;
+        min-height: 115px;
 
-        padding: 13px;
+        padding: 15px;
     }
 
-    .food-image {
-        width: 55px;
-        height: 55px;
+
+    .cart-item-image {
+        width: 70px;
+
+        height: 70px;
     }
 
-    .item-details h2 {
-        font-size: 13px;
+
+    .cart-item-name {
+        font-size: 14px;
     }
 
-    .remove {
-        grid-column: 3;
-        grid-row: 1;
 
-        margin: 0;
+    .cart-item-price {
+        right: 15px;
+
+        bottom: 18px;
+
+        font-size: 12px;
     }
 
-    .price {
-        grid-column: 2 / 4;
-        grid-row: 2;
 
-        justify-self: end;
-
-        margin-top: -30px;
-    }
-
-    .promo {
-        width: 100%;
-    }
-
-    .promo button {
-        width: 65px;
-    }
-
-    .summary-card {
-        padding: 20px 16px;
+    .order-summary {
+        padding: 20px;
     }
 
 }
