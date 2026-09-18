@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>HomePot - Review Order</title>
 
     <link rel="stylesheet" href="Review.css">
@@ -15,7 +16,8 @@
 
 <body>
 
-    <!-- HEADER -->
+    <!-- ================= HEADER ================= -->
+
     <header class="header">
 
         <div class="logo">
@@ -26,42 +28,68 @@
             <span>HomePot</span>
         </div>
 
+
         <div class="search-box">
+
             <i class="fa-solid fa-magnifying-glass"></i>
 
             <input
                 type="text"
                 placeholder="Search for foods, chefs, or cuisines..."
             >
+
         </div>
+
 
         <div class="location">
+
             <i class="fa-solid fa-location-dot"></i>
-            <span>Yaba, Lagos</span>
+
+            <span id="headerLocation">
+                Yaba, Lagos
+            </span>
+
             <i class="fa-solid fa-chevron-down"></i>
+
         </div>
+
 
         <div class="cart">
+
             <i class="fa-solid fa-cart-shopping"></i>
-            <span>3</span>
+
+            <span id="cartCount">
+                0
+            </span>
+
         </div>
 
+
         <div class="profile">
+
             <img
                 src="https://i.pravatar.cc/100?img=47"
                 alt="Profile"
             >
+
         </div>
 
     </header>
 
 
-    <!-- REVIEW ORDER -->
+
+    <!-- ================= REVIEW ORDER ================= -->
+
     <section class="order-section">
+
+
+        <!-- PAGE TITLE -->
 
         <div class="page-heading">
 
-            <h1>Review Your Order</h1>
+            <h1>
+                Review Your Order
+            </h1>
 
             <p>
                 Please confirm your details before proceeding to payment.
@@ -70,19 +98,32 @@
         </div>
 
 
+
+        <!-- ================= ORDER LAYOUT ================= -->
+
         <div class="order-layout">
 
-            <!-- LEFT COLUMN -->
+
+            <!-- ================= LEFT ================= -->
+
             <div class="left-column">
 
+
                 <!-- DELIVERY ADDRESS -->
+
                 <div class="card address-card">
 
                     <div class="card-heading">
 
-                        <h2>Delivery Address</h2>
+                        <h2>
+                            Delivery Address
+                        </h2>
 
-                        <button class="change-btn">
+                        <button
+                            class="change-btn"
+                            id="changeAddressBtn"
+                            type="button"
+                        >
                             Change
                         </button>
 
@@ -92,17 +133,22 @@
                     <div class="address-content">
 
                         <div class="address-icon">
+
                             <i class="fa-solid fa-location-dot"></i>
+
                         </div>
 
+
                         <div>
-                            <p>
+
+                            <p id="deliveryAddress">
                                 12 Abeokuta Street, Yaba, Lagos
                             </p>
 
                             <span>
                                 Estimated arrival: 25 - 35 minutes
                             </span>
+
                         </div>
 
                     </div>
@@ -110,29 +156,23 @@
                 </div>
 
 
+
                 <!-- ITEMS -->
+
                 <div class="card items-card">
 
-                    <h2>Items from Chef Amaka</h2>
-
-                    <div class="item">
-
-                        <span>
-                            1× Banga Soup &amp; Starch
-                        </span>
-
-                        <strong>₦3,500</strong>
-
-                    </div>
+                    <h2>
+                        Items from Chef Amaka
+                    </h2>
 
 
-                    <div class="item">
+                    <!-- JavaScript will put cart items here -->
 
-                        <span>
-                            2× Jollof Rice &amp; Chicken
-                        </span>
+                    <div id="reviewItems">
 
-                        <strong>₦5,600</strong>
+                        <div class="empty-cart-message">
+                            Your cart is empty.
+                        </div>
 
                     </div>
 
@@ -141,45 +181,158 @@
             </div>
 
 
-            <!-- PRICE BREAKDOWN -->
+
+            <!-- ================= PRICE ================= -->
+
             <div class="card price-card">
 
-                <h2>Price Breakdown</h2>
+                <h2>
+                    Price Breakdown
+                </h2>
+
 
                 <div class="price-row">
-                    <span>Subtotal</span>
-                    <span class="old-price">₦10,100</span>
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <span id="subtotal">
+                        ₦0
+                    </span>
+
                 </div>
 
-                <div class="price-row">
-                    <span>Delivery Fee</span>
-                    <span>₦500</span>
-                </div>
 
                 <div class="price-row">
-                    <span>Service Fee</span>
-                    <span>₦200</span>
+
+                    <span>
+                        Delivery Fee
+                    </span>
+
+                    <span id="deliveryFee">
+                        ₦500
+                    </span>
+
                 </div>
+
+
+                <div class="price-row">
+
+                    <span>
+                        Service Fee
+                    </span>
+
+                    <span id="serviceFee">
+                        ₦200
+                    </span>
+
+                </div>
+
 
                 <div class="divider"></div>
 
+
                 <div class="total-row">
-                    <span>Total</span>
-                    <strong>₦9,800</strong>
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="total">
+                        ₦0
+                    </strong>
+
                 </div>
 
-                <a href="Paymentmethod.html">
-                    <button class="payment-btn">
+
+                <button
+                    class="payment-btn"
+                    id="paymentBtn"
+                    type="button"
+                >
+
                     Proceed to Payment
+
                     <i class="fa-solid fa-arrow-right"></i>
+
                 </button>
-                </a>
 
             </div>
 
         </div>
 
     </section>
+
+
+
+    <!-- ================= ADDRESS MODAL ================= -->
+
+    <div
+        class="address-modal"
+        id="addressModal"
+    >
+
+        <div class="address-modal-box">
+
+            <button
+                class="close-modal"
+                id="closeAddressModal"
+                type="button"
+            >
+                ×
+            </button>
+
+
+            <h2>
+                Change Delivery Address
+            </h2>
+
+
+            <p>
+                Enter the address where you want your food delivered.
+            </p>
+
+
+            <label>
+                Delivery Address
+            </label>
+
+
+            <textarea
+                id="newAddress"
+                placeholder="Enter your delivery address..."
+            ></textarea>
+
+
+            <div class="address-modal-buttons">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelAddress"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    type="button"
+                    class="save-address-btn"
+                    id="saveAddress"
+                >
+                    Save Address
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="Review.js"></script>
 
 </body>
 </html>

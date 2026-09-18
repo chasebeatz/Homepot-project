@@ -18,7 +18,7 @@ let heroSearch = document.querySelector("#hero-search");
 let cards = document.querySelectorAll(".searchable");
 let noResults = document.querySelector("#no-results");
 let categoryButtons = document.querySelectorAll(".category");
-let addButtons = document.querySelectorAll(".add, .add-product");
+let addButtons = document.querySelectorAll(".add, .add-product:not(#customize-add-button)");
 let plusButton = document.querySelector("#plus");
 let minusButton = document.querySelector("#minus");
 let quantity = document.querySelector("#quantity");
@@ -41,6 +41,7 @@ let productAddButton = document.querySelector("#product-add-button");
 let customizeLink = document.querySelector("#customize-link");
 let customizeItem = document.querySelector("#customize-item");
 let customizeAddButton = document.querySelector("#customize-add-button");
+let customizeTotal = document.querySelector("#customize-total");
 let categoryPageTitle = document.querySelector("#category-title");
 let categoryPageEmoji = document.querySelector("#category-emoji");
 let categoryPageDescription = document.querySelector("#category-description");
@@ -181,7 +182,8 @@ function loadProduct() {
   productBreadcrumb.textContent = "Home / " + product.category + " / Made to Order";
   productAddButton.dataset.food = product.name;
   productAddButton.textContent = "Add to Cart · " + product.price;
-  customizeLink.href = "customize.html?item=" + encodeURIComponent(product.name);
+  let customizeQuantity = 1; if(quantity) {customizeQuantity = Number(quantity.textContent) || 1;}
+  customizeLink.href = "customize.html?item=" + encodeURIComponent(product.name) + "&quantity=" + (quantity ? Number(quantity.textContent) || 1 : 1)
   productIncludes.innerHTML = "";
 
   product.includes.forEach(function (item) {
@@ -194,9 +196,34 @@ function loadProduct() {
 function loadCustomizeItem() {
   if (!customizeItem) return;
 
-  let item = new URLSearchParams(window.location.search).get("item") || "Banga Soup & Starch";
-  customizeItem.textContent = item + " · Chef Amaka";
-  customizeAddButton.dataset.food = "Customized " + item;
+  let params = new URLSearchParams(window.location.search);
+
+  let item = params.get("item") || "Banga Soup & Starch";
+
+  let priceText = params.get("price") || "₦3,500";
+
+  let basePrice = Number(
+    String(priceText).replace(/[₦,]/g, "")
+  ) || 3500;
+
+  let itemQuantity = Number(params.get("quantity")) || 1;
+
+  customizeItem.textContent =
+    item + " · Chef Amaka";
+
+  customizeItem.dataset.basePrice = basePrice;
+  customizeItem.dataset.quantity = itemQuantity;
+
+  customizeAddButton.dataset.food = item;
+  customizeAddButton.dataset.basePrice = basePrice;
+  customizeAddButton.dataset.quantity = itemQuantity;
+
+  if (customizeTotal) {
+    let startingTotal = basePrice * itemQuantity;
+
+    customizeTotal.textContent =
+      "₦" + startingTotal.toLocaleString();
+  }
 }
 
 function loadCategoryMenu() {
@@ -287,7 +314,11 @@ function addToCart(button) {
 
   localStorage.setItem("homepotCart", JSON.stringify(cart));
 
+  sessionStorage.setItem("homepot-cart-items", JSON.stringify(cart));
   showToast(product.name + " added to your cart.");
+  setTimeout(function () {
+    window.location.href = "cart/Yourcart.html";
+  }, 500);
 }
 function loadCartPage() {
   if (!cartItemsBox) return;
@@ -368,6 +399,7 @@ updateCart();
 loadProduct();
 loadCustomizeItem();
 loadCategoryMenu();
+setupCustomizePage();
 loadCartPage();
 
 cartNumbers.forEach(function (number) {
@@ -504,3 +536,179 @@ if (resultsSearch && resultsText) {
     window.location.href = "cart/Yourcart.html";
    });
  }
+
+ /* ================================
+   CUSTOMIZE ORDER
+================================ */
+
+function setupCustomizePage() {
+  if (!customizeAddButton || !customizeTotal) return;
+
+  let itemName =
+    new URLSearchParams(window.location.search).get("item") ||
+    "Banga Soup & Starch";
+
+  let product = getProduct(itemName);
+
+  let basePrice = Number(
+    String(product.price).replace(/[₦,]/g, "")
+  );
+
+  let addonInputs = document.querySelectorAll(
+    'input[type="checkbox"][data-price]'
+  );
+
+  function calculateCustomizeTotal() {
+    let total = basePrice;
+
+    addonInputs.forEach(function (input) {
+      if (input.checked) {
+        total += Number(input.dataset.price) || 0;
+      }
+    });
+
+    customizeTotal.textContent =
+      "₦" + total.toLocaleString("en-NG");
+
+    return total;
+  }
+
+  addonInputs.forEach(function (input) {
+    input.addEventListener("change", function () {
+      calculateCustomizeTotal();
+    });
+  });
+
+  /* Protein selection */
+  let proteinInputs = document.querySelectorAll(
+    'input[name="protein"]'
+  );
+
+  proteinInputs.forEach(function (input) {
+    input.addEventListener("change", function () {
+      document.querySelectorAll(".option").forEach(function (option) {
+        let radio = option.querySelector('input[name="protein"]');
+
+        if (radio) {
+          option.classList.toggle("selected", radio.checked);
+        }
+      });
+    });
+  });
+
+  /* Add customized item to cart */
+  customizeAddButton.addEventListener("click", function () {
+    let total = calculateCustomizeTotal();
+
+    let selectedProtein = document.querySelector(
+      'input[name="protein"]:checked'
+    );
+
+    let proteinName = selectedProtein
+      ? selectedProtein.parentElement.textContent
+          .replace("Included", "")
+          .trim()
+      : "Goat Meat";
+
+    let selectedAddons = [];
+
+    addonInputs.forEach(function (input) {
+      if (input.checked) {
+        selectedAddons.push({
+          name: input.dataset.addon,
+          price: Number(input.dataset.price) || 0
+        });
+      }
+    });
+
+    let instructions = "";
+
+    let instructionBox = document.querySelector(
+      ".customize-page textarea"
+    );
+
+    if (instructionBox) {
+      instructions = instructionBox.value.trim();
+    }
+
+    let cart = JSON.parse(
+      localStorage.getItem("homepotCart")
+    ) || [];
+
+    /*
+      IMPORTANT:
+      Use the ORIGINAL Banga product image.
+      We are NOT changing your Cart image path.
+    */
+    let productImage = product.image;
+
+    let customizedItem = {
+      id:
+        product.name
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-") +
+        "-custom-" +
+        Date.now(),
+
+      name: product.name,
+
+      price: total,
+
+      image: productImage,
+
+      quantity: 1,
+
+      customization: {
+        protein: proteinName,
+        addons: selectedAddons,
+        instructions: instructions
+      }
+    };
+
+    cart.push(customizedItem);
+
+    localStorage.setItem(
+      "homepotCart",
+      JSON.stringify(cart)
+    );
+
+    /*
+      Also update the shared session cart
+      used by your existing header/cart counter.
+    */
+    try {
+      sessionStorage.setItem(
+        "homepot-cart-items",
+        JSON.stringify(cart)
+      );
+
+      let totalQuantity = cart.reduce(function (
+        sum,
+        item
+      ) {
+        return sum + (Number(item.quantity) || 0);
+      }, 0);
+
+      sessionStorage.setItem(
+        "homepot-cart",
+        totalQuantity
+      );
+    } catch (error) {
+      // Continue even if sessionStorage is unavailable.
+    }
+
+    showToast(
+      product.name + " customized and added to your cart."
+    );
+
+    /*
+      Go directly to Your Cart
+    */
+    setTimeout(function () {
+      window.location.href = "Yourcart.html";
+    }, 500);
+  });
+
+  /* Show correct starting total */
+  calculateCustomizeTotal();
+}
