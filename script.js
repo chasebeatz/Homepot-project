@@ -1,14 +1,36 @@
 let cart = 0;
-let cartItems = [];
+let cartItems = getCart();
 
-try {
-  let savedCartItems = JSON.parse(sessionStorage.getItem("homepot-cart-items"));
+function getCart() {
+  try {
+    let savedCart = JSON.parse(localStorage.getItem("homepotCart"));
+    if (!Array.isArray(savedCart)) return [];
 
-  if (Array.isArray(savedCartItems)) {
-    cartItems = savedCartItems;
+    return savedCart.map(function (item) {
+      let itemName = item.name || "Chef's Special";
+      return {
+        id: item.id || itemName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+        name: itemName,
+        price: Number(String(item.price || 0).replace(/[₦,]/g, "")),
+        image: item.image || "",
+        quantity: Math.max(1, Number(item.quantity) || 1)
+      };
+    });
+  } catch (error) {
+    return [];
   }
-} catch (error) {
-  cartItems = [];
+}
+
+function saveCart(items) {
+  try {
+    localStorage.setItem("homepotCart", JSON.stringify(items));
+  } catch (error) {
+    // The cart still works for the current page when browser storage is unavailable.
+  }
+}
+
+function formatMoney(amount) {
+  return "₦" + Number(amount || 0).toLocaleString();
 }
 let cartNumbers = document.querySelectorAll("#cart-count, .cart-count");
 let searchInput = document.querySelector("#search");
@@ -115,19 +137,14 @@ let categoryMenus = {
 
 function updateCart() {
   cart = cartItems.reduce(function (total, item) {
-    return total + item.quantity;
+    return total + Number(item.quantity);
   }, 0);
 
   cartNumbers.forEach(function (number) {
     number.textContent = cart;
   });
 
-  try {
-    sessionStorage.setItem("homepot-cart", cart);
-    sessionStorage.setItem("homepot-cart-items", JSON.stringify(cartItems));
-  } catch (error) {
-    // The product pages still work when browser storage is unavailable.
-  }
+  saveCart(cartItems);
 }
 
 function showToast(message) {
@@ -277,17 +294,21 @@ function goToResults(word) {
 function addToCart(button) {
   let foodName = button.dataset.food || "Item";
   let product = getProduct(foodName);
+  let selectedQuantity = button === productAddButton && quantity ? Number(quantity.textContent) : 1;
+  let productId = product.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   let savedItem = cartItems.find(function (item) {
-    return item.name === product.name;
+    return item.id === productId;
   });
 
   if (savedItem) {
-    savedItem.quantity++;
+    savedItem.quantity += selectedQuantity;
   } else {
     cartItems.push({
+      id: productId,
       name: product.name,
-      price: product.price,
-      quantity: 1
+      price: Number(String(product.price).replace(/[₦,]/g, "")),
+      image: new URL(product.image, document.baseURI).href,
+      quantity: selectedQuantity
     });
   }
 
@@ -301,39 +322,110 @@ function loadCartPage() {
   cartItemsBox.innerHTML = "";
 
   if (cartItems.length === 0) {
-    let emptyMessage = document.createElement("p");
+    let emptyMessage = document.createElement("div");
     emptyMessage.className = "empty-cart";
-    emptyMessage.textContent = "Your cart is empty. Choose a meal and add it to your cart.";
+    emptyMessage.innerHTML = "<h2>Your cart is empty</h2><p>Add some food to your cart.</p>";
     cartItemsBox.appendChild(emptyMessage);
+    updateTotals();
     return;
   }
 
-  cartItems.forEach(function (item, index) {
+  cartItems.forEach(function (item) {
     let cartItem = document.createElement("article");
+    let image = document.createElement("img");
     let itemInfo = document.createElement("div");
     let itemName = document.createElement("h2");
     let itemPrice = document.createElement("p");
-    let itemQuantity = document.createElement("span");
+    let itemTotal = document.createElement("b");
+    let itemQuantity = document.createElement("div");
+    let decreaseButton = document.createElement("button");
+    let quantityNumber = document.createElement("span");
+    let increaseButton = document.createElement("button");
     let removeButton = document.createElement("button");
 
     cartItem.className = "cart-item";
+    image.className = "cart-item-image";
+    image.src = item.image || new URL(getProduct(item.name).image, document.querySelector(".logo").href).href;
+    image.alt = item.name;
     itemName.textContent = item.name;
-    itemPrice.textContent = item.price + " each";
-    itemQuantity.textContent = "Quantity: " + item.quantity;
+    itemPrice.textContent = formatMoney(item.price) + " each";
+    itemTotal.textContent = formatMoney(Number(item.price) * Number(item.quantity));
+    itemQuantity.className = "cart-quantity";
+    decreaseButton.type = "button";
+    decreaseButton.dataset.cartAction = "decrease";
+    decreaseButton.dataset.id = item.id;
+    decreaseButton.textContent = "−";
+    quantityNumber.textContent = item.quantity;
+    increaseButton.type = "button";
+    increaseButton.dataset.cartAction = "increase";
+    increaseButton.dataset.id = item.id;
+    increaseButton.textContent = "+";
     removeButton.className = "remove-cart-item";
-    removeButton.dataset.index = index;
+    removeButton.dataset.cartAction = "remove";
+    removeButton.dataset.id = item.id;
     removeButton.textContent = "Remove";
 
-    itemInfo.append(itemName, itemPrice, itemQuantity);
-    cartItem.append(itemInfo, removeButton);
+    itemQuantity.append(decreaseButton, quantityNumber, increaseButton);
+    itemInfo.append(itemName, itemPrice, itemTotal, itemQuantity);
+    cartItem.append(image, itemInfo, removeButton);
     cartItemsBox.appendChild(cartItem);
   });
+
+  updateTotals();
 }
 
-function removeCartItem(index) {
-  cartItems.splice(index, 1);
+function changeQuantity(productId, amount) {
+  let product = cartItems.find(function (item) {
+    return item.id === productId;
+  });
+
+  if (!product) return;
+
+  product.quantity += amount;
+
+  if (product.quantity <= 0) {
+    cartItems = cartItems.filter(function (item) {
+      return item.id !== productId;
+    });
+  }
+
   updateCart();
   loadCartPage();
+}
+
+function removeCartItem(productId) {
+  cartItems = cartItems.filter(function (item) {
+    return item.id !== productId;
+  });
+  updateCart();
+  loadCartPage();
+}
+
+function updateTotals() {
+  let subtotal = cartItems.reduce(function (total, item) {
+    return total + Number(item.price) * Number(item.quantity);
+  }, 0);
+  let deliveryFee = subtotal === 0 || subtotal >= 10000 ? 0 : 500;
+  let serviceFee = subtotal === 0 ? 0 : 200;
+  let total = subtotal + deliveryFee + serviceFee;
+  let subtotalElement = document.querySelector("#subtotal");
+  let deliveryElement = document.querySelector("#delivery-fee");
+  let serviceElement = document.querySelector("#service-fee");
+  let totalElement = document.querySelector("#total");
+  let freeDelivery = document.querySelector("#free-delivery");
+  let checkoutButton = document.querySelector("#checkout-button");
+
+  if (subtotalElement) subtotalElement.textContent = formatMoney(subtotal);
+  if (deliveryElement) deliveryElement.textContent = deliveryFee === 0 && subtotal > 0 ? "FREE" : formatMoney(deliveryFee);
+  if (serviceElement) serviceElement.textContent = formatMoney(serviceFee);
+  if (totalElement) totalElement.textContent = formatMoney(total);
+  if (freeDelivery) {
+    freeDelivery.textContent = subtotal >= 10000 ? "✓ You qualify for free delivery" : subtotal === 0 ? "Free delivery on orders above ₦10,000" : "Add " + formatMoney(10000 - subtotal) + " more for free delivery";
+  }
+  if (checkoutButton) {
+    checkoutButton.classList.toggle("disabled", cartItems.length === 0);
+    checkoutButton.setAttribute("aria-disabled", String(cartItems.length === 0));
+  }
 }
 
 function openCart() {
@@ -357,6 +449,29 @@ function closeMobileMenu() {
   menuToggle.setAttribute("aria-label", "Open navigation menu");
 }
 
+function migrateLegacyCart() {
+  if (cartItems.length > 0) return;
+
+  try {
+    let legacyItems = JSON.parse(sessionStorage.getItem("homepot-cart-items"));
+
+    if (!Array.isArray(legacyItems) || legacyItems.length === 0) return;
+
+    cartItems = legacyItems.map(function (item) {
+      let product = getProduct(item.name || "Chef's Special");
+      return {
+        id: product.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+        name: product.name,
+        price: Number(String(item.price || product.price).replace(/[₦,]/g, "")),
+        image: new URL(product.image, document.querySelector(".logo").href).href,
+        quantity: Number(item.quantity) || 1
+      };
+    });
+  } catch (error) {
+    cartItems = [];
+  }
+}
+
 function toggleMobileMenu() {
   if (!menuToggle || !pageNav) return;
 
@@ -370,6 +485,7 @@ function toggleMobileMenu() {
   }
 }
 
+migrateLegacyCart();
 updateCart();
 loadProduct();
 loadCustomizeItem();
@@ -394,8 +510,21 @@ cartNumbers.forEach(function (number) {
 
 if (cartItemsBox) {
   cartItemsBox.addEventListener("click", function (event) {
-    if (event.target.classList.contains("remove-cart-item")) {
-      removeCartItem(Number(event.target.dataset.index));
+    let button = event.target.closest("button[data-cart-action]");
+    if (!button) return;
+
+    if (button.dataset.cartAction === "increase") changeQuantity(button.dataset.id, 1);
+    if (button.dataset.cartAction === "decrease") changeQuantity(button.dataset.id, -1);
+    if (button.dataset.cartAction === "remove") removeCartItem(button.dataset.id);
+  });
+}
+
+let checkoutButton = document.querySelector("#checkout-button");
+if (checkoutButton) {
+  checkoutButton.addEventListener("click", function (event) {
+    if (cartItems.length === 0) {
+      event.preventDefault();
+      showToast("Your cart is empty. Add a meal before payment.");
     }
   });
 }
