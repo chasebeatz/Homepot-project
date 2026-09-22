@@ -63,7 +63,7 @@
 
             <p class="subtitle">
                 Enter your card details to complete payment of
-                <strong>₦9,800</strong>
+                <span id="cardPaymentTotal">₦0</span>
             </p>
 
 
@@ -200,24 +200,24 @@
 
                         <div class="summary-row">
                             <span>Subtotal</span>
-                            <span>₦9,100</span>
+                            <span id="cardSubtotal">₦0</span>
                         </div>
 
                         <div class="summary-row">
                             <span>Delivery Fee</span>
-                            <span>₦500</span>
+                            <span id="cardDeliveryFee">₦0</span>
                         </div>
 
                         <div class="summary-row">
                             <span>Service Fee</span>
-                            <span>₦200</span>
+                            <span id="cardServiceFee">₦200</span>
                         </div>
 
                         <div class="line"></div>
 
                         <div class="total-row">
                             <strong>Total</strong>
-                            <strong>₦9,800</strong>
+                            <span id="summaryTotal">₦0</span>
                         </div>
 
                     </div>
@@ -234,7 +234,7 @@
                         form="paymentForm"
                         class="pay-button"
                     >
-                        Pay ₦9,800 Now
+                        Pay <span id="payAmount">₦0</span>
                     </button>
 
 

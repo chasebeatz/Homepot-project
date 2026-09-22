@@ -181,9 +181,23 @@ function loadProduct() {
   productDescription.textContent = product.description;
   productBreadcrumb.textContent = "Home / " + product.category + " / Made to Order";
   productAddButton.dataset.food = product.name;
-  productAddButton.textContent = "Add to Cart · " + product.price;
-  let customizeQuantity = 1; if(quantity) {customizeQuantity = Number(quantity.textContent) || 1;}
-  customizeLink.href = "customize.html?item=" + encodeURIComponent(product.name) + "&quantity=" + (quantity ? Number(quantity.textContent) || 1 : 1)
+
+let selectedQuantity = quantity
+  ? Number(quantity.textContent) || 1
+  : 1;
+
+productAddButton.dataset.quantity = selectedQuantity;
+
+productAddButton.textContent =
+  "Add to Cart · " + product.price;
+
+customizeLink.href =
+  "customize.html?item=" +
+  encodeURIComponent(product.name) +
+  "&price=" +
+  encodeURIComponent(product.price) +
+  "&quantity=" +
+  selectedQuantity;
   productIncludes.innerHTML = "";
 
   product.includes.forEach(function (item) {
@@ -290,11 +304,8 @@ function addToCart(button) {
 
   let cart = JSON.parse(localStorage.getItem("homepotCart")) || [];
 
-  let selectedQuantity = 1;
-
-  if (quantity) {
-    selectedQuantity = Number(quantity.textContent) || 1;
-  }
+  let selectedQuantity = 
+    Number(button.dataset.quantity) || 1;
 
   let item = cart.find(function (item) {
     return item.name === product.name;

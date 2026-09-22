@@ -1,223 +1,474 @@
-// ================================
-// GET ELEMENTS
-// ================================
-
-const cardNumber = document.getElementById("cardNumber");
-const expiry = document.getElementById("expiry");
-const cvv = document.getElementById("cvv");
-const cardholder = document.getElementById("cardholder");
-
-const previewName = document.getElementById("previewName");
-const previewExpiry = document.getElementById("previewExpiry");
-
-const paymentForm = document.getElementById("paymentForm");
-const errorMessage = document.getElementById("errorMessage");
+// =====================================================
+// HOMEPOT - CARD PAYMENT
+// =====================================================
 
 
-// ================================
+// =====================================================
+// GET SAVED ORDER
+// =====================================================
+
+const savedOrder =
+    localStorage.getItem("homepotCurrentOrder");
+
+let order = null;
+
+if (savedOrder) {
+
+    try {
+
+        order = JSON.parse(savedOrder);
+
+    } catch (error) {
+
+        console.log("Could not read saved order.");
+
+    }
+
+}
+
+
+// =====================================================
+// GET ORDER AMOUNTS
+// =====================================================
+
+const subtotal =
+    order ? Number(order.subtotal) || 0 : 0;
+
+const deliveryFee =
+    order ? Number(order.deliveryFee) || 0 : 0;
+
+const serviceFee =
+    order ? Number(order.serviceFee) || 0 : 0;
+
+const orderTotal =
+    order ? Number(order.total) || 0 : 0;
+
+
+// =====================================================
+// FORMAT MONEY
+// =====================================================
+
+function formatMoney(amount) {
+
+    return `₦${Number(amount).toLocaleString()}`;
+
+}
+
+
+// =====================================================
+// SHOW SUBTOTAL
+// =====================================================
+
+const cardSubtotal =
+    document.getElementById("cardSubtotal");
+
+if (cardSubtotal) {
+
+    cardSubtotal.textContent =
+        formatMoney(subtotal);
+
+}
+
+
+// =====================================================
+// SHOW DELIVERY FEE
+// =====================================================
+
+const cardDeliveryFee =
+    document.getElementById("cardDeliveryFee");
+
+if (cardDeliveryFee) {
+
+    if (deliveryFee === 0) {
+
+        cardDeliveryFee.textContent =
+            "FREE";
+
+    } else {
+
+        cardDeliveryFee.textContent =
+            formatMoney(deliveryFee);
+
+    }
+
+}
+
+
+// =====================================================
+// SHOW SERVICE FEE
+// =====================================================
+
+const cardServiceFee =
+    document.getElementById("cardServiceFee");
+
+if (cardServiceFee) {
+
+    cardServiceFee.textContent =
+        formatMoney(serviceFee);
+
+}
+
+
+// =====================================================
+// SHOW TOTAL IN ORDER SUMMARY
+// =====================================================
+
+const summaryTotal =
+    document.getElementById("summaryTotal");
+
+if (summaryTotal) {
+
+    summaryTotal.textContent =
+        formatMoney(orderTotal);
+
+}
+
+
+// =====================================================
+// SHOW TOTAL AT TOP
+// =====================================================
+
+const cardPaymentTotal =
+    document.getElementById("cardPaymentTotal");
+
+if (cardPaymentTotal) {
+
+    cardPaymentTotal.textContent =
+        formatMoney(orderTotal);
+
+}
+
+
+// =====================================================
+// SHOW TOTAL ON PAY BUTTON
+// =====================================================
+
+const payAmount =
+    document.getElementById("payAmount");
+
+if (payAmount) {
+
+    payAmount.textContent =
+        formatMoney(orderTotal);
+
+}
+
+
+// =====================================================
+// GET FORM ELEMENTS
+// =====================================================
+
+const cardNumber =
+    document.getElementById("cardNumber");
+
+const expiry =
+    document.getElementById("expiry");
+
+const cvv =
+    document.getElementById("cvv");
+
+const cardholder =
+    document.getElementById("cardholder");
+
+const previewName =
+    document.getElementById("previewName");
+
+const previewExpiry =
+    document.getElementById("previewExpiry");
+
+const paymentForm =
+    document.getElementById("paymentForm");
+
+const errorMessage =
+    document.getElementById("errorMessage");
+
+
+// =====================================================
 // CARD NUMBER
-// ================================
+// =====================================================
 
-cardNumber.addEventListener("input", function () {
+if (cardNumber) {
 
-    // Remove anything that is not a number
-    let value = this.value.replace(/\D/g, "");
+    cardNumber.addEventListener("input", function () {
 
-    // Maximum 16 digits
-    value = value.substring(0, 16);
+        let value =
+            this.value.replace(/\D/g, "");
 
-    // Add a space after every 4 digits
-    let formattedValue = "";
+        value =
+            value.substring(0, 16);
 
-    for (let i = 0; i < value.length; i++) {
+        let formattedValue = "";
 
-        if (i > 0 && i % 4 === 0) {
-            formattedValue += " ";
+        for (
+            let i = 0;
+            i < value.length;
+            i++
+        ) {
+
+            if (
+                i > 0 &&
+                i % 4 === 0
+            ) {
+
+                formattedValue += " ";
+
+            }
+
+            formattedValue += value[i];
+
         }
 
-        formattedValue += value[i];
-    }
+        this.value =
+            formattedValue;
 
-    this.value = formattedValue;
-});
+    });
+
+}
 
 
-// ================================
+// =====================================================
 // EXPIRY DATE
-// ================================
+// =====================================================
 
-expiry.addEventListener("input", function () {
+if (expiry) {
 
-    // Keep numbers only
-    let value = this.value.replace(/\D/g, "");
+    expiry.addEventListener("input", function () {
 
-    // IMPORTANT:
-    // Allow exactly 4 numbers before adding the slash
-    value = value.substring(0, 4);
+        let value =
+            this.value.replace(/\D/g, "");
 
-    // Add slash after the first 2 numbers
-    if (value.length >= 3) {
+        value =
+            value.substring(0, 4);
+
+        if (value.length >= 3) {
+
+            this.value =
+                value.substring(0, 2) +
+                "/" +
+                value.substring(2, 4);
+
+        } else {
+
+            this.value =
+                value;
+
+        }
+
+
+        if (previewExpiry) {
+
+            if (this.value.length > 0) {
+
+                previewExpiry.textContent =
+                    this.value;
+
+            } else {
+
+                previewExpiry.textContent =
+                    "--/--";
+
+            }
+
+        }
+
+    });
+
+}
+
+
+// =====================================================
+// CVV
+// =====================================================
+
+if (cvv) {
+
+    cvv.addEventListener("input", function () {
 
         this.value =
-            value.substring(0, 2) +
-            "/" +
-            value.substring(2, 4);
+            this.value.replace(/\D/g, "");
 
-    } else {
+        this.value =
+            this.value.substring(0, 3);
 
-        this.value = value;
-    }
+    });
 
-    // Show it on the card
-    if (this.value.length > 0) {
-        previewExpiry.textContent = this.value;
-    } else {
-        previewExpiry.textContent = "--/--";
-    }
-});
+}
 
 
-// ================================
-// CVV
-// ================================
-
-cvv.addEventListener("input", function () {
-
-    // Numbers only
-    this.value = this.value.replace(/\D/g, "");
-
-    // Maximum 3 digits
-    this.value = this.value.substring(0, 3);
-});
-
-
-// ================================
+// =====================================================
 // CARDHOLDER NAME
-// ================================
+// =====================================================
 
-cardholder.addEventListener("input", function () {
+if (cardholder) {
 
-    const name = this.value.trim();
+    cardholder.addEventListener("input", function () {
 
-    if (name.length > 0) {
+        const name =
+            this.value.trim();
 
-        previewName.textContent =
-            name.toUpperCase();
+        if (previewName) {
 
-    } else {
+            if (name.length > 0) {
 
-        previewName.textContent =
-            "ADA OKONKWO";
-    }
-});
+                previewName.textContent =
+                    name.toUpperCase();
+
+            } else {
+
+                previewName.textContent =
+                    "ADA OKONKWO";
+
+            }
+
+        }
+
+    });
+
+}
 
 
-// ================================
+// =====================================================
 // PAYMENT FORM
-// ================================
+// =====================================================
 
-paymentForm.addEventListener("submit", function (event) {
+if (paymentForm) {
 
-    event.preventDefault();
+    paymentForm.addEventListener(
+        "submit",
+        function (event) {
 
-    errorMessage.textContent = "";
-
-
-    // Get values
-    const cardNumberValue =
-        cardNumber.value.replace(/\s/g, "");
-
-    const expiryValue =
-        expiry.value;
-
-    const cvvValue =
-        cvv.value;
-
-    const cardholderValue =
-        cardholder.value.trim();
+            event.preventDefault();
 
 
-    // ============================
-    // CHECK CARD NUMBER
-    // ============================
+            // Clear error
+            if (errorMessage) {
 
-    if (cardNumberValue.length !== 16) {
+                errorMessage.textContent = "";
 
-        errorMessage.textContent =
-            "Please enter a valid 16-digit card number.";
-
-        cardNumber.focus();
-
-        return;
-    }
+            }
 
 
-    // ============================
-    // CHECK EXPIRY
-    // ============================
+            // Get values
+            const cardNumberValue =
+                cardNumber.value.replace(/\s/g, "");
 
-    if (!/^\d{2}\/\d{2}$/.test(expiryValue)) {
+            const expiryValue =
+                expiry.value;
 
-        errorMessage.textContent =
-            "Please enter the expiry date as MM/YY.";
+            const cvvValue =
+                cvv.value;
 
-        expiry.focus();
-
-        return;
-    }
-
-
-    // Get month
-    const month =
-        parseInt(expiryValue.substring(0, 2));
+            const cardholderValue =
+                cardholder.value.trim();
 
 
-    // Month must be between 01 and 12
-    if (month < 1 || month > 12) {
+            // =================================================
+            // CHECK CARD NUMBER
+            // =================================================
 
-        errorMessage.textContent =
-            "Please enter a valid expiry month.";
+            if (
+                cardNumberValue.length !== 16
+            ) {
 
-        expiry.focus();
+                errorMessage.textContent =
+                    "Please enter a valid 16-digit card number.";
 
-        return;
-    }
+                cardNumber.focus();
 
+                return;
 
-    // ============================
-    // CHECK CVV
-    // ============================
-
-    if (cvvValue.length !== 3) {
-
-        errorMessage.textContent =
-            "CVV must contain 3 digits.";
-
-        cvv.focus();
-
-        return;
-    }
+            }
 
 
-    // ============================
-    // CHECK CARDHOLDER NAME
-    // ============================
+            // =================================================
+            // CHECK EXPIRY
+            // =================================================
 
-    if (cardholderValue.length < 3) {
+            if (
+                !/^\d{2}\/\d{2}$/.test(
+                    expiryValue
+                )
+            ) {
 
-        errorMessage.textContent =
-            "Please enter the cardholder name.";
+                errorMessage.textContent =
+                    "Please enter the expiry date as MM/YY.";
 
-        cardholder.focus();
+                expiry.focus();
 
-        return;
-    }
+                return;
+
+            }
 
 
-    // ============================
-    // SUCCESS
-    // ============================
+            // =================================================
+            // CHECK MONTH
+            // =================================================
 
-    window.location.href = "processing.html";
+            const month =
+                parseInt(
+                    expiryValue.substring(0, 2)
+                );
 
-});
+
+            if (
+                month < 1 ||
+                month > 12
+            ) {
+
+                errorMessage.textContent =
+                    "Please enter a valid expiry month.";
+
+                expiry.focus();
+
+                return;
+
+            }
+
+
+            // =================================================
+            // CHECK CVV
+            // =================================================
+
+            if (
+                cvvValue.length !== 3
+            ) {
+
+                errorMessage.textContent =
+                    "CVV must contain 3 digits.";
+
+                cvv.focus();
+
+                return;
+
+            }
+
+
+            // =================================================
+            // CHECK CARDHOLDER
+            // =================================================
+
+            if (
+                cardholderValue.length < 3
+            ) {
+
+                errorMessage.textContent =
+                    "Please enter the cardholder name.";
+
+                cardholder.focus();
+
+                return;
+
+            }
+
+
+            // =================================================
+            // PAYMENT SUCCESS
+            // =================================================
+
+            window.location.href =
+                "processing.html";
+
+        }
+    );
+
+}

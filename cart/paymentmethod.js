@@ -1,42 +1,93 @@
+// =========================================================
+// GET PAYMENT CARDS AND CONTINUE BUTTON
+// =========================================================
+
 const paymentCards = document.querySelectorAll(".payment-card");
 const continuePayment = document.getElementById("continuePayment");
 
+
+// =========================================================
+// GET SAVED ORDER TOTAL
+// =========================================================
+
+const savedOrder = localStorage.getItem("homepotCurrentOrder");
+
+if (savedOrder) {
+
+    const order = JSON.parse(savedOrder);
+
+    const orderTotal = document.getElementById("orderTotal");
+
+    if (orderTotal) {
+
+        orderTotal.textContent =
+            Number(order.total).toLocaleString();
+
+    }
+
+}
+
+
+// =========================================================
+// DEFAULT PAYMENT METHOD
+// =========================================================
+
 let selectedPayment = "card";
 
-// Select a payment method
+
+// =========================================================
+// SELECT A PAYMENT METHOD
+// =========================================================
+
 paymentCards.forEach(function(card) {
 
     card.addEventListener("click", function() {
 
-        // Remove selection from all cards
+        // Remove selection from all payment cards
         paymentCards.forEach(function(item) {
+
             item.classList.remove("selected");
+
         });
 
-        // Select the card that was touched
+
+        // Select the card that was clicked
         card.classList.add("selected");
 
-        // Remember the selected payment method
-        selectedPayment = card.dataset.payment;
+
+        // Remember selected payment method
+        selectedPayment =
+            card.dataset.payment;
+
     });
 
 });
 
 
-// Continue button
+// =========================================================
+// CONTINUE BUTTON
+// =========================================================
+
 continuePayment.addEventListener("click", function() {
 
     if (selectedPayment === "card") {
 
-        window.location.href = "Cardpayment.html";
+        window.location.href =
+            "Cardpayment.html";
 
-    } else if (selectedPayment === "bank") {
+    }
 
-        window.location.href = "bank-transfer.html";
+    else if (selectedPayment === "bank") {
 
-    } else if (selectedPayment === "wallet") {
+        window.location.href =
+            "bank-transfer.html";
 
-        window.location.href = "wallet.html";
+    }
+
+    else if (selectedPayment === "wallet") {
+
+        window.location.href =
+            "wallet.html";
 
     }
 

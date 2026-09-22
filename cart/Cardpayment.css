@@ -167,7 +167,7 @@ body {
     margin-bottom: 28px;
 }
 
-.subtitle strong {
+.subtitle span {
     color: #332b29;
 }
 
@@ -410,7 +410,7 @@ body {
     font-size: 12px;
 }
 
-.total-row strong:last-child {
+.total-row span {
     font-size: 17px;
 
     color: #d96b3f;

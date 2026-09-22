@@ -1,4 +1,56 @@
 // ==========================================
+// GET CURRENT ORDER NUMBER
+// ==========================================
+
+const savedOrder =
+    localStorage.getItem("homepotCurrentOrder");
+
+let currentOrder = null;
+
+if (savedOrder) {
+
+    try {
+
+        currentOrder =
+            JSON.parse(savedOrder);
+
+    } catch (error) {
+
+        console.log(
+            "Could not read current order.",
+            error
+        );
+
+    }
+
+}
+
+
+// ==========================================
+// DISPLAY ORDER NUMBER
+// ==========================================
+
+const orderNumberElement =
+    document.getElementById("orderNumber");
+
+if (orderNumberElement) {
+
+    if (
+        currentOrder &&
+        currentOrder.orderNumber
+    ) {
+
+        orderNumberElement.textContent =
+            currentOrder.orderNumber;
+
+    } else {
+
+        orderNumberElement.textContent =
+            "Unavailable";
+
+    }
+
+}// ==========================================
 // ORDER FULFILLMENT FLOW
 // ==========================================
 
