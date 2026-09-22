@@ -1,14 +1,36 @@
 let cart = 0;
-let cartItems = [];
+let cartItems = getCart();
 
-try {
-  let savedCartItems = JSON.parse(sessionStorage.getItem("homepot-cart-items"));
+function getCart() {
+  try {
+    let savedCart = JSON.parse(localStorage.getItem("homepotCart"));
+    if (!Array.isArray(savedCart)) return [];
 
-  if (Array.isArray(savedCartItems)) {
-    cartItems = savedCartItems;
+    return savedCart.map(function (item) {
+      let itemName = item.name || "Chef's Special";
+      return {
+        id: item.id || itemName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+        name: itemName,
+        price: Number(String(item.price || 0).replace(/[₦,]/g, "")),
+        image: item.image || "",
+        quantity: Math.max(1, Number(item.quantity) || 1)
+      };
+    });
+  } catch (error) {
+    return [];
   }
-} catch (error) {
-  cartItems = [];
+}
+
+function saveCart(items) {
+  try {
+    localStorage.setItem("homepotCart", JSON.stringify(items));
+  } catch (error) {
+    // The cart still works for the current page when browser storage is unavailable.
+  }
+}
+
+function formatMoney(amount) {
+  return "₦" + Number(amount || 0).toLocaleString();
 }
 let cartNumbers = document.querySelectorAll("#cart-count, .cart-count");
 let searchInput = document.querySelector("#search");
@@ -18,7 +40,7 @@ let heroSearch = document.querySelector("#hero-search");
 let cards = document.querySelectorAll(".searchable");
 let noResults = document.querySelector("#no-results");
 let categoryButtons = document.querySelectorAll(".category");
-let addButtons = document.querySelectorAll(".add, .add-product:not(#customize-add-button)");
+let addButtons = document.querySelectorAll(".add, .add-product");
 let plusButton = document.querySelector("#plus");
 let minusButton = document.querySelector("#minus");
 let quantity = document.querySelector("#quantity");
@@ -41,7 +63,6 @@ let productAddButton = document.querySelector("#product-add-button");
 let customizeLink = document.querySelector("#customize-link");
 let customizeItem = document.querySelector("#customize-item");
 let customizeAddButton = document.querySelector("#customize-add-button");
-let customizeTotal = document.querySelector("#customize-total");
 let categoryPageTitle = document.querySelector("#category-title");
 let categoryPageEmoji = document.querySelector("#category-emoji");
 let categoryPageDescription = document.querySelector("#category-description");
@@ -52,7 +73,7 @@ let pageNav = document.querySelector(".page-nav");
 let cartItemsBox = document.querySelector("#cart-items");
 
 let products = {
-  banga: { name: "Banga Soup & Starch", price: "₦3,500", category: "Soups", image: "image/Fried stew.jpeg", description: "Rich, traditional palm fruit soup made from fresh banga seeds, slow-cooked with assorted meat. Served with freshly prepared starch.", includes: ["Large bowl of Banga Soup (400ml)", "Fresh starch wrap", "Assorted meat (3 pieces)", "Extra stock on request"] },
+  banga: { name: "Banga Soup & Starch", price: "₦3,500", category: "Soups", image: "image/bangasoup1.jpg", description: "Rich, traditional palm fruit soup made from fresh banga seeds, slow-cooked with assorted meat. Served with freshly prepared starch.", includes: ["Large bowl of Banga Soup (400ml)", "Fresh starch wrap", "Assorted meat (3 pieces)", "Extra stock on request"] },
   suya: { name: "Suya Platter (500g)", price: "₦4,200", category: "Grills & BBQ", image: "image/Suya.jpeg", description: "Tender beef suya coated in our smoky peanut spice blend, grilled fresh and served hot with onions and tomatoes.", includes: ["500g beef suya", "Fresh onions and tomatoes", "Pepper sauce", "Extra spice on request"] },
   jollof: { name: "Jollof Rice & Grilled Chicken", price: "₦2,800", category: "Rice Dishes", image: "image/Jollof rice and grilled chicken.jpeg", description: "Smoky party-style jollof rice, served with juicy grilled chicken and a side of sweet fried plantain.", includes: ["Jollof rice", "Grilled chicken piece", "Fried plantain", "Fresh coleslaw"] },
   egusi: { name: "Egusi Soup & Pounded Yam", price: "₦3,200", category: "Soups", image: "image/Egusi and Pounded yam.jpeg", description: "A rich melon seed soup cooked with leafy vegetables and assorted meat, paired with soft pounded yam.", includes: ["Large Egusi Soup", "Pounded yam wrap", "Assorted meat", "Extra pepper on request"] },
@@ -67,9 +88,26 @@ let products = {
 };
 
 let extraProducts = [
+  { match: "prawn fried rice", price: "₦4,500", image: "image/coconut rice bowl.jpg" },
   { match: "fried rice", price: "₦3,000", image: "image/Fried rice.jpeg" },
   { match: "creamy", price: "₦3,600", image: "image/creamy pasta.jpg" },
   { match: "chips", price: "₦2,900", image: "image/chips.jpg" },
+  { match: "grilled chicken", price: "₦2,500", image: "image/grilled chicken.jpg" },
+  { match: "chicken wrap", price: "₦2,400", image: "image/chicken shawarma.jpg" },
+  { match: "shawarma", price: "₦2,500", image: "image/chicken shawarma.jpg" },
+  { match: "chicken caesar", price: "₦2,700", image: "image/chicken-salad.jpg" },
+  { match: "garden salad", price: "₦2,100", image: "image/garden salad bowl.jpg" },
+  { match: "tuna pasta", price: "₦2,600", image: "image/tuna pasta salad.jpg" },
+  { match: "chocolate cake", price: "₦2,000", image: "image/chocolate cake.jpg" },
+  { match: "fruit parfait", price: "₦1,900", image: "image/parfiet.jpg" },
+  { match: "coconut rice", price: "₦2,600", image: "image/coconut rice bowl.jpg" },
+  { match: "peppered fish", price: "₦4,000", image: "image/peppered fish.jpg" },
+  { match: "tigernut", price: "₦1,300", image: "image/tigernut.jpg" },
+  { match: "zobo", price: "₦2,000", image: "image/zobo.jpg" },
+  { match: "pineapple", price: "₦1,200", image: "image/pineapple juice.jpg" },
+  { match: "chapman", price: "₦1,500", image: "image/chapman.jpg" },
+  { match: "grill combo", price: "₦7,200", image: "image/grill combo.jpg" },
+  { match: "pastry breakfast", price: "₦3,900", image: "image/pastry breakfast box.jpg" },
   { match: "yam porridge", price: "₦1,800", image: "image/Yam porridge.jpeg" },
   { match: "efo", price: "₦2,700", image: "image/efo.jpg" },
   { match: "ofada", price: "₦3,400", image: "image/ofada.jpg" },
@@ -99,19 +137,14 @@ let categoryMenus = {
 
 function updateCart() {
   cart = cartItems.reduce(function (total, item) {
-    return total + item.quantity;
+    return total + Number(item.quantity);
   }, 0);
 
   cartNumbers.forEach(function (number) {
     number.textContent = cart;
   });
 
-  try {
-    sessionStorage.setItem("homepot-cart", cart);
-    sessionStorage.setItem("homepot-cart-items", JSON.stringify(cartItems));
-  } catch (error) {
-    // The product pages still work when browser storage is unavailable.
-  }
+  saveCart(cartItems);
 }
 
 function showToast(message) {
@@ -129,18 +162,6 @@ function showToast(message) {
 function getProduct(item) {
   let name = item.toLowerCase();
 
-  if (name.includes("suya")) return products.suya;
-  if (name.includes("jollof")) return products.jollof;
-  if (name.includes("egusi")) return products.egusi;
-  if (name.includes("puff")) return products.puff;
-  if (name.includes("onugbu")) return products.onugbu;
-  if (name.includes("white soup")) return products.white;
-  if (name.includes("afang")) return products.afang;
-  if (name.includes("spaghetti")) return products.spaghetti;
-  if (name.includes("turkey")) return products.turkey;
-  if (name.includes("chops")) return products.chops;
-  if (name.includes("banga")) return products.banga;
-
   let extraProduct = extraProducts.find(function (product) {
     return name.includes(product.match);
   });
@@ -155,6 +176,18 @@ function getProduct(item) {
       includes: products.default.includes
     };
   }
+
+  if (name.includes("suya")) return products.suya;
+  if (name.includes("jollof")) return products.jollof;
+  if (name.includes("egusi")) return products.egusi;
+  if (name.includes("puff")) return products.puff;
+  if (name.includes("onugbu")) return products.onugbu;
+  if (name.includes("white soup")) return products.white;
+  if (name.includes("afang")) return products.afang;
+  if (name.includes("spaghetti")) return products.spaghetti;
+  if (name.includes("turkey")) return products.turkey;
+  if (name.includes("chops")) return products.chops;
+  if (name.includes("banga")) return products.banga;
 
   return {
     name: item,
@@ -181,6 +214,7 @@ function loadProduct() {
   productDescription.textContent = product.description;
   productBreadcrumb.textContent = "Home / " + product.category + " / Made to Order";
   productAddButton.dataset.food = product.name;
+<<<<<<< HEAD
 
 let selectedQuantity = quantity
   ? Number(quantity.textContent) || 1
@@ -198,6 +232,10 @@ customizeLink.href =
   encodeURIComponent(product.price) +
   "&quantity=" +
   selectedQuantity;
+=======
+  productAddButton.textContent = "Add to Cart · " + product.price;
+  customizeLink.href = "customize.html?item=" + encodeURIComponent(product.name);
+>>>>>>> a544ebdd65364d7c1e7ad7b9e4e6a03223999ef6
   productIncludes.innerHTML = "";
 
   product.includes.forEach(function (item) {
@@ -210,34 +248,9 @@ customizeLink.href =
 function loadCustomizeItem() {
   if (!customizeItem) return;
 
-  let params = new URLSearchParams(window.location.search);
-
-  let item = params.get("item") || "Banga Soup & Starch";
-
-  let priceText = params.get("price") || "₦3,500";
-
-  let basePrice = Number(
-    String(priceText).replace(/[₦,]/g, "")
-  ) || 3500;
-
-  let itemQuantity = Number(params.get("quantity")) || 1;
-
-  customizeItem.textContent =
-    item + " · Chef Amaka";
-
-  customizeItem.dataset.basePrice = basePrice;
-  customizeItem.dataset.quantity = itemQuantity;
-
-  customizeAddButton.dataset.food = item;
-  customizeAddButton.dataset.basePrice = basePrice;
-  customizeAddButton.dataset.quantity = itemQuantity;
-
-  if (customizeTotal) {
-    let startingTotal = basePrice * itemQuantity;
-
-    customizeTotal.textContent =
-      "₦" + startingTotal.toLocaleString();
-  }
+  let item = new URLSearchParams(window.location.search).get("item") || "Banga Soup & Starch";
+  customizeItem.textContent = item + " · Chef Amaka";
+  customizeAddButton.dataset.food = "Customized " + item;
 }
 
 function loadCategoryMenu() {
@@ -301,6 +314,7 @@ function goToResults(word) {
 function addToCart(button) {
   let foodName = button.dataset.food || "Item";
   let product = getProduct(foodName);
+<<<<<<< HEAD
 
   let cart = JSON.parse(localStorage.getItem("homepotCart")) || [];
 
@@ -309,67 +323,140 @@ function addToCart(button) {
 
   let item = cart.find(function (item) {
     return item.name === product.name;
+=======
+  let selectedQuantity = button === productAddButton && quantity ? Number(quantity.textContent) : 1;
+  let productId = product.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  let savedItem = cartItems.find(function (item) {
+    return item.id === productId;
+>>>>>>> a544ebdd65364d7c1e7ad7b9e4e6a03223999ef6
   });
 
-  if (item) {
-    item.quantity += selectedQuantity;
+  if (savedItem) {
+    savedItem.quantity += selectedQuantity;
   } else {
-    cart.push({
-      id: product.name.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+    cartItems.push({
+      id: productId,
       name: product.name,
       price: Number(String(product.price).replace(/[₦,]/g, "")),
-      image: product.image,
+      image: new URL(product.image, document.baseURI).href,
       quantity: selectedQuantity
     });
   }
 
-  localStorage.setItem("homepotCart", JSON.stringify(cart));
-
-  sessionStorage.setItem("homepot-cart-items", JSON.stringify(cart));
+  updateCart();
   showToast(product.name + " added to your cart.");
-  setTimeout(function () {
-    window.location.href = "cart/Yourcart.html";
-  }, 500);
 }
+
 function loadCartPage() {
   if (!cartItemsBox) return;
 
   cartItemsBox.innerHTML = "";
 
   if (cartItems.length === 0) {
-    let emptyMessage = document.createElement("p");
+    let emptyMessage = document.createElement("div");
     emptyMessage.className = "empty-cart";
-    emptyMessage.textContent = "Your cart is empty. Choose a meal and add it to your cart.";
+    emptyMessage.innerHTML = "<h2>Your cart is empty</h2><p>Add some food to your cart.</p>";
     cartItemsBox.appendChild(emptyMessage);
+    updateTotals();
     return;
   }
 
-  cartItems.forEach(function (item, index) {
+  cartItems.forEach(function (item) {
     let cartItem = document.createElement("article");
+    let image = document.createElement("img");
     let itemInfo = document.createElement("div");
     let itemName = document.createElement("h2");
     let itemPrice = document.createElement("p");
-    let itemQuantity = document.createElement("span");
+    let itemTotal = document.createElement("b");
+    let itemQuantity = document.createElement("div");
+    let decreaseButton = document.createElement("button");
+    let quantityNumber = document.createElement("span");
+    let increaseButton = document.createElement("button");
     let removeButton = document.createElement("button");
 
     cartItem.className = "cart-item";
+    image.className = "cart-item-image";
+    image.src = item.image || new URL(getProduct(item.name).image, document.querySelector(".logo").href).href;
+    image.alt = item.name;
     itemName.textContent = item.name;
-    itemPrice.textContent = item.price + " each";
-    itemQuantity.textContent = "Quantity: " + item.quantity;
+    itemPrice.textContent = formatMoney(item.price) + " each";
+    itemTotal.textContent = formatMoney(Number(item.price) * Number(item.quantity));
+    itemQuantity.className = "cart-quantity";
+    decreaseButton.type = "button";
+    decreaseButton.dataset.cartAction = "decrease";
+    decreaseButton.dataset.id = item.id;
+    decreaseButton.textContent = "−";
+    quantityNumber.textContent = item.quantity;
+    increaseButton.type = "button";
+    increaseButton.dataset.cartAction = "increase";
+    increaseButton.dataset.id = item.id;
+    increaseButton.textContent = "+";
     removeButton.className = "remove-cart-item";
-    removeButton.dataset.index = index;
+    removeButton.dataset.cartAction = "remove";
+    removeButton.dataset.id = item.id;
     removeButton.textContent = "Remove";
 
-    itemInfo.append(itemName, itemPrice, itemQuantity);
-    cartItem.append(itemInfo, removeButton);
+    itemQuantity.append(decreaseButton, quantityNumber, increaseButton);
+    itemInfo.append(itemName, itemPrice, itemTotal, itemQuantity);
+    cartItem.append(image, itemInfo, removeButton);
     cartItemsBox.appendChild(cartItem);
   });
+
+  updateTotals();
 }
 
-function removeCartItem(index) {
-  cartItems.splice(index, 1);
+function changeQuantity(productId, amount) {
+  let product = cartItems.find(function (item) {
+    return item.id === productId;
+  });
+
+  if (!product) return;
+
+  product.quantity += amount;
+
+  if (product.quantity <= 0) {
+    cartItems = cartItems.filter(function (item) {
+      return item.id !== productId;
+    });
+  }
+
   updateCart();
   loadCartPage();
+}
+
+function removeCartItem(productId) {
+  cartItems = cartItems.filter(function (item) {
+    return item.id !== productId;
+  });
+  updateCart();
+  loadCartPage();
+}
+
+function updateTotals() {
+  let subtotal = cartItems.reduce(function (total, item) {
+    return total + Number(item.price) * Number(item.quantity);
+  }, 0);
+  let deliveryFee = subtotal === 0 || subtotal >= 10000 ? 0 : 500;
+  let serviceFee = subtotal === 0 ? 0 : 200;
+  let total = subtotal + deliveryFee + serviceFee;
+  let subtotalElement = document.querySelector("#subtotal");
+  let deliveryElement = document.querySelector("#delivery-fee");
+  let serviceElement = document.querySelector("#service-fee");
+  let totalElement = document.querySelector("#total");
+  let freeDelivery = document.querySelector("#free-delivery");
+  let checkoutButton = document.querySelector("#checkout-button");
+
+  if (subtotalElement) subtotalElement.textContent = formatMoney(subtotal);
+  if (deliveryElement) deliveryElement.textContent = deliveryFee === 0 && subtotal > 0 ? "FREE" : formatMoney(deliveryFee);
+  if (serviceElement) serviceElement.textContent = formatMoney(serviceFee);
+  if (totalElement) totalElement.textContent = formatMoney(total);
+  if (freeDelivery) {
+    freeDelivery.textContent = subtotal >= 10000 ? "✓ You qualify for free delivery" : subtotal === 0 ? "Free delivery on orders above ₦10,000" : "Add " + formatMoney(10000 - subtotal) + " more for free delivery";
+  }
+  if (checkoutButton) {
+    checkoutButton.classList.toggle("disabled", cartItems.length === 0);
+    checkoutButton.setAttribute("aria-disabled", String(cartItems.length === 0));
+  }
 }
 
 function openCart() {
@@ -393,6 +480,29 @@ function closeMobileMenu() {
   menuToggle.setAttribute("aria-label", "Open navigation menu");
 }
 
+function migrateLegacyCart() {
+  if (cartItems.length > 0) return;
+
+  try {
+    let legacyItems = JSON.parse(sessionStorage.getItem("homepot-cart-items"));
+
+    if (!Array.isArray(legacyItems) || legacyItems.length === 0) return;
+
+    cartItems = legacyItems.map(function (item) {
+      let product = getProduct(item.name || "Chef's Special");
+      return {
+        id: product.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+        name: product.name,
+        price: Number(String(item.price || product.price).replace(/[₦,]/g, "")),
+        image: new URL(product.image, document.querySelector(".logo").href).href,
+        quantity: Number(item.quantity) || 1
+      };
+    });
+  } catch (error) {
+    cartItems = [];
+  }
+}
+
 function toggleMobileMenu() {
   if (!menuToggle || !pageNav) return;
 
@@ -406,11 +516,11 @@ function toggleMobileMenu() {
   }
 }
 
+migrateLegacyCart();
 updateCart();
 loadProduct();
 loadCustomizeItem();
 loadCategoryMenu();
-setupCustomizePage();
 loadCartPage();
 
 cartNumbers.forEach(function (number) {
@@ -431,8 +541,21 @@ cartNumbers.forEach(function (number) {
 
 if (cartItemsBox) {
   cartItemsBox.addEventListener("click", function (event) {
-    if (event.target.classList.contains("remove-cart-item")) {
-      removeCartItem(Number(event.target.dataset.index));
+    let button = event.target.closest("button[data-cart-action]");
+    if (!button) return;
+
+    if (button.dataset.cartAction === "increase") changeQuantity(button.dataset.id, 1);
+    if (button.dataset.cartAction === "decrease") changeQuantity(button.dataset.id, -1);
+    if (button.dataset.cartAction === "remove") removeCartItem(button.dataset.id);
+  });
+}
+
+let checkoutButton = document.querySelector("#checkout-button");
+if (checkoutButton) {
+  checkoutButton.addEventListener("click", function (event) {
+    if (cartItems.length === 0) {
+      event.preventDefault();
+      showToast("Your cart is empty. Add a meal before payment.");
     }
   });
 }
@@ -501,29 +624,14 @@ addButtons.forEach(function (button) {
   });
 });
 
-if (plusButton && minusButton && quantity && productPrice && productAddButton) {
-  let unitPrice = Number(
-    String(productPrice.textContent).replace(/[₦,]/g, "")
-  );
-
-  function updateProductTotal() {
-    let qty = Number(quantity.textContent);
-    let total = unitPrice * qty;
-    let formattedTotal = "₦" + total.toLocaleString("en-NG");
-
-    productPrice.textContent = formattedTotal;
-    productAddButton.textContent = "Add to Cart · " + formattedTotal;
-  }
-
+if (plusButton && minusButton && quantity) {
   plusButton.addEventListener("click", function () {
     quantity.textContent = Number(quantity.textContent) + 1;
-    updateProductTotal();
   });
 
   minusButton.addEventListener("click", function () {
     if (Number(quantity.textContent) > 1) {
       quantity.textContent = Number(quantity.textContent) - 1;
-      updateProductTotal();
     }
   });
 }
@@ -540,186 +648,4 @@ if (resultsSearch && resultsText) {
   let search = new URLSearchParams(window.location.search).get("search") || "food";
   resultsSearch.value = search;
   resultsText.textContent = "Showing results for “" + search + "”";
-}
- const addButton = document.querySelector("#product-add-button");
- if (addButton) {
-   addButton.addEventListener("click", function () {
-    window.location.href = "cart/Yourcart.html";
-   });
- }
-
- /* ================================
-   CUSTOMIZE ORDER
-================================ */
-
-function setupCustomizePage() {
-  if (!customizeAddButton || !customizeTotal) return;
-
-  let itemName =
-    new URLSearchParams(window.location.search).get("item") ||
-    "Banga Soup & Starch";
-
-  let product = getProduct(itemName);
-
-  let basePrice = Number(
-    String(product.price).replace(/[₦,]/g, "")
-  );
-
-  let addonInputs = document.querySelectorAll(
-    'input[type="checkbox"][data-price]'
-  );
-
-  function calculateCustomizeTotal() {
-    let total = basePrice;
-
-    addonInputs.forEach(function (input) {
-      if (input.checked) {
-        total += Number(input.dataset.price) || 0;
-      }
-    });
-
-    customizeTotal.textContent =
-      "₦" + total.toLocaleString("en-NG");
-
-    return total;
-  }
-
-  addonInputs.forEach(function (input) {
-    input.addEventListener("change", function () {
-      calculateCustomizeTotal();
-    });
-  });
-
-  /* Protein selection */
-  let proteinInputs = document.querySelectorAll(
-    'input[name="protein"]'
-  );
-
-  proteinInputs.forEach(function (input) {
-    input.addEventListener("change", function () {
-      document.querySelectorAll(".option").forEach(function (option) {
-        let radio = option.querySelector('input[name="protein"]');
-
-        if (radio) {
-          option.classList.toggle("selected", radio.checked);
-        }
-      });
-    });
-  });
-
-  /* Add customized item to cart */
-  customizeAddButton.addEventListener("click", function () {
-    let total = calculateCustomizeTotal();
-
-    let selectedProtein = document.querySelector(
-      'input[name="protein"]:checked'
-    );
-
-    let proteinName = selectedProtein
-      ? selectedProtein.parentElement.textContent
-          .replace("Included", "")
-          .trim()
-      : "Goat Meat";
-
-    let selectedAddons = [];
-
-    addonInputs.forEach(function (input) {
-      if (input.checked) {
-        selectedAddons.push({
-          name: input.dataset.addon,
-          price: Number(input.dataset.price) || 0
-        });
-      }
-    });
-
-    let instructions = "";
-
-    let instructionBox = document.querySelector(
-      ".customize-page textarea"
-    );
-
-    if (instructionBox) {
-      instructions = instructionBox.value.trim();
-    }
-
-    let cart = JSON.parse(
-      localStorage.getItem("homepotCart")
-    ) || [];
-
-    /*
-      IMPORTANT:
-      Use the ORIGINAL Banga product image.
-      We are NOT changing your Cart image path.
-    */
-    let productImage = product.image;
-
-    let customizedItem = {
-      id:
-        product.name
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, "-") +
-        "-custom-" +
-        Date.now(),
-
-      name: product.name,
-
-      price: total,
-
-      image: productImage,
-
-      quantity: 1,
-
-      customization: {
-        protein: proteinName,
-        addons: selectedAddons,
-        instructions: instructions
-      }
-    };
-
-    cart.push(customizedItem);
-
-    localStorage.setItem(
-      "homepotCart",
-      JSON.stringify(cart)
-    );
-
-    /*
-      Also update the shared session cart
-      used by your existing header/cart counter.
-    */
-    try {
-      sessionStorage.setItem(
-        "homepot-cart-items",
-        JSON.stringify(cart)
-      );
-
-      let totalQuantity = cart.reduce(function (
-        sum,
-        item
-      ) {
-        return sum + (Number(item.quantity) || 0);
-      }, 0);
-
-      sessionStorage.setItem(
-        "homepot-cart",
-        totalQuantity
-      );
-    } catch (error) {
-      // Continue even if sessionStorage is unavailable.
-    }
-
-    showToast(
-      product.name + " customized and added to your cart."
-    );
-
-    /*
-      Go directly to Your Cart
-    */
-    setTimeout(function () {
-      window.location.href = "Yourcart.html";
-    }, 500);
-  });
-
-  /* Show correct starting total */
-  calculateCustomizeTotal();
 }
