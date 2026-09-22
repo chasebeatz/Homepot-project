@@ -1,44 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Meal Details | HomePot</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Meal Details | HomePot</title><link rel="stylesheet" href="style.css"></head>
 <body>
   <header class="header"><a class="logo" href="index.html"><span>⌂</span>HomePot</a><input class="search page-search" type="search" placeholder="Search for foods, chefs, or cuisines..."><div class="header-right"><span>⌖ Yaba, Lagos</span><span>🛒 <b class="cart-count">0</b></span><span class="profile">AO</span></div><button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open navigation menu">☰</button></header>
   <nav class="page-nav"><a href="index.html">Home</a><a href="categories.html">Categories</a><a href="nearby.html">Nearby Chefs</a><a href="popular.html">Popular Food</a><a href="featured.html">Featured Chefs</a><a href="browse.html">Browse Menu</a></nav>
-  <main class="product-page"><div class="product-image">
-    <img id="product-image" src="image/Fried stew.jpeg" alt="Banga soup and starch">
-    <div><button>‹</button><button>›</button>
-    </div>
-</div>
-<section>
-    <p id="product-breadcrumb" class="crumb">Home / Soups / Made to Order</p>
-    <h1 id="product-title">Banga Soup & Starch</h1>
-    <p id="product-rating" class="rating">★★★★★ 4.9 (89) · Chef Amaka · 25 min</p>
-    <h2 id="product-price">₦3,500</h2>
-    <p id="product-description">Rich, traditional palm fruit soup made from fresh banga seeds, slow-cooked with assorted meat (goat, cow tail, and stockfish). Served with freshly prepared starch. Every bowl is made to order — never pre-cooked.</p>
-    <h3>What's included</h3>
-    <ul id="product-includes">
-        <li>Large bowl of Banga Soup (400ml)</li>
-        <li>Fresh starch wrap</li>
-        <li>Assorted meat (3 pieces)</li>
-        <li>Extra stock on request</li></ul>
-        <div class="quantity"><span>Quantity</span><button id="minus">−</button><b id="quantity">1</b><button id="plus">+</button></div><div class="product-actions"><button id="product-add-button" class="orange-button add-product" data-food="Banga Soup & Starch">Add to Cart · ₦3,500</button><a id="customize-link" href="customize.html">Customize</a></div>
-    </section>
-    </main>
-        
-        <footer class="small-footer">© 2026 HomePot · <a href="index.html">Back to Home</a></footer>
-  
-  <script src="script.js?v=2"></script>
+<main class="product-page"><div class="product-image"><img id="product-image" src="/image/bangasoup1.jpg" alt="Banga soup and starch"><div><button>‹</button><button>›</button></div></div><section><p id="product-breadcrumb" class="crumb">Home / Soups / Made to Order</p><h1 id="product-title">Banga Soup & Starch</h1><p id="product-rating" class="rating">★★★★★ 4.9 (89) · Chef Amaka · 25 min</p><h2 id="product-price">₦3,500</h2><p id="product-description">Rich, traditional palm fruit soup made from fresh banga seeds, slow-cooked with assorted meat (goat, cow tail, and stockfish). Served with freshly prepared starch. Every bowl is made to order — never pre-cooked.</p><h3>What's included</h3><ul id="product-includes"><li>Large bowl of Banga Soup (400ml)</li><li>Fresh starch wrap</li><li>Assorted meat (3 pieces)</li><li>Extra stock on request</li></ul><div class="quantity"><span>Quantity</span><button id="minus">−</button><b id="quantity">1</b><button id="plus">+</button></div><div class="product-actions"><button id="product-add-button" class="orange-button add-product" data-food="Banga Soup & Starch">Add to Cart · ₦3,500</button><a id="customize-link" href="customize.html">Customize</a></div></section></main><footer class="small-footer">© 2026 HomePot · <a href="index.html">Back to Home</a></footer>
+<script src="script.js?v=2"></script>
   <script>
     (function () {
       let item = new URLSearchParams(window.location.search).get("item");
       if (!item) return;
 
       let foods = [
+        { match: "banga", name: "Banga Soup & Starch", price: "₦3,500", category: "Soups", image: "image/bangasoup1.jpg", description: "Rich palm fruit soup with assorted meat and fresh starch." },
         { match: "egusi", name: "Egusi Soup & Pounded Yam", price: "₦3,200", category: "Soups", image: "image/Egusi and Pounded yam.jpeg", description: "Rich melon seed soup with assorted meat and a soft pounded yam wrap." },
         { match: "jollof", name: "Jollof Rice & Grilled Chicken", price: "₦2,800", category: "Rice Dishes", image: "image/Jollof rice and grilled chicken.jpeg", description: "Smoky party jollof rice with grilled chicken and sweet fried plantain." },
         { match: "onugbu", name: "Ofe Onugbu & Fufu", price: "₦3,600", category: "Soups", image: "image/Ofe Onugbo soup.jpeg", description: "Traditional bitter leaf soup cooked with beef, stockfish and local spices." },
@@ -49,9 +22,26 @@
       ];
 
       let extraFoods = [
+        { match: "prawn fried rice", price: "₦4,500", image: "image/coconut rice bowl.jpg" },
         { match: "fried rice", price: "₦3,000", image: "image/Fried rice.jpeg" },
         { match: "creamy", price: "₦3,600", image: "image/creamy pasta.jpg" },
         { match: "chips", price: "₦2,900", image: "image/chips.jpg" },
+        { match: "grilled chicken", price: "₦2,500", image: "image/grilled chicken.jpg" },
+        { match: "chicken wrap", price: "₦2,400", image: "image/chicken shawarma.jpg" },
+        { match: "shawarma", price: "₦2,500", image: "image/chicken shawarma.jpg" },
+        { match: "chicken caesar", price: "₦2,700", image: "image/chicken-salad.jpg" },
+        { match: "garden salad", price: "₦2,100", image: "image/garden salad bowl.jpg" },
+        { match: "tuna pasta", price: "₦2,600", image: "image/tuna pasta salad.jpg" },
+        { match: "chocolate cake", price: "₦2,000", image: "image/chocolate cake.jpg" },
+        { match: "fruit parfait", price: "₦1,900", image: "image/parfiet.jpg" },
+        { match: "coconut rice", price: "₦2,600", image: "image/coconut rice bowl.jpg" },
+        { match: "peppered fish", price: "₦4,000", image: "image/peppered fish.jpg" },
+        { match: "tigernut", price: "₦1,300", image: "image/tigernut.jpg" },
+        { match: "zobo", price: "₦2,000", image: "image/zobo.jpg" },
+        { match: "pineapple", price: "₦1,200", image: "image/pineapple juice.jpg" },
+        { match: "chapman", price: "₦1,500", image: "image/chapman.jpg" },
+        { match: "grill combo", price: "₦7,200", image: "image/grill combo.jpg" },
+        { match: "pastry breakfast", price: "₦3,900", image: "image/pastry breakfast box.jpg" },
         { match: "yam porridge", price: "₦1,800", image: "image/Yam porridge.jpeg" },
         { match: "efo", price: "₦2,700", image: "image/efo.jpg" },
         { match: "ofada", price: "₦3,400", image: "image/ofada.jpg" },
@@ -64,24 +54,23 @@
         { match: "cupcake", price: "₦4,000", image: "image/cupcake.jpg" }
       ];
 
-      let food = foods.find(function (entry) {
+      let extraFood = extraFoods.find(function (entry) {
         return item.toLowerCase().includes(entry.match);
       });
+      let food;
 
-      if (!food) {
-        let extraFood = extraFoods.find(function (entry) {
+      if (extraFood) {
+        food = {
+          name: item,
+          price: extraFood.price,
+          category: "Chef's Menu",
+          image: extraFood.image,
+          description: "A freshly prepared " + item + " made to order by a trusted HomePot chef."
+        };
+      } else {
+        food = foods.find(function (entry) {
           return item.toLowerCase().includes(entry.match);
         });
-
-        if (extraFood) {
-          food = {
-            name: item,
-            price: extraFood.price,
-            category: "Chef's Menu",
-            image: extraFood.image,
-            description: "A freshly prepared " + item + " made to order by a trusted HomePot chef."
-          };
-        }
       }
 
       if (!food) {
@@ -99,7 +88,5 @@
       document.querySelector("#product-add-button").textContent = "Add to Cart · " + food.price;
       document.querySelector("#customize-link").href = "customize.html?item=" + encodeURIComponent(food.name);
     })();
-    
   </script>
-</body>
-</html>
+</body></html>
