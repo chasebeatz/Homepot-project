@@ -169,7 +169,7 @@ function displayReviewItems(cart) {
 
             imageHTML = `
                 <img
-                    src="../${image}"
+                    src="${image}"
                     class="review-item-image"
                     alt="${item.name}"
                 >

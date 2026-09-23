@@ -214,28 +214,37 @@ function loadProduct() {
   productDescription.textContent = product.description;
   productBreadcrumb.textContent = "Home / " + product.category + " / Made to Order";
   productAddButton.dataset.food = product.name;
-<<<<<<< HEAD
+productAddButton.dataset.food = product.name;
 
-let selectedQuantity = quantity
+  let selectedQuantity = quantity
   ? Number(quantity.textContent) || 1
   : 1;
 
+let unitPrice = Number(String(product.price).replace(/[₦,]/g, ""));
+let totalPrice = unitPrice * selectedQuantity;
+
 productAddButton.dataset.quantity = selectedQuantity;
+productAddButton.dataset.price = unitPrice;
+
+productPrice.textContent = formatMoney(totalPrice);
 
 productAddButton.textContent =
-  "Add to Cart · " + product.price;
+  "Add to Cart · " + formatMoney(totalPrice);
 
 customizeLink.href =
   "customize.html?item=" +
   encodeURIComponent(product.name) +
   "&price=" +
-  encodeURIComponent(product.price) +
+  unitPrice +
   "&quantity=" +
   selectedQuantity;
-=======
-  productAddButton.textContent = "Add to Cart · " + product.price;
-  customizeLink.href = "customize.html?item=" + encodeURIComponent(product.name);
->>>>>>> a544ebdd65364d7c1e7ad7b9e4e6a03223999ef6
+  customizeLink.href =
+    "customize.html?item=" +
+    encodeURIComponent(product.name) +
+    "&price=" +
+    encodeURIComponent(product.price) +
+    "&quantity=" +
+    selectedQuantity;
   productIncludes.innerHTML = "";
 
   product.includes.forEach(function (item) {
@@ -314,25 +323,20 @@ function goToResults(word) {
 function addToCart(button) {
   let foodName = button.dataset.food || "Item";
   let product = getProduct(foodName);
-<<<<<<< HEAD
 
-  let cart = JSON.parse(localStorage.getItem("homepotCart")) || [];
+  let selectedQuantity = Number(button.dataset.quantity) || 1;
 
-  let selectedQuantity = 
-    Number(button.dataset.quantity) || 1;
+  let productId = product.name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 
-  let item = cart.find(function (item) {
-    return item.name === product.name;
-=======
-  let selectedQuantity = button === productAddButton && quantity ? Number(quantity.textContent) : 1;
-  let productId = product.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-  let savedItem = cartItems.find(function (item) {
+  let existingItem = cartItems.find(function (item) {
     return item.id === productId;
->>>>>>> a544ebdd65364d7c1e7ad7b9e4e6a03223999ef6
   });
 
-  if (savedItem) {
-    savedItem.quantity += selectedQuantity;
+  if (existingItem) {
+    existingItem.quantity += selectedQuantity;
   } else {
     cartItems.push({
       id: productId,
@@ -344,7 +348,9 @@ function addToCart(button) {
   }
 
   updateCart();
-  showToast(product.name + " added to your cart.");
+
+  // Go straight to Yourcart.html
+  openCart();
 }
 
 function loadCartPage() {
@@ -624,14 +630,68 @@ addButtons.forEach(function (button) {
   });
 });
 
+function updateProductPrice() {
+  if (!productTitle || !quantity || !productPrice || !productAddButton) {
+    return;
+  }
+
+  let item =
+    new URLSearchParams(window.location.search).get("item") ||
+    "Banga Soup & Starch";
+
+  let product = getProduct(item);
+
+  let unitPrice = Number(
+    String(product.price).replace(/[₦,]/g, "")
+  );
+
+  let selectedQuantity = Number(quantity.textContent) || 1;
+
+  let totalPrice = unitPrice * selectedQuantity;
+
+  // Update price shown on the page
+  productPrice.textContent = formatMoney(totalPrice);
+
+  // Update Add to Cart button
+  productAddButton.textContent =
+    "Add to Cart · " + formatMoney(totalPrice);
+
+  // Save quantity and unit price for Add to Cart
+  productAddButton.dataset.food = product.name;
+  productAddButton.dataset.quantity = selectedQuantity;
+  productAddButton.dataset.price = unitPrice;
+
+  // Update Customize link
+  if (customizeLink) {
+    customizeLink.href =
+      "customize.html?item=" +
+      encodeURIComponent(product.name) +
+      "&price=" +
+      unitPrice +
+      "&quantity=" +
+      selectedQuantity;
+  }
+}
+
 if (plusButton && minusButton && quantity) {
+
   plusButton.addEventListener("click", function () {
-    quantity.textContent = Number(quantity.textContent) + 1;
+    let currentQuantity = Number(quantity.textContent) || 1;
+
+    currentQuantity++;
+    quantity.textContent = currentQuantity;
+
+    updateProductPrice();
   });
 
   minusButton.addEventListener("click", function () {
-    if (Number(quantity.textContent) > 1) {
-      quantity.textContent = Number(quantity.textContent) - 1;
+    let currentQuantity = Number(quantity.textContent) || 1;
+
+    if (currentQuantity > 1) {
+      currentQuantity--;
+      quantity.textContent = currentQuantity;
+
+      updateProductPrice();
     }
   });
 }
