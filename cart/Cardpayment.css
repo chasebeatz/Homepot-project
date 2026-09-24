@@ -333,7 +333,7 @@ body {
 }
 
 .form-group input:focus {
-    border-color: #d96b3f;
+    border-color: #c84f24;
 
     box-shadow: 0 0 0 2px rgba(217, 107, 63, 0.08);
 }
@@ -413,7 +413,7 @@ body {
 .total-row span {
     font-size: 17px;
 
-    color: #d96b3f;
+    color: #c84f24;
 }
 
 
@@ -459,7 +459,7 @@ body {
 
     border-radius: 8px;
 
-    background: #d96b3f;
+    background: #c84f24;
 
     color: white;
 
@@ -475,7 +475,7 @@ body {
 }
 
 .pay-button:hover {
-    background: #c85e34;
+    background: #c84f24;
 }
 
 .pay-button:active {
@@ -496,7 +496,7 @@ body {
 }
 
 .terms span {
-    color: #d96b3f;
+    color: #c84f24;
 
     font-weight: 600;
 }
@@ -505,7 +505,7 @@ body {
 /* ERROR */
 
 .error-message {
-    color: #d9534f;
+    color: #c84f24;
 
     font-size: 10px;
 

@@ -198,7 +198,7 @@ body {
 
     border-radius: 50%;
 
-    background: #df6c38;
+    background: #c84f24;
 
     color: white;
 
@@ -343,7 +343,7 @@ body {
 
     background: transparent;
 
-    color: #d8754a;
+    color: #c84f24;
 
     font-size: 11px;
 
@@ -386,7 +386,7 @@ body {
 
     border-radius: 7px;
 
-    color: #e47a4b;
+    color: #c84f24;
 }
 
 
@@ -599,7 +599,7 @@ body {
 
     font-size: 18px;
 
-    color: #d56d42;
+    color: #c84f24;
 }
 
 
@@ -617,7 +617,7 @@ body {
 
     border-radius: 8px;
 
-    background: #df7040;
+    background: #c84f24;
 
     color: #ffffff;
 
@@ -630,7 +630,7 @@ body {
 
 
 .payment-btn:hover {
-    background: #cf6235;
+    background: #c84f24;
 }
 
 
@@ -673,7 +673,7 @@ body {
     align-items: center;
     justify-content: center;
 
-    color: #d8754a;
+    color: #c84f24;
 
     font-size: 16px;
 }
@@ -785,7 +785,7 @@ body {
 
 
 .address-modal-box textarea:focus {
-    border-color: #df7040;
+    border-color: #c84f24;
 }
 
 
@@ -847,7 +847,7 @@ body {
 
 
 .save-address-btn {
-    background: #df7040;
+    background: #c84f24;
 
     color: white;
 }

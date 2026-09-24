@@ -33,7 +33,7 @@ h1 {
 }
 
 .total spa {
-    color: #d96b3d;
+    color: #c84f24;
 }
 
 .payment-methods {
@@ -54,11 +54,11 @@ h1 {
 }
 
 .payment-card:hover {
-    border-color: #e8753c;
+    border-color: #c84f24;
 }
 
 .payment-card.selected {
-    border: 2px solid #e8753c;
+    border: 2px solid #c84f24;
     background: #fffafa;
 }
 
@@ -87,7 +87,7 @@ h1 {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #e8753c;
+    background: #c84f24;
     color: white;
     font-size: 13px;
     line-height: 20px;
@@ -102,7 +102,7 @@ h1 {
     padding: 14px 32px;
     border: none;
     border-radius: 8px;
-    background: #e8753c;
+    background: #c84f24;
     color: white;
     font-size: 12px;
     font-weight: bold;
@@ -110,7 +110,7 @@ h1 {
 }
 
 #continuePayment:hover {
-    background: #d96432;
+    background: #c84f24;
 }
 
 /* Mobile */
