@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HomePot - Card Payment</title>
+
+    <link rel="stylesheet" href="Cardpayment.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="logo">
+            <div class="logo-icon">●</div>
+            <span>HomePot</span>
+        </div>
+
+        <div class="search-box">
+            <span class="search-icon">⌕</span>
+            <input
+                type="text"
+                placeholder="Search for foods, chefs, or cuisines..."
+            >
+        </div>
+
+        <div class="header-right">
+
+            <div class="location">
+                <span>⌖</span>
+                Yaba, Lagos
+                <span>⌄</span>
+            </div>
+
+            <div class="cart">🛒</div>
+
+            <div class="profile">
+                <img
+                    src="https://i.pravatar.cc/100?img=47"
+                    alt="Profile"
+                >
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="payment-container">
+
+        <section class="payment-content">
+
+            <h1>Card Payment</h1>
+
+            <p class="subtitle">
+                Enter your card details to complete payment of
+                <span id="cardPaymentTotal">₦0</span>
+            </p>
+
+
+            <div class="payment-grid">
+
+                <!-- LEFT SIDE -->
+                <div class="card-section">
+
+                    <!-- CARD PREVIEW -->
+                    <div class="credit-card">
+
+                        <div class="card-top">
+                            <div class="chip"></div>
+
+                            <div class="visa">
+                                VISA
+                            </div>
+                        </div>
+
+                        <div class="card-number-preview">
+                            •••• •••• •••• ••••
+                        </div>
+
+                        <div class="card-bottom">
+
+                            <div>
+                                <small>CARD HOLDER</small>
+                                <strong id="previewName">
+                                    ADA OKONKWO
+                                </strong>
+                            </div>
+
+                            <div>
+                                <small>EXPIRES</small>
+                                <strong id="previewExpiry">
+                                    --/--
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FORM -->
+                    <form id="paymentForm">
+
+                        <div class="form-group">
+
+                            <label for="cardNumber">
+                                Card Number
+                            </label>
+
+                            <input
+                                type="text"
+                                id="cardNumber"
+                                maxlength="19"
+                                placeholder="0000 0000 0000 0000"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="small-inputs">
+
+                            <div class="form-group">
+
+                                <label for="expiry">
+                                    Expiry Date
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="expiry"
+                                    maxlength="5"
+                                    placeholder="MM / YY"
+                                    required
+                                    inputmode="numeric"
+                                    autocomplete="cc-exp"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="cvv">
+                                    CVV
+                                </label>
+
+                                <input
+                                    type="password"
+                                    id="cvv"
+                                    maxlength="3"
+                                    placeholder="•••"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="cardholder">
+                                Cardholder Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="cardholder"
+                                placeholder="As it appears on your card"
+                                required
+                            >
+
+                        </div>
+
+                        <p id="errorMessage" class="error-message"></p>
+
+                    </form>
+
+                </div>
+
+
+                <!-- RIGHT SIDE -->
+                <aside class="summary-section">
+
+                    <div class="order-summary">
+
+                        <h2>Order Summary</h2>
+
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="cardSubtotal">₦0</span>
+                        </div>
+
+                        <div class="summary-row">
+                            <span>Delivery Fee</span>
+                            <span id="cardDeliveryFee">₦0</span>
+                        </div>
+
+                        <div class="summary-row">
+                            <span>Service Fee</span>
+                            <span id="cardServiceFee">₦200</span>
+                        </div>
+
+                        <div class="line"></div>
+
+                        <div class="total-row">
+                            <strong>Total</strong>
+                            <span id="summaryTotal">₦0</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="security-message">
+                        <span>🔒</span>
+                        Secured with 256-bit SSL encryption
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        form="paymentForm"
+                        class="pay-button"
+                    >
+                        Pay <span id="payAmount">₦0</span>
+                    </button>
+
+
+                    <p class="terms">
+                        By paying you agree to our
+                        <span>Terms</span>
+                    </p>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="account-status.js"></script>
+    <script src="Cardpayment.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePot - Added to Cart</title>
+    <link rel="stylesheet" href="addtocart.css">
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Main Header -->
+    <header class="header">
+
+        <div class="logo-section">
+            <div class="logo-icon">⌂</div>
+            <h1>HomePot</h1>
+        </div>
+
+        <div class="search-box">
+            <span class="search-icon">⌕</span>
+            <input type="text" placeholder="Search for foods, chefs, or cuisines...">
+        </div>
+
+        <div class="header-right">
+
+            <div class="location">
+                <span>⌖</span>
+                <span>Yaba, Lagos</span>
+                <span class="arrow">⌄</span>
+            </div>
+
+            <div class="cart-icon">
+                🛒
+                <span class="cart-number">3</span>
+            </div>
+
+            <div class="profile"></div>
+
+        </div>
+
+    </header>
+
+
+    <!-- Page Content -->
+    <main class="container">
+
+        <!-- Added To Cart Notification -->
+        <div class="cart-notification">
+
+            <div class="notification-left">
+
+                <div class="check-icon">✓</div>
+
+                <div>
+                    <h3>Added to Cart!</h3>
+                    <p>Banga Soup &amp; Starch × 1 - ₦3,500 — from Chef Amaka</p>
+                </div>
+
+            </div>
+
+            <div class="notification-right">
+                <a href="Yourcart.html">
+                     <button class="view-cart">View Cart →</button>
+                </a>
+                <button class="close-btn">×</button>
+            </div>
+
+        </div>
+
+
+        <!-- Main Shopping Area -->
+        <div class="shopping-area">
+
+            <!-- Recommendations -->
+            <section class="recommendations">
+
+                <h2>You Might Also Like</h2>
+
+                <div class="food-cards">
+
+                    <!-- Card 1 -->
+                    <div class="food-card">
+
+                        <div class="food-image">
+                            <img src="images/jollof-rice.jpg" alt="Jollof Rice & Chicken">
+                        </div>
+
+                        <button class="add-btn">+</button>
+
+                        <div class="food-info">
+                            <h3>Jollof Rice &amp; Chicken</h3>
+                            <p>Chef Amaka</p>
+                            <strong>₦2,800</strong>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Card 2 -->
+                    <div class="food-card">
+
+                        <div class="food-image">
+                            <img src="images/egusi-soup.jpg" alt="Egusi Soup & Eba">
+                        </div>
+
+                        <button class="add-btn">+</button>
+
+                        <div class="food-info">
+                            <h3>Egusi Soup &amp; Eba</h3>
+                            <p>Mama Titi</p>
+                            <strong>₦3,200</strong>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Card 3 -->
+                    <div class="food-card">
+
+                        <div class="food-image">
+                            <img src="image/White soup and fufu.jpeg" alt="White Soup & Fufu">
+                        </div>
+
+                        <button class="add-btn">+</button>
+
+                        <div class="food-info">
+                            <h3>White Soup &amp; Fufu</h3>
+                            <p>Chef Amaka</p>
+                            <strong>₦4,200</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Cart -->
+            <aside class="cart-box">
+
+                <div class="cart-heading">
+                    <h2>Your Cart</h2>
+                    <span>3 items</span>
+                </div>
+
+
+                <!-- Cart Item 1 -->
+                <div class="cart-item selected">
+
+                    <div class="small-food-image">
+                        <img src="" alt="Banga Soup & Starch">
+                    </div>
+
+                    <div class="cart-item-details">
+                        <h3>Banga Soup &amp; Starch</h3>
+                        <p>× 1</p>
+                    </div>
+
+                    <strong>₦3,500</strong>
+
+                </div>
+
+
+                <!-- Cart Item 2 -->
+                <div class="cart-item">
+
+                    <div class="small-food-image">
+                        <img src="image/Jollof rice and chicken.jpeg" alt="Jollof Rice & Chicken">
+                    </div>
+
+                    <div class="cart-item-details">
+                        <h3>Jollof Rice &amp; Chicken</h3>
+                        <p>× 2</p>
+                    </div>
+
+                    <strong>₦5,600</strong>
+
+                </div>
+
+
+                <!-- Subtotal -->
+                <div class="subtotal">
+                    <span>Subtotal</span>
+                    <strong>₦9,100</strong>
+                </div>
+
+
+                <!-- Cart Buttons -->
+                <a href="Yourcart.html"> 
+                    <button class="go-to-cart">Go to Cart</button>
+                </a>
+
+                <button class="keep-browsing">Keep Browsing</button>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+    <script src="account-status.js"></script>
+</body>
+</html>

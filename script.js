@@ -1,5 +1,52 @@
 let cart = 0;
 let cartItems = getCart();
+let loginButton = document.querySelector(".login-button");
+
+function showSignedInUser() {
+  let userName = localStorage.getItem("homepotSignedInUser");
+  if (!userName) return;
+
+  if (loginButton) {
+    loginButton.href = "#";
+    loginButton.setAttribute("aria-label", "You are logged in as " + userName + ". Click to log out.");
+    loginButton.innerHTML = '<span aria-hidden="true">👤</span> ' + userName + ' · Log out';
+    loginButton.title = "Click to log out";
+    loginButton.addEventListener("click", logOut);
+  }
+
+  document.querySelectorAll(".profile").forEach(function (profile) {
+    profile.classList.add("signed-in-profile");
+    profile.textContent = "👤 " + userName + " · Log out";
+    profile.setAttribute("role", "button");
+    profile.setAttribute("tabindex", "0");
+    profile.setAttribute("aria-label", "You are logged in as " + userName + ". Click to log out.");
+    profile.addEventListener("click", logOut);
+  });
+}
+
+function logOut(event) {
+  event.preventDefault();
+  localStorage.removeItem("homepotSignedInUser");
+  window.location.href = "index.html";
+}
+
+function showBasketIcon() {
+  document.querySelectorAll(".header-right span, .header-cart span").forEach(function (element) {
+    if (element.innerHTML.includes("🛒") || element.innerHTML.includes("🛍")) {
+      element.innerHTML = element.innerHTML.replace(/🛒|🛍️?/g, "🛒");
+    }
+  });
+}
+
+showSignedInUser();
+showBasketIcon();
+
+// GitHub pages used /image paths. Remove the first slash so the photos also
+// load when the website is opened directly from this project folder.
+document.querySelectorAll('img[src^="/image/"], img[src^="/img/"]').forEach(function (image) {
+  let source = image.getAttribute("src");
+  image.setAttribute("src", source.slice(1));
+});
 
 function getCart() {
   try {

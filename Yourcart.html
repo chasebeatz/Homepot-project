@@ -1,4 +1,331 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Your Cart | HomePot</title><link rel="stylesheet" href="../style.css"></head><body>
-  <header class="header"><a class="logo" href="../index.html"><span>⌂</span>HomePot</a><div class="header-right"><span>⌖ Yaba, Lagos</span><span>🛒 <b class="cart-count">0</b></span><span class="profile">AO</span></div></header>
-  <main class="flow-page cart-page"><p class="tag">YOUR ORDER</p><h1>Your cart</h1><p class="subtitle">Review your meals before moving to payment.</p><div id="cart-items" class="cart-items"></div><section class="order-summary" aria-label="Order summary"><h2>Order summary</h2><p><span>Subtotal</span><b id="subtotal">₦0</b></p><p><span>Delivery</span><b id="delivery-fee">₦0</b></p><p><span>Service fee</span><b id="service-fee">₦0</b></p><p class="summary-total"><span>Total</span><b id="total">₦0</b></p><small id="free-delivery">Free delivery on orders above ₦10,000</small></section><a id="checkout-button" class="orange-button link-button" href="Paymentmethod.html">Continue to payment</a><a class="text-link" href="../browse.html">Keep browsing food →</a></main><footer class="small-footer">© 2026 HomePot</footer><script src="../script.js"></script></body></html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>HomePot - Your Cart</title>
+
+    <!-- Your CSS file -->
+    <link rel="stylesheet" href="Yourcart.css">
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         HEADER
+    =================================================== -->
+
+    <header class="header">
+
+        <!-- LOGO -->
+
+        <div class="logo">
+
+            <span class="logo-icon">●</span>
+
+            <span>
+                HomePot
+            </span>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+            <input
+                type="text"
+                placeholder="Search for foods, chefs, or cuisines..."
+            >
+
+        </div>
+
+
+        <!-- RIGHT SIDE OF HEADER -->
+
+        <div class="header-right">
+
+
+            <!-- LOCATION -->
+
+            <div class="location">
+
+                <span>
+                    ⌖
+                </span>
+
+                <span>
+                    Yaba, Lagos
+                </span>
+
+                <span>
+                    ▾
+                </span>
+
+            </div>
+
+
+            <!-- CART -->
+
+            <div class="header-cart">
+
+                <span>
+                    🛒
+                </span>
+
+                <span
+                    id="cart-count"
+                    class="cart-count"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <!-- PROFILE -->
+
+            <div class="profile">
+
+                <span>
+                    👤
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==================================================
+         MAIN CART AREA
+    =================================================== -->
+
+    <main class="cart-page">
+
+
+        <!-- PAGE TITLE -->
+
+        <h1 class="cart-title">
+            Your Cart
+        </h1>
+
+
+
+        <!-- ==================================================
+             TWO COLUMNS
+        =================================================== -->
+
+        <div class="cart-container">
+
+
+            <!-- ==================================================
+                 LEFT SIDE
+            =================================================== -->
+
+            <section class="cart-left">
+
+
+                <!-- ==========================================
+                     DYNAMIC CART PRODUCTS
+                =========================================== -->
+
+                <div
+                    id="cart-items"
+                    class="cart-items"
+                >
+
+                    <!--
+
+                        IMPORTANT:
+
+                        DO NOT PUT BANGA,
+                        JOLLOF,
+                        EGUSI,
+                        OR ANY FIXED FOOD HERE.
+
+                        JavaScript will automatically
+                        put the customer's selected foods
+                        inside this area.
+
+                    -->
+
+                </div>
+
+
+                <!-- ==========================================
+                     PROMO CODE
+                =========================================== -->
+
+                <div class="promo-section">
+
+
+                    <input
+                        type="text"
+                        id="promo-code"
+                        class="promo-input"
+                        placeholder="Promo code"
+                    >
+
+
+                    <button
+                        type="button"
+                        id="apply-promo"
+                        class="promo-button"
+                    >
+                        Apply
+                    </button>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ==================================================
+                 RIGHT SIDE - ORDER SUMMARY
+            =================================================== -->
+
+            <aside class="order-summary">
+
+
+                <h2>
+                    Order Summary
+                </h2>
+
+
+
+                <!-- SUBTOTAL -->
+
+                <div class="summary-row">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <span id="subtotal">
+                        ₦0
+                    </span>
+
+                </div>
+
+
+
+                <!-- DELIVERY FEE -->
+
+                <div class="summary-row">
+
+                    <span>
+                        Delivery Fee
+                    </span>
+
+                    <span id="delivery-fee">
+                        ₦0
+                    </span>
+
+                </div>
+
+
+
+                <!-- SERVICE FEE -->
+
+                <div class="summary-row">
+
+                    <span>
+                        Service Fee
+                    </span>
+
+                    <span id="service-fee">
+                        ₦0
+                    </span>
+
+                </div>
+
+
+
+                <!-- LINE -->
+
+                <div class="summary-line">
+                </div>
+
+
+
+                <!-- TOTAL -->
+
+                <div class="summary-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span id="total">
+                        ₦0
+                    </span>
+
+                </div>
+
+
+
+                <!-- FREE DELIVERY MESSAGE -->
+
+                <div
+                    id="free-delivery"
+                    class="free-delivery"
+                >
+
+                    ✓ Free delivery on orders above ₦10,000
+
+                </div>
+
+
+
+                <!-- REVIEW ORDER -->
+
+                <button
+                    type="button"
+                    id="review-order"
+                    class="review-order-button"
+                >
+
+                    Review Order
+                    <span>→</span>
+
+                </button>
+
+
+            </aside>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- ==================================================
+         JAVASCRIPT
+    =================================================== -->
+
+    <script src="Yourcart.js"></script>
+
+</body>
+
+</html>

@@ -21,6 +21,10 @@
             return;
         }
 
+        const firstName = document.getElementById("firstName");
+        const userName = firstName.value.trim() || "Customer";
+        localStorage.setItem("homepotSignedInUser", userName);
+
         // If they match, the form will continue normally
         // and go to accountcreated.html
     });
