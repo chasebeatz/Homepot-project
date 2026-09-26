@@ -21,8 +21,15 @@ a { color: inherit; }
 .cart-link:hover { color: var(--orange); }
 .cart-link:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; border-radius: 4px; }
 .profile { display: grid; width: 32px; height: 32px; place-items: center; border-radius: 50%; color: white; background: #5b3828; font-size: 10px; }
+.login-button { min-height: 42px; padding: 4px 14px 4px 5px; display: inline-flex; align-items: center; gap: 8px; border: 1px solid #f1b396; border-radius: 999px; color: #7d351e; background: linear-gradient(135deg, #fff9f5, #fff0e8); box-shadow: 0 5px 14px rgba(163, 71, 35, .12); font-size: 12px; font-weight: 700; text-decoration: none; transition: transform .2s, box-shadow .2s, background .2s; }
+.login-icon { width: 30px; height: 30px; display: inline-grid; place-items: center; border-radius: 50%; color: white; background: linear-gradient(135deg, #f48658, #d65328); box-shadow: 0 3px 8px rgba(190, 73, 33, .28); font-size: 14px; }
+.login-copy { padding-right: 2px; }
+.login-button:hover { color: #7d351e; background: #fff; box-shadow: 0 8px 18px rgba(163, 71, 35, .2); transform: translateY(-2px); }
+.login-button:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+.signed-in-profile { width: auto; min-height: 34px; padding: 0 11px; display: inline-flex; align-items: center; border: 1px solid var(--orange); border-radius: 999px; color: var(--orange); background: white; font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.signed-in-profile:hover { color: white; background: var(--orange); }
 
-.hero { min-height: 410px; padding: 75px max(8%, calc((100% - 1100px) / 2)); display: flex; align-items: center; color: white; background: linear-gradient(90deg, rgba(26,14,10,.85), rgba(26,14,10,.3)), url("image/Jollof rice and chicken with salad.jpeg") center/cover; }
+.hero { min-height: 410px; padding: 75px max(8%, calc((100% - 1100px) / 2)); display: flex; align-items: center; color: white; background: linear-gradient(90deg, rgba(26,14,10,.85), rgba(26,14,10,.32)), url("image/Homepot - Jollof rice.jpeg") center/cover; }
 .hero > div { max-width: 610px; }
 .tag { margin-bottom: 8px; color: var(--orange); font-size: 10px; font-weight: 700; letter-spacing: 1.7px; }
 .light { color: #ffc1a5; }

@@ -9,7 +9,7 @@ function showSignedInUser() {
   if (loginButton) {
     loginButton.href = "#";
     loginButton.setAttribute("aria-label", "You are logged in as " + userName + ". Click to log out.");
-    loginButton.innerHTML = '<span aria-hidden="true">👤</span> ' + userName + ' · Log out';
+    loginButton.innerHTML = '<span class="login-icon" aria-hidden="true">👤</span><span class="login-copy">' + userName + ' · Log out</span>';
     loginButton.title = "Click to log out";
     loginButton.addEventListener("click", logOut);
   }
@@ -96,6 +96,8 @@ let email = document.querySelector("#email");
 let newsletterMessage = document.querySelector("#newsletter-message");
 let resultsSearch = document.querySelector("#results-search");
 let resultsText = document.querySelector("#results-text");
+let resultsGrid = document.querySelector("#results-grid");
+let resultsEmpty = document.querySelector("#results-empty");
 let toast = document.querySelector("#toast");
 let timer;
 let productLinks = document.querySelectorAll('a[href="product.html"]');
@@ -171,7 +173,7 @@ let extraProducts = [
 let categoryMenus = {
   soup: { emoji: "🍲", title: "Soups & Stews", subtitle: "Comforting bowls made close to home", description: "Warm, rich and full of flavour — every bowl is cooked fresh by a local chef.", dishes: [["Banga Soup & Starch", "Rich palm fruit soup with assorted meat.", "₦3,500"], ["Egusi Soup & Pounded Yam", "Melon seed soup with tender meat.", "₦3,200"], ["Ofe Onugbu & Fufu", "Bitter leaf soup with soft fufu.", "₦3,600"], ["White Soup & Fufu", "Light fish soup with traditional spices.", "₦4,200"]] },
   grill: { emoji: "🔥", title: "Grills & BBQ", subtitle: "Smoky favourites fresh from the fire", description: "From spicy suya to juicy turkey, enjoy the bold flavour of a proper grill.", dishes: [["Suya Platter", "Smoky beef suya with pepper and onions.", "₦4,200"], ["Grilled Turkey", "Spicy turkey straight from the grill.", "₦3,800"], ["Grilled Chicken", "Charcoal chicken with pepper sauce.", "₦2,500"], ["Whole Grilled Tilapia", "Fire-grilled tilapia with plantain.", "₦5,500"]] },
-  pastry: { emoji: "🥐", title: "Pastries & Baked", subtitle: "Freshly baked treats for every mood", description: "Warm pastries, crunchy snacks and sharing platters made by neighbourhood bakers.", dishes: [["Small Chops Platter", "Samosa, spring rolls and puff-puff.", "₦6,500"], ["Artisan Puff-Puff", "Warm, fluffy and freshly fried.", "₦1,200"], ["Meat Pie", "Buttery pastry with seasoned beef.", "₦1,500"], ["Chicken Pie", "Flaky pastry with creamy chicken.", "₦1,700"]] },
+  pastry: { emoji: "🥐", title: "Pastries", subtitle: "Freshly baked treats for every mood", description: "Warm pastries, crunchy snacks and sharing platters made by neighbourhood bakers.", dishes: [["Small Chops Platter", "Samosa, spring rolls and puff-puff.", "₦6,500"], ["Artisan Puff-Puff", "Warm, fluffy and freshly fried.", "₦1,200"], ["Meat Pie", "Buttery pastry with seasoned beef.", "₦1,500"], ["Chicken Pie", "Flaky pastry with creamy chicken.", "₦1,700"]] },
   rice: { emoji: "🍛", title: "Rice Dishes", subtitle: "Big flavour in every grain", description: "Party jollof, local rice and comforting bowls made to satisfy your hunger.", dishes: [["Jollof Rice & Grilled Chicken", "Smoky jollof with chicken and plantain.", "₦2,800"], ["Fried Rice & Chicken", "Vegetable fried rice with grilled chicken.", "₦3,000"], ["Ofada Rice & Sauce", "Local rice with rich ayamase sauce.", "₦3,400"], ["Party Jollof Family Bowl", "A shareable bowl for four people.", "₦7,500"]] },
   salad: { emoji: "🥗", title: "Salads & Wraps", subtitle: "Fresh, colourful and satisfying", description: "Lighter meals full of crisp vegetables, creamy dressings and delicious fillings.", dishes: [["Chicken Caesar Salad", "Grilled chicken, greens and parmesan.", "₦2,700"], ["Suya Chicken Wrap", "Spicy chicken in a fresh tortilla wrap.", "₦2,400"], ["Garden Salad Bowl", "Seasonal greens with house dressing.", "₦2,100"], ["Tuna Pasta Salad", "Tuna, pasta and crunchy vegetables.", "₦2,600"]] },
   dessert: { emoji: "🍰", title: "Desserts & Sweets", subtitle: "A sweet finish to your day", description: "Handmade treats, cakes and little indulgences baked with love.", dishes: [["Six-Cupcake Box", "Vanilla and chocolate cupcakes.", "₦4,000"], ["Chin Chin Jar", "Sweet, crunchy bite-size treats.", "₦1,800"], ["Chocolate Cake Slice", "Soft chocolate sponge with ganache.", "₦2,000"], ["Fruit Parfait", "Yoghurt, fruit and granola layers.", "₦1,900"]] },
@@ -365,6 +367,66 @@ function filterCards(word) {
 
 function goToResults(word) {
   window.location.href = "results.html?search=" + encodeURIComponent(word);
+}
+
+let searchCatalog = [
+  { name: "Jollof Rice & Chicken", price: "₦2,800", image: "image/Jollof rice and chicken.jpeg", chef: "Chef Amaka", keywords: "jollof rice chicken party smoky nigerian" },
+  { name: "Party Jollof Family Bowl", price: "₦7,500", image: "image/Homepot - Jollof rice.jpeg", chef: "Mama Titi", keywords: "jollof rice family party bowl" },
+  { name: "Jollof Spaghetti Special", price: "₦2,200", image: "image/Stirfry spaghetti.jpeg", chef: "Chef Amaka", keywords: "jollof spaghetti pasta noodles" },
+  { name: "Fried Rice & Chicken", price: "₦3,000", image: "image/Fried rice.jpeg", chef: "Chef Amaka", keywords: "fried rice chicken vegetables" },
+  { name: "Prawn Fried Rice", price: "₦4,500", image: "image/coconut rice bowl.jpg", chef: "Chef Amaka", keywords: "prawn seafood fried rice" },
+  { name: "Spicy Grilled Turkey", price: "₦3,800", image: "img/turkey.jpeg", chef: "Oga Grill House", keywords: "turkey grilled grill bbq spicy" },
+  { name: "Suya Platter", price: "₦4,200", image: "image/Suya.jpeg", chef: "Oga Grill House", keywords: "suya beef grill bbq meat" },
+  { name: "Grilled Chicken", price: "₦2,500", image: "image/grilled chicken.jpg", chef: "Oga Grill House", keywords: "chicken grilled grill bbq" },
+  { name: "Chicken Wings", price: "₦2,400", image: "image/wings.jpg", chef: "Oga Grill House", keywords: "chicken wings grill bbq" },
+  { name: "Grill Combo", price: "₦7,200", image: "image/grill combo.jpg", chef: "Oga Grill House", keywords: "grill bbq combo suya chicken" },
+  { name: "Grilled Tilapia & Plantain", price: "₦5,500", image: "image/Grilled tilapia and plantain.jpeg", chef: "Oga Grill House", keywords: "tilapia fish seafood plantain grilled" },
+  { name: "Peppered Fish", price: "₦4,000", image: "image/peppered fish.jpg", chef: "Oga Grill House", keywords: "fish seafood pepper grilled" },
+  { name: "Banga Soup & Starch", price: "₦3,500", image: "image/bangasoup1.jpg", chef: "Chef Amaka", keywords: "banga soup starch nigerian" },
+  { name: "Egusi Soup & Pounded Yam", price: "₦3,200", image: "image/Egusi and Pounded yam.jpeg", chef: "Mama Titi", keywords: "egusi soup pounded yam swallow" },
+  { name: "Ofe Onugbu & Fufu", price: "₦3,600", image: "image/Ofe Onugbo soup.jpeg", chef: "Mama Titi", keywords: "onugbu bitter leaf soup fufu" },
+  { name: "White Soup & Fufu", price: "₦4,200", image: "image/White soup and fufu.jpeg", chef: "Mama Titi", keywords: "white soup fufu fish" },
+  { name: "Afang Soup & Semolina", price: "₦3,500", image: "image/afang.jpg", chef: "Mama Titi", keywords: "afang soup semolina swallow" },
+  { name: "Yam Porridge", price: "₦1,800", image: "image/Yam porridge.jpeg", chef: "Mama Titi", keywords: "yam porridge pottage" },
+  { name: "Ofada Rice & Sauce", price: "₦3,400", image: "image/ofada.jpg", chef: "Mama Titi", keywords: "ofada rice sauce ayamase" },
+  { name: "Beans & Plantain", price: "₦2,000", image: "image/beans n plantain.jpg", chef: "Mama Titi", keywords: "beans plantain porridge" },
+  { name: "Garden Salad Bowl", price: "₦2,100", image: "image/garden salad bowl.jpg", chef: "Chef Amaka", keywords: "garden salad vegetables healthy" },
+  { name: "Tuna Pasta Salad", price: "₦2,600", image: "image/tuna pasta salad.jpg", chef: "Chef Amaka", keywords: "tuna pasta salad seafood" },
+  { name: "Chicken Shawarma", price: "₦2,500", image: "image/chicken shawarma.jpg", chef: "Chef Amaka", keywords: "chicken shawarma wrap" },
+  { name: "Small Chops Platter", price: "₦6,500", image: "image/Small chops.jpeg", chef: "Aunty Peace Pastries", keywords: "small chops samosa spring roll pastry" },
+  { name: "Artisan Puff-Puff", price: "₦1,200", image: "img/puff puff.jpeg", chef: "Aunty Peace Pastries", keywords: "puff puff pastry snack" },
+  { name: "Meat Pie", price: "₦1,500", image: "image/pie.jpg", chef: "Aunty Peace Pastries", keywords: "meat pie pastry" },
+  { name: "Fruit Parfait", price: "₦1,900", image: "image/parfiet.jpg", chef: "Aunty Peace Pastries", keywords: "fruit parfait yoghurt dessert" },
+  { name: "Tigernut Milk", price: "₦1,300", image: "image/tigernut.jpg", chef: "Chef Amaka", keywords: "tigernut kunnu aya milk drink" },
+  { name: "Zobo Drink", price: "₦2,000", image: "image/zobo.jpg", chef: "Chef Amaka", keywords: "zobo drink hibiscus juice" },
+  { name: "Fresh Pineapple Juice", price: "₦1,200", image: "image/pineapple juice.jpg", chef: "Chef Amaka", keywords: "pineapple juice drink fresh" }
+];
+
+function loadSearchResults(searchWord) {
+  if (!resultsGrid) return;
+
+  let query = searchWord.toLowerCase().trim();
+  let words = query.split(/\s+/).filter(Boolean);
+  let matches = searchCatalog.filter(function (item) {
+    let searchableText = (item.name + " " + item.chef + " " + item.keywords).toLowerCase();
+    return words.length === 0 || words.every(function (word) {
+      return searchableText.includes(word);
+    });
+  });
+
+  resultsGrid.innerHTML = "";
+  matches.forEach(function (item) {
+    let card = document.createElement("a");
+    card.className = "menu-card";
+    card.href = "product.html?item=" + encodeURIComponent(item.name);
+    card.innerHTML = '<img src="' + item.image + '" alt="' + item.name + '"><h2>' + item.name + '</h2><p>' + item.chef + ' · Yaba, Lagos</p><b>' + item.price + '</b>';
+    resultsGrid.appendChild(card);
+  });
+
+  if (resultsEmpty) resultsEmpty.hidden = matches.length !== 0;
+  if (resultsText) {
+    resultsText.textContent = matches.length + " result" + (matches.length === 1 ? "" : "s") + " for “" + (searchWord || "all meals") + "”";
+  }
 }
 
 function addToCart(button) {
@@ -754,5 +816,15 @@ if (newsletterForm) {
 if (resultsSearch && resultsText) {
   let search = new URLSearchParams(window.location.search).get("search") || "food";
   resultsSearch.value = search;
-  resultsText.textContent = "Showing results for “" + search + "”";
+  loadSearchResults(search);
+
+  resultsSearch.addEventListener("input", function () {
+    loadSearchResults(resultsSearch.value);
+  });
+
+  resultsSearch.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      loadSearchResults(resultsSearch.value);
+    }
+  });
 }
