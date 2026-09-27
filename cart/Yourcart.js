@@ -7,7 +7,7 @@
    1. GET CART
 ========================================================= */
 
-function getCart() {
+    function getCart() {
 
     return JSON.parse(
         localStorage.getItem("homepotCart")
@@ -938,3 +938,23 @@ updateTotals();
 
 updateCartCount();
 
+/* =========================================================
+   15. HOMEPOT LOGO - GO TO HOME PAGE
+========================================================= */
+
+const homeLogo =
+    document.getElementById("homeLogo");
+
+if (homeLogo) {
+
+    homeLogo.addEventListener(
+        "click",
+        function () {
+
+            window.location.href =
+                "../index.html";
+
+        }
+    );
+
+}
