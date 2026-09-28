@@ -472,3 +472,42 @@ if (paymentForm) {
     );
 
 }
+
+/* =========================================================
+   15. HOMEPOT LOGO - GO TO HOME PAGE
+========================================================= */
+
+const homeLogo =
+    document.getElementById("homeLogo");
+
+if (homeLogo) {
+
+    homeLogo.addEventListener(
+        "click",
+        function () {
+
+            window.location.href =
+                "../index.html";
+
+        }
+    );
+
+}
+
+const cartIcon =
+    document.getElementById("cartIcon");
+
+if (cartIcon) {
+
+    cartIcon.addEventListener(
+        "click",
+        function () {
+
+            window.location.href =
+                "Yourcart.html";
+
+        }
+    );
+
+}
+

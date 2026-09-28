@@ -294,7 +294,7 @@ body {
 
     bottom: 22px;
 
-    color: #d96f61;
+    color: #c84f24;
 
     font-size: 14px;
 
@@ -340,7 +340,7 @@ body {
 .cart-quantity button:last-child {
     border: none;
 
-    background: #d96f61;
+    background: #c84f24;
 
     color: white;
 }
@@ -380,7 +380,7 @@ body {
 
 
 .remove-item:hover {
-    color: #d96f61;
+    color: #c84f24;
 }
 
 
@@ -434,7 +434,7 @@ body {
 
     border-radius: 0 7px 7px 0;
 
-    background: #d96f61;
+    background: #c84f24;
 
     color: white;
 
@@ -447,7 +447,7 @@ body {
 
 
 .promo-button:hover {
-    background: #c96153;
+    background: #c84f24;
 }
 
 
@@ -542,7 +542,7 @@ body {
 
 
 .summary-total span:last-child {
-    color: #d96f61;
+    color: #c84f24;
 
     font-size: 17px;
 
@@ -584,7 +584,7 @@ body {
 
     border-radius: 7px;
 
-    background: #d96f61;
+    background: #c84f24;
 
     color: white;
 
@@ -604,7 +604,7 @@ body {
 
 
 .review-order-button:hover {
-    background: #c96153;
+    background: #c84f24;
 }
 
 

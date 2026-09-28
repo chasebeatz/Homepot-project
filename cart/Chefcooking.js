@@ -118,7 +118,7 @@ function showConfirmed() {
     statusMessage.textContent =
         "Your order has been confirmed. Chef Amaka will start preparing your meal shortly.";
 
-    timeText.textContent = "~20 min";
+    timeText.textContent = "~45 min";
 
     timeLabel.textContent =
         "Estimated prep time";
@@ -146,7 +146,7 @@ function showPreparing() {
     statusMessage.textContent =
         "Your order has been accepted and Chef Amaka is lovingly preparing your Banga Soup & Starch and Jollof Rice & Chicken.";
 
-    timeText.textContent = "~20 min";
+    timeText.textContent = "~45 min";
 
     timeLabel.textContent =
         "Estimated prep time";
