@@ -119,6 +119,8 @@ let categoryPageSubtitle = document.querySelector("#category-subtitle");
 let categoryPageDishes = document.querySelector("#category-dishes");
 let menuToggle = document.querySelector(".menu-toggle");
 let pageNav = document.querySelector(".page-nav");
+let headerNav = document.querySelector(".header-nav");
+let mobileNav = pageNav || headerNav;
 let cartItemsBox = document.querySelector("#cart-items");
 
 function addAboutNavigation() {
@@ -604,9 +606,9 @@ function openCart() {
 }
 
 function closeMobileMenu() {
-  if (!menuToggle || !pageNav) return;
+  if (!menuToggle || !mobileNav) return;
 
-  pageNav.classList.remove("open");
+  mobileNav.classList.remove("open");
   menuToggle.textContent = "☰";
   menuToggle.setAttribute("aria-expanded", "false");
   menuToggle.setAttribute("aria-label", "Open navigation menu");
@@ -636,12 +638,12 @@ function migrateLegacyCart() {
 }
 
 function toggleMobileMenu() {
-  if (!menuToggle || !pageNav) return;
+  if (!menuToggle || !mobileNav) return;
 
-  if (pageNav.classList.contains("open")) {
+  if (mobileNav.classList.contains("open")) {
     closeMobileMenu();
   } else {
-    pageNav.classList.add("open");
+    mobileNav.classList.add("open");
     menuToggle.textContent = "×";
     menuToggle.setAttribute("aria-expanded", "true");
     menuToggle.setAttribute("aria-label", "Close navigation menu");
@@ -692,10 +694,10 @@ if (checkoutButton) {
   });
 }
 
-if (menuToggle && pageNav) {
+if (menuToggle && mobileNav) {
   menuToggle.addEventListener("click", toggleMobileMenu);
 
-  pageNav.querySelectorAll("a").forEach(function (link) {
+  mobileNav.querySelectorAll("a").forEach(function (link) {
     link.addEventListener("click", closeMobileMenu);
   });
 

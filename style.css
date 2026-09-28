@@ -371,8 +371,11 @@ textarea { width: 100%; min-height: 90px; padding: 10px; border: 1px solid var(-
 
 /* Mobile navigation */
 @media (max-width: 700px) {
-  .header { min-height: 64px; padding: 0 16px; gap: 10px; }
-  .header-nav { display: none; }
+  .header { min-height: 64px; padding: 0 16px; gap: 10px; flex-wrap: wrap; }
+  .header-nav { width: 100%; flex-basis: 100%; order: 5; display: none; margin: 0; padding: 5px 0 12px; grid-template-columns: 1fr; gap: 0; }
+  .header-nav.open { display: grid; }
+  .header-nav a { padding: 12px 2px; border-bottom: 1px solid #f0e8e4; }
+  .header-nav a:last-child { border-bottom: 0; }
   .header .search { display: none; }
   .header-right { margin-left: auto; gap: 10px; }
   .header-right > span:first-child, .header-right .profile { display: none; }
