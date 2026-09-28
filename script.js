@@ -121,6 +121,23 @@ let menuToggle = document.querySelector(".menu-toggle");
 let pageNav = document.querySelector(".page-nav");
 let cartItemsBox = document.querySelector("#cart-items");
 
+function addAboutNavigation() {
+  if (!pageNav || pageNav.querySelector('a[href="about.html"]')) return;
+
+  let aboutLink = document.createElement("a");
+  let browseLink = pageNav.querySelector('a[href="browse.html"]');
+  aboutLink.href = "about.html";
+  aboutLink.textContent = "About Us";
+
+  if (browseLink) {
+    browseLink.insertAdjacentElement("afterend", aboutLink);
+  } else {
+    pageNav.appendChild(aboutLink);
+  }
+}
+
+addAboutNavigation();
+
 let products = {
   banga: { name: "Banga Soup & Starch", price: "₦3,500", category: "Soups", image: "image/bangasoup1.jpg", description: "Rich, traditional palm fruit soup made from fresh banga seeds, slow-cooked with assorted meat. Served with freshly prepared starch.", includes: ["Large bowl of Banga Soup (400ml)", "Fresh starch wrap", "Assorted meat (3 pieces)", "Extra stock on request"] },
   suya: { name: "Suya Platter (500g)", price: "₦4,200", category: "Grills & BBQ", image: "image/Suya.jpeg", description: "Tender beef suya coated in our smoky peanut spice blend, grilled fresh and served hot with onions and tomatoes.", includes: ["500g beef suya", "Fresh onions and tomatoes", "Pepper sauce", "Extra spice on request"] },
