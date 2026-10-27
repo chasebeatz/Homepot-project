@@ -257,7 +257,7 @@ function loadProduct() {
   productTitle.textContent = product.name;
   document.title = product.name + " | HomePot";
   productPrice.textContent = product.price;
-  productRating.textContent = "★★★★★ 4.9 (89) · Chef Amaka · 25 min";
+  productRating.textContent = "★★★★★ 4.9 (89) · " + (product.chef || "HomePot Chef");
   productDescription.textContent = product.description;
   productBreadcrumb.textContent = "Home / " + product.category + " / Made to Order";
   productAddButton.dataset.food = product.name;
@@ -305,8 +305,14 @@ function loadCustomizeItem() {
   if (!customizeItem) return;
 
   let item = new URLSearchParams(window.location.search).get("item") || "Banga Soup & Starch";
-  customizeItem.textContent = item + " · Chef Amaka";
+
+  let product = getProduct(item);
+  let chefName = product.chef || "HomePot Chef";
+
+  customizeItem.textContent = item + " · " + chefName;
+
   customizeAddButton.dataset.food = "Customized " + item;
+  customizeAddButton.dataset.chef = chefName;
 }
 
 function loadCategoryMenu() {

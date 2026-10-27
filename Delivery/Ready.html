@@ -3,31 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Your Food is Ready</title>
-
+    <title>Your Food is Ready | HomePot</title>
     <link rel="stylesheet" href="Ready.css">
 </head>
 
 <body>
 
-    <!-- TOP BAR -->
     <header class="top-bar">
         <div class="order-title">
             <span class="icon">🍱</span>
             <span>Order #<span id="orderNumber">Loading...</span></span>
         </div>
 
-        <a href="#" class="help">Need Help?</a>
+        <a href="#" class="help" id="helpBtn">Need Help?</a>
     </header>
 
-
-    <!-- PROGRESS -->
     <section class="progress-section">
-
         <div class="progress">
 
-            <!-- CONFIRMED -->
             <div class="step completed">
                 <div class="circle">✓</div>
                 <span>Confirmed</span>
@@ -35,7 +28,6 @@
 
             <div class="line completed-line"></div>
 
-            <!-- PREPARING -->
             <div class="step completed">
                 <div class="circle">✓</div>
                 <span>Preparing</span>
@@ -43,7 +35,6 @@
 
             <div class="line completed-line"></div>
 
-            <!-- READY -->
             <div class="step completed">
                 <div class="circle">✓</div>
                 <span>Ready</span>
@@ -51,7 +42,6 @@
 
             <div class="line"></div>
 
-            <!-- DELIVERING -->
             <div class="step delivering">
                 <div class="circle"></div>
                 <span>Delivering</span>
@@ -59,94 +49,77 @@
 
             <div class="line"></div>
 
-            <!-- DELIVERED -->
             <div class="step">
                 <div class="circle"></div>
                 <span>Delivered</span>
             </div>
 
         </div>
-
     </section>
 
-
-    <!-- MAIN CONTENT -->
     <main class="content">
 
-        <!-- READY CARD -->
         <section class="ready-card">
 
             <div class="celebration">🎉</div>
 
             <h1>Your Food is<br>Ready!</h1>
 
-            <p class="description">
-                Chef Amaka has finished preparing your
-                order. A delivery rider will collect it shortly.
-                Show this code to verify your delivery.
+            <p class="description" id="readyMessage">
+                Your chef has finished preparing your order.
+                A delivery rider will collect it shortly.
             </p>
 
-
-            <!-- OTP -->
             <div class="otp-box">
-
                 <p>DELIVERY OTP</p>
 
-                <div class="otp">
-                    <span>7</span>
-                    <span>4</span>
-                    <span>2</span>
-                    <span>9</span>
+                <div class="otp" id="deliveryOtp"
+                     aria-label="Delivery verification code">
+                    <span>—</span>
+                    <span>—</span>
+                    <span>—</span>
+                    <span>—</span>
                 </div>
-
             </div>
 
             <p class="expiry">
-                This code expires in <strong>30 minutes.</strong>
+                This code expires in
+                <strong id="otpExpiry">30 minutes.</strong>
                 Never share it before receiving your order.
             </p>
 
+            <p id="otpStatus" role="status"></p>
+
         </section>
 
-
-        <!-- WHAT HAPPENS NEXT -->
         <section class="next-card">
 
             <h2>What Happens Next</h2>
 
             <div class="instruction">
                 <div class="number">1</div>
-
-                <p>
-                    A rider is being assigned to collect your
-                    order from Chef Amaka.
+                <p id="nextMessage1">
+                    A rider will collect your order from the chef.
                 </p>
             </div>
-
 
             <div class="instruction">
                 <div class="number">2</div>
-
                 <p>
-                    You'll receive a notification when your
-                    rider is on the way.
+                    Follow your delivery progress on the tracking page.
                 </p>
             </div>
 
-
             <div class="instruction">
                 <div class="number">3</div>
-
                 <p>
-                    Show the OTP code to the rider upon delivery
-                    to confirm receipt.
+                    Give the OTP to the rider when your food arrives.
                 </p>
             </div>
 
         </section>
 
     </main>
-
 
     <script src="Ready.js"></script>
 

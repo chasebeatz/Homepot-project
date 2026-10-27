@@ -1,276 +1,449 @@
-// ==========================================
-// GET CURRENT ORDER NUMBER
-// ==========================================
+document.addEventListener("DOMContentLoaded", function () {
 
-const savedOrder =
-    localStorage.getItem("homepotCurrentOrder");
+    // ==========================================
+    // GET THE SAVED ORDER
+    // ==========================================
 
-let currentOrder = null;
-
-if (savedOrder) {
-
-    try {
-
-        currentOrder =
-            JSON.parse(savedOrder);
-
-    } catch (error) {
-
-        console.log(
-            "Could not read current order.",
-            error
-        );
-
+    function readStorage(key, fallback) {
+        try {
+            const value = localStorage.getItem(key);
+            return value ? JSON.parse(value) : fallback;
+        } catch (error) {
+            return fallback;
+        }
     }
 
-}
+    const order = readStorage("homepotCurrentOrder", {});
 
+    let items = Array.isArray(order.items) ? order.items : [];
 
-// ==========================================
-// DISPLAY ORDER NUMBER
-// ==========================================
-
-const orderNumberElement =
-    document.getElementById("orderNumber");
-
-if (orderNumberElement) {
-
-    if (
-        currentOrder &&
-        currentOrder.orderNumber
-    ) {
-
-        orderNumberElement.textContent =
-            currentOrder.orderNumber;
-
-    } else {
-
-        orderNumberElement.textContent =
-            "Unavailable";
-
+    // Use the saved cart if the order has no items
+    if (items.length === 0) {
+        items = readStorage("homepotCart", []);
     }
 
-}// ==========================================
-// ORDER FULFILLMENT FLOW
-// ==========================================
+    // ==========================================
+    // FORMAT MONEY
+    // ==========================================
 
-// Chef's phone number
-const chefPhoneNumber = "+2348012345678";
+    function formatMoney(amount) {
+        const price = Number(
+            String(amount ?? 0).replace(/[₦,\s]/g, "")
+        ) || 0;
 
+        return "₦" + price.toLocaleString("en-NG");
+    }
 
-// ==========================================
-// GET ELEMENTS
-// ==========================================
+    // ==========================================
+    // ORDER NUMBER
+    // ==========================================
 
-const confirmedStep = document.getElementById("confirmedStep");
-const preparingStep = document.getElementById("preparingStep");
-const readyStep = document.getElementById("readyStep");
+    const orderNumberElement =
+        document.getElementById("orderNumber");
 
-const line1 = document.getElementById("line1");
-const line2 = document.getElementById("line2");
+    if (orderNumberElement) {
+        orderNumberElement.textContent =
+            order.orderNumber || "Unavailable";
+    }
 
-const statusTitle = document.getElementById("statusTitle");
-const statusMessage = document.getElementById("statusMessage");
+    // ==========================================
+    // SELECTED CHEF
+    // ==========================================
 
-const timeText = document.getElementById("timeText");
-const timeLabel = document.getElementById("timeLabel");
-
-
-// ==========================================
-// RESET PROGRESS
-// ==========================================
-
-function resetProgress() {
-
-    confirmedStep.classList.remove(
-        "completed",
-        "current-step"
+    let selectedChef = readStorage(
+        "homepotSelectedChef",
+        null
     );
 
-    preparingStep.classList.remove(
-        "completed",
-        "current-step"
-    );
+    // Support a chef saved as ordinary text
+    if (typeof selectedChef !== "string") {
+        selectedChef =
+            selectedChef?.name ||
+            selectedChef?.chefName ||
+            "";
+    }
 
-    readyStep.classList.remove(
-        "completed",
-        "current-step"
-    );
+    const chefName =
+        order.chefName ||
+        (typeof order.chef === "string" ? order.chef : "") ||
+        selectedChef ||
+        "Your selected chef";
 
-    line1.classList.remove("completed-line");
-    line2.classList.remove("completed-line");
-}
+    const chefNameElement =
+        document.getElementById("chefName");
 
+    if (chefNameElement) {
+        chefNameElement.textContent = chefName;
+    }
 
-// ==========================================
-// CONFIRMED STATUS
-// ==========================================
+    // ==========================================
+    // DISPLAY FOOD ITEMS
+    // ==========================================
 
-function showConfirmed() {
+    const orderItemsContainer =
+        document.getElementById("orderItems");
 
-    resetProgress();
+    if (orderItemsContainer) {
 
-    confirmedStep.classList.add("current-step");
+        orderItemsContainer.replaceChildren();
 
-    statusTitle.innerHTML =
-        "Your Order is<br>Confirmed!";
+        if (items.length === 0) {
 
-    statusMessage.textContent =
-        "Your order has been confirmed. Chef Amaka will start preparing your meal shortly.";
+            orderItemsContainer.textContent =
+                "No food items were found for this order.";
 
-    timeText.textContent = "~45 min";
+        } else {
 
-    timeLabel.textContent =
-        "Estimated prep time";
-}
+            items.forEach(function (item) {
 
+                const name =
+                    item.name || item.title || "Food item";
 
-// ==========================================
-// PREPARING STATUS
-// ==========================================
+                const quantity =
+                    Math.max(1, Number(item.quantity) || 1);
 
-function showPreparing() {
+                const unitPrice =
+                    Number(
+                        String(item.price ?? 0)
+                            .replace(/[₦,\s]/g, "")
+                    ) || 0;
 
-    resetProgress();
+                const row =
+                    document.createElement("div");
 
-    confirmedStep.classList.add("completed");
+                row.className = "item";
 
-    preparingStep.classList.add("current-step");
+                const itemName =
+                    document.createElement("span");
 
-    line1.classList.add("completed-line");
+                itemName.textContent =
+                    `${name} × ${quantity}`;
 
+                const itemPrice =
+                    document.createElement("strong");
 
-    statusTitle.innerHTML =
-        "Chef Amaka is<br>Cooking!";
+                itemPrice.textContent =
+                    formatMoney(unitPrice * quantity);
 
-    statusMessage.textContent =
-        "Your order has been accepted and Chef Amaka is lovingly preparing your Banga Soup & Starch and Jollof Rice & Chicken.";
+                row.append(itemName, itemPrice);
 
-    timeText.textContent = "~45 min";
+                orderItemsContainer.appendChild(row);
 
-    timeLabel.textContent =
-        "Estimated prep time";
-}
-
-
-// ==========================================
-// READY STATUS
-// ==========================================
-
-function showReady() {
-
-    resetProgress();
-
-    confirmedStep.classList.add("completed");
-
-    preparingStep.classList.add("completed");
-
-    readyStep.classList.add("current-step");
-
-    line1.classList.add("completed-line");
-
-    line2.classList.add("completed-line");
-
-
-    statusTitle.innerHTML =
-        "Your Order is<br>Ready!";
-
-    statusMessage.textContent =
-        "Chef Amaka has finished preparing your order. Your food is ready for delivery.";
-
-    timeText.textContent = "Ready!";
-
-    timeLabel.textContent =
-        "Your food is ready";
-}
-
-
-// ==========================================
-// CALL CHEF
-// ==========================================
-
-const callChefBtn =
-    document.getElementById("callChefBtn");
-
-callChefBtn.addEventListener(
-    "click",
-    function () {
-
-        const answer = confirm(
-            "Do you want to call Chef Amaka?"
-        );
-
-        if (answer) {
-
-            window.location.href =
-                "tel:" + chefPhoneNumber;
+            });
 
         }
-
     }
-);
 
+    // ==========================================
+    // DELIVERY ADDRESS
+    // ==========================================
 
-// ==========================================
-// NEED HELP
-// ==========================================
+    const deliveryAddressElement =
+        document.getElementById("deliveryAddress");
 
-const helpBtn =
-    document.getElementById("helpBtn");
+    let address =
+        order.address ||
+        localStorage.getItem("homepotDeliveryAddress") ||
+        "";
 
-helpBtn.addEventListener(
-    "click",
-    function (event) {
+    // Support an address saved as an object
+    if (typeof address === "object" && address !== null) {
+        address =
+            address.fullAddress ||
+            address.address ||
+            address.formattedAddress ||
+            [
+                address.street,
+                address.city,
+                address.state
+            ].filter(Boolean).join(", ");
+    }
 
-        event.preventDefault();
+    if (deliveryAddressElement) {
+        deliveryAddressElement.textContent =
+            address || "Delivery address not available";
+    }
 
-        alert(
-            "Need help with your order?\n\n" +
-            "Please contact HomePot customer support."
+    // ==========================================
+    // ESTIMATED DELIVERY
+    // ==========================================
+
+    const deliveryEstimateElement =
+        document.getElementById("deliveryEstimate");
+
+    if (deliveryEstimateElement) {
+        deliveryEstimateElement.textContent =
+            order.deliveryTime ||
+            order.estimatedArrival ||
+            "Estimate not available";
+    }
+
+    // ==========================================
+    // ORDER PROGRESS ELEMENTS
+    // ==========================================
+
+    const confirmedStep =
+        document.getElementById("confirmedStep");
+
+    const preparingStep =
+        document.getElementById("preparingStep");
+
+    const readyStep =
+        document.getElementById("readyStep");
+
+    const deliveringStep =
+        document.getElementById("deliveringStep");
+
+    const deliveredStep =
+        document.getElementById("deliveredStep");
+
+    const line1 = document.getElementById("line1");
+    const line2 = document.getElementById("line2");
+    const line3 = document.getElementById("line3");
+    const line4 = document.getElementById("line4");
+
+    const statusTitle =
+        document.getElementById("statusTitle");
+
+    const statusMessage =
+        document.getElementById("statusMessage");
+
+    const timeText =
+        document.getElementById("timeText");
+
+    const timeLabel =
+        document.getElementById("timeLabel");
+
+    // ==========================================
+    // RESET PROGRESS
+    // ==========================================
+
+    function resetProgress() {
+
+        [
+            confirmedStep,
+            preparingStep,
+            readyStep,
+            deliveringStep,
+            deliveredStep
+        ].forEach(function (step) {
+
+            if (step) {
+                step.classList.remove(
+                    "completed",
+                    "current-step"
+                );
+            }
+
+        });
+
+        [line1, line2, line3, line4].forEach(
+            function (line) {
+
+                if (line) {
+                    line.classList.remove("completed-line");
+                }
+
+            }
+        );
+    }
+
+    function activateStep(step) {
+        if (step) {
+            step.classList.add("current-step");
+        }
+    }
+
+    function completeStep(step) {
+        if (step) {
+            step.classList.add("completed");
+        }
+    }
+
+    function completeLine(line) {
+        if (line) {
+            line.classList.add("completed-line");
+        }
+    }
+
+    // Build a readable list of ordered food
+    const foodNames = items.map(function (item) {
+        const quantity = Math.max(
+            1,
+            Number(item.quantity) || 1
         );
 
+        return `${item.name || item.title || "Food item"} × ${quantity}`;
+    });
+
+    const foodDescription = foodNames.length
+        ? foodNames.join(", ")
+        : "your selected food";
+
+    // ==========================================
+    // CONFIRMED STATUS
+    // ==========================================
+
+    function showConfirmed() {
+
+        resetProgress();
+        activateStep(confirmedStep);
+
+        if (statusTitle) {
+            statusTitle.innerHTML =
+                "Your Order is<br>Confirmed!";
+        }
+
+        if (statusMessage) {
+            statusMessage.textContent =
+                `Your order has been confirmed. ${chefName} will start preparing ${foodDescription} shortly.`;
+        }
+
+        if (timeText) {
+            timeText.textContent = "~45 min";
+        }
+
+        if (timeLabel) {
+            timeLabel.textContent = "Estimated prep time";
+        }
     }
-);
 
+    // ==========================================
+    // PREPARING STATUS
+    // ==========================================
 
-// ==========================================
-// START ORDER FLOW
-// ==========================================
+    function showPreparing() {
 
-showConfirmed();
+        resetProgress();
 
+        completeStep(confirmedStep);
+        activateStep(preparingStep);
+        completeLine(line1);
 
-// ==========================================
-// CONFIRMED → PREPARING
-// 3 SECONDS
-// ==========================================
+        if (statusTitle) {
+            statusTitle.textContent =
+                `${chefName} is Cooking!`;
+        }
 
-setTimeout(function () {
+        if (statusMessage) {
+            statusMessage.textContent =
+                `${chefName} is preparing ${foodDescription}.`;
+        }
 
-    showPreparing();
+        if (timeText) {
+            timeText.textContent = "~45 min";
+        }
 
-}, 3000);
+        if (timeLabel) {
+            timeLabel.textContent = "Estimated prep time";
+        }
+    }
 
+    // ==========================================
+    // READY STATUS
+    // ==========================================
 
-// ==========================================
-// PREPARING → READY
-// 8 SECONDS TOTAL
-// ==========================================
+    function showReady() {
 
-setTimeout(function () {
+        resetProgress();
 
-    showReady();
+        completeStep(confirmedStep);
+        completeStep(preparingStep);
+        activateStep(readyStep);
 
-}, 8000);
+        completeLine(line1);
+        completeLine(line2);
 
+        if (statusTitle) {
+            statusTitle.innerHTML =
+                "Your Order is<br>Ready!";
+        }
 
-// ==========================================
-// READY → ANOTHER PAGE
-// 10 SECONDS TOTAL
-// ==========================================
+        if (statusMessage) {
+            statusMessage.textContent =
+                `${chefName} has finished preparing your order. Your food is ready for delivery.`;
+        }
 
-setTimeout(function () {
+        if (timeText) {
+            timeText.textContent = "Ready!";
+        }
 
-    window.location.href = "../Delivery/Ready.html";
+        if (timeLabel) {
+            timeLabel.textContent = "Your food is ready";
+        }
+    }
 
-}, 10000);
+    // ==========================================
+    // CALL SELECTED CHEF
+    // ==========================================
+
+    const callChefBtn =
+        document.getElementById("callChefBtn");
+
+    if (callChefBtn) {
+
+        callChefBtn.addEventListener("click", function () {
+
+            let phone =
+                order.chefPhone ||
+                localStorage.getItem("homepotSelectedChefPhone");
+
+            if (!phone) {
+                alert(
+                    `The phone number for ${chefName} is not available yet.`
+                );
+                return;
+            }
+
+            phone = String(phone).replace(/[^\d+]/g, "");
+
+            if (confirm(`Do you want to call ${chefName}?`)) {
+                window.location.href = "tel:" + phone;
+            }
+
+        });
+    }
+
+    // ==========================================
+    // NEED HELP
+    // ==========================================
+
+    const helpBtn =
+        document.getElementById("helpBtn");
+
+    if (helpBtn) {
+
+        helpBtn.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            alert(
+                "Need help with your order?\n\n" +
+                "Please contact HomePot customer support."
+            );
+
+        });
+    }
+
+    // ==========================================
+    // START ORDER FLOW
+    // ==========================================
+
+    showConfirmed();
+
+    // Confirmed → Preparing
+    setTimeout(function () {
+        showPreparing();
+    }, 3000);
+
+    // Preparing → Ready
+    setTimeout(function () {
+        showReady();
+    }, 8000);
+
+    // Ready → Delivery page
+    setTimeout(function () {
+        window.location.href = "../Delivery/Ready.html";
+    }, 10000);
+
+});

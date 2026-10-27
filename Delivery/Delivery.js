@@ -1,4 +1,103 @@
-const steps = document.querySelectorAll(".progress-step");
+/* DISPLAY THE CURRENT ORDER DETAILS */
+const savedOrder = JSON.parse(
+    localStorage.getItem("homepotCurrentOrder") || "null"
+);
+
+// Format prices in Nigerian Naira
+function formatDeliveryMoney(amount) {
+    const number = Number(
+        String(amount ?? 0).replace(/[₦,\s]/g, "")
+    ) || 0;
+
+    return "₦" + number.toLocaleString("en-NG");
+}
+
+// DISPLAY ORDER NUMBER — SAME METHOD AS READY.JS
+const orderNumberElement =
+    document.getElementById("orderNumber");
+
+if (orderNumberElement) {
+    if (savedOrder && savedOrder.orderNumber) {
+        orderNumberElement.textContent =
+            savedOrder.orderNumber;
+    } else {
+        orderNumberElement.textContent = "Unavailable";
+    }
+}
+
+// Display delivery address
+const addressElement = document.getElementById("deliveryAddress");
+
+if (addressElement) {
+    const savedAddress =
+        savedOrder?.address ||
+        localStorage.getItem("homepotDeliveryAddress");
+
+    let addressText = "Address not available";
+
+    if (typeof savedAddress === "string" && savedAddress.trim()) {
+        addressText = savedAddress;
+    } else if (savedAddress && typeof savedAddress === "object") {
+        addressText = [
+            savedAddress.address,
+            savedAddress.street,
+            savedAddress.city,
+            savedAddress.state
+        ].filter(Boolean).join(", ") || "Address not available";
+    }
+
+    addressElement.textContent = addressText;
+}
+
+// Display the SAME OTP generated on Ready.html
+const deliveryOtpElement = document.getElementById("deliveryOtp");
+
+if (deliveryOtpElement) {
+    try {
+        const savedOtp = JSON.parse(
+            localStorage.getItem("homepotDeliveryOtp") || "null"
+        );
+
+        const orderId =
+            savedOrder?.orderNumber || "current-order";
+
+        if (
+            savedOtp &&
+            savedOtp.orderNumber === orderId &&
+            Number(savedOtp.expiresAt) > Date.now() &&
+            /^\d{4}$/.test(String(savedOtp.code))
+        ) {
+            deliveryOtpElement.textContent = savedOtp.code;
+        } else {
+            deliveryOtpElement.textContent = "Expired";
+        }
+    } catch (error) {
+        deliveryOtpElement.textContent = "Unavailable";
+    }
+}
+
+// Display the order summary
+const orderSummaryElement = document.getElementById("orderSummary");
+
+if (orderSummaryElement) {
+    const items = Array.isArray(savedOrder?.items)
+        ? savedOrder.items
+        : [];
+
+    const itemCount = items.reduce(
+        (total, item) => total + (Number(item.quantity) || 1),
+        0
+    );
+
+    const total =
+        savedOrder?.total ??
+        savedOrder?.amount ??
+        0;
+
+    orderSummaryElement.textContent =
+        `${itemCount} ${itemCount === 1 ? "item" : "items"} · ` +
+        `${formatDeliveryMoney(total)} paid`;
+}const steps = document.querySelectorAll(".progress-step");
 const lines = document.querySelectorAll(".progress-line");
 
 const deliveryTitle = document.getElementById("delivery-title");
