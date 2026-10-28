@@ -417,3 +417,36 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const savedOrder =
+        localStorage.getItem("homepotCurrentOrder");
+
+    let order = {};
+
+    if (savedOrder) {
+        try {
+            order = JSON.parse(savedOrder);
+        } catch (error) {
+            console.log("Unable to read the current order.");
+        }
+    }
+
+    const savedChef =
+        localStorage.getItem("homepotSelectedChef");
+
+    const chefName =
+        order.chefName ||
+        order.chef ||
+        savedChef ||
+        "your selected chef";
+
+    const chefElement =
+        document.getElementById("confirmedChefName");
+
+    if (chefElement) {
+        chefElement.textContent = chefName;
+    }
+
+});

@@ -50,7 +50,44 @@ if (orderNumberElement) {
 
     }
 
-}document.addEventListener("DOMContentLoaded", function () {
+}
+// ==========================================
+// DISPLAY SELECTED CHEF
+// ==========================================
+
+const savedChef = localStorage.getItem("homepotSelectedChef");
+
+let chefName = "your chef";
+
+if (savedChef) {
+    try {
+        const chef = JSON.parse(savedChef);
+
+        chefName = typeof chef === "string"
+            ? chef
+            : chef.name || chef.chefName || chefName;
+    } catch (error) {
+        chefName = savedChef;
+    }
+}
+
+if (currentOrder) {
+    chefName =
+        currentOrder.chefName ||
+        (typeof currentOrder.chef === "string"
+            ? currentOrder.chef
+            : chefName);
+}
+
+const readyMessage = document.getElementById("readyMessage");
+
+if (readyMessage) {
+    readyMessage.textContent =
+        `${chefName} has finished preparing your order. ` +
+        "A delivery rider will collect it shortly. Show the code " +
+        "to the rider when your food arrives.";
+}
+document.addEventListener("DOMContentLoaded", function () {
 
     const steps = document.querySelectorAll(".step");
     const lines = document.querySelectorAll(".line");
@@ -192,3 +229,54 @@ if (orderNumberElement) {
     }, 3000);
 
 });
+
+// ==========================================
+// GENERATE AND DISPLAY DEMO DELIVERY OTP
+// ======================== ==================
+
+const otpContainer = document.getElementById("deliveryOtp");
+
+if (otpContainer) {
+    const OTP_KEY = "homepotDeliveryOtp";
+
+    let savedOtp = null;
+
+    try {
+        savedOtp = JSON.parse(localStorage.getItem(OTP_KEY));
+    } catch (error) {
+        savedOtp = null;
+    }
+
+    const orderId = currentOrder?.orderNumber || "current-order";
+    const now = Date.now();
+
+    // Reuse the code if it belongs to this order
+    // and has not expired.
+    if (
+        !savedOtp ||
+        savedOtp.orderNumber !== orderId ||
+        !savedOtp.expiresAt ||
+        savedOtp.expiresAt <= now ||
+        !/^\d{4}$/.test(String(savedOtp.code))
+    ) {
+        savedOtp = {
+            orderNumber: orderId,
+            code: String(Math.floor(1000 + Math.random() * 9000)),
+            expiresAt: now + 30 * 60 * 1000
+        };
+
+        localStorage.setItem(OTP_KEY, JSON.stringify(savedOtp));
+    }
+
+    otpContainer.replaceChildren();
+
+    if (Date.now() < savedOtp.expiresAt) {
+        for (const digit of savedOtp.code) {
+            const span = document.createElement("span");
+            span.textContent = digit;
+            otpContainer.appendChild(span);
+        }
+    } else {
+        otpContainer.textContent = "Expired";
+    }
+}

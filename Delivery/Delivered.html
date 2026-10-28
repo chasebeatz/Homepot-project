@@ -31,7 +31,7 @@
             <h1>Order Delivered!</h1>
 
             <!-- Description -->
-            <p class="description">
+            <p class="description" id="deliveryDescription">
                 Your food from Chef Amaka has arrived. Emeka delivered your
                 order in just <strong>23 minutes.</strong> Enjoy your meal!
             </p>
@@ -42,22 +42,22 @@
 
                 <div class="info-row">
                     <span>Order #</span>
-                    <strong>HP-20241025</strong>
+                    <strong id="deliveredOrderNumber">Loading...</strong>
                 </div>
 
                 <div class="info-row">
                     <span>Delivered at</span>
-                    <strong>2:47 PM</strong>
+                    <strong id="deliveryAt">Loading...</strong>
                 </div>
 
                 <div class="info-row">
                     <span>Delivery time</span>
-                    <strong>23 minutes</strong>
+                    <strong id="deliveryDuration">Loading...</strong>
                 </div>
 
                 <div class="info-row">
                     <span>Amount paid</span>
-                    <strong>₦9,800</strong>
+                    <strong id="amountPaid">Loading...</strong>
                 </div>
 
             </div>
@@ -66,11 +66,11 @@
             <!-- BUTTONS -->
             <div class="buttons">
 
-                <a href="Experience.html">
+                
                      <button class="rate-btn" id="rateButton">
                     Rate Your Experience
                 </button>
-                </a>
+               
 
                 <button class="wrong-btn" id="wrongButton">
                     Something Wrong?
